@@ -15,7 +15,7 @@ module.exports = app
   .use(express.static(resolve(__dirname, '..', 'public')))
   .use(express.static('./public/css/'))
 
-  //.use('/api', require('./api'))
+  .use('/api', require('./api'))
 
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
