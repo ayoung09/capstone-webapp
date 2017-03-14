@@ -9,10 +9,10 @@ const seedUsers = () => db.Promise.map([
 const seedPhrases = () => db.Promise.map([
   {text: 'lazy turtle on a rock'},
   {text: 'monkey hurls strawberry ice cream'},
-  {text: 'Mary Poppins and penguin'},
+  {text: 'Mary Poppins and penguin waiter'},
   {text: 'take a cold shower'},
   {text: 'write a bucket list'},
-  {text: 'Cookie monster is hangry'},
+  {text: 'Cookie Monster is hangry'},
   {text: 'a hipster combs his moustache'},
   {text: 'plane flies under reading rainbow'},
   {text: 'cry me a river of pepsi'},
