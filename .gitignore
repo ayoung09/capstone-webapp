@@ -1,6 +1,7 @@
+!node_modules/APP
+
 node_modules/
 
-!node_modules/APP
 
 public/bundle.js
 public/bundle.js.map
