@@ -18,7 +18,7 @@ import DrawkwardFrame from './components/DrawkwardFrame.jsx';
 
 const onDrawkwardEnter = () => {
   axios.get('/api/phrases')
-    .then(phrases => store.dispatch(receiveAllPhrases(phrases)));
+    .then(phrases => store.dispatch(receiveAllPhrases(phrases.data)));
 };
 
 render(

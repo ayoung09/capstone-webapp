@@ -3,12 +3,36 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
+const socketio = require('socket.io');
 
 const app = express();
 
-module.exports = app
+const server = app.listen(1337, () => {
+    console.log('--- The server is listening intently on PORT 1337 ---');
+  });
 
-  .use(require('volleyball'))
+const io = socketio(server);
+
+io.on('connection', socket => {
+  console.log('A new user has connected: ', socket.id);
+
+  socket.on('sendCoordinatesFromIOS', data => {
+    console.log('server has received data: ', data);
+    socket.broadcast.emit('receiveCoordinatesFromIOS', {id: socket.id, data: data});
+  });
+
+  socket.on('talk to mobile', socketId => {
+    console.log('received message from webapp', socketId);
+    socket.broadcast.emit('message from webapp', socketId);
+  })
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected :(');
+  });
+});
+
+  app
+    .use(require('volleyball'))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
 
@@ -23,8 +47,6 @@ module.exports = app
     console.log('Problem at the start');
     res.status(500).send(err);
     next();
-  })
-
-  .listen(1337, () => {
-    console.log('--- The server is listening intently on PORT 1337 ---');
   });
+
+module.exports = app;
