@@ -1,5 +1,5 @@
 const initialState = {
-  currentDrawing: {}, //{socketId: {currentDrawing: , phrase: }}
+  currentDrawing: {}, //{socketId: {image: , phrase: }}
   phraseGuesses: {}, //{{socketId: ''}, {}}
   allDrawings: [],
 };

@@ -5,12 +5,16 @@ import { connect } from 'react-redux';
 import { addUser, setRounds, nextRound } from '../reducers/drawkwardFrame';
 import { addDrawing, setCurrentDrawing, addPhraseGuess, clearRound } from '../reducers/drawkwardRound';
 
-import { receiveNewUser } from '../../socketConstants';
+import { receiveNewUser, startGame, receiveNewDrawing, receiveNewGuess, sendRandomPhrase } from '../../socketConstants';
 
 
 const mapStateToProps = state => ({
   users: state.drawkwardFrame.users,
   phrases: state.drawkwardFrame.phrases,
+  rounds: state.drawkwardFrame.rounds,
+  currentDrawing: state.drawkwardRound.currentDrawing,
+  phraseGuesses: state.drawkwardRound.phraseGuesses,
+  allDrawings: state.drawkwardRound.allDrawings,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -33,18 +37,29 @@ class DrawkwardFrame extends Component {
     super(props);
   }
 
-  componentWillReceiveProps() {
+  componentDidMount() {
+    socket.on(receiveNewUser, userObj => {
+      this.props.addUser(userObj);
+    });
+
+    socket.on(startGame, () => {
+      //send random phrases to users;
+    });
+
+    // socket.on(receiveNewDrawing, drawingObj)
     socket.on('receiveCoordinatesFromIOS', data => {
     console.log('Received data from socket: ', data);
     });
-    socket.on('receiveCoordinatesFromIOS', userObj => {
-      addUser({userObj});
-    });
   }
 
-  emitToSocket() {
-      socket.emit('talk to mobile', socket.id);
+  componentWillUnmount() {
+    //FILL THIS IN
   }
+
+
+  // emitToSocket() {
+  //     socket.emit('talk to mobile', socket.id);
+  // }
 
 
   render() {
@@ -52,7 +67,7 @@ class DrawkwardFrame extends Component {
       <div>
         <h2>Create a username and portrait in your mobile app</h2>
         <h4>When all users have signed in, hit START to begin your game</h4>
-        <button onClick={emitToSocket}>Emit</button>
+        <button>Emit</button>
       </div>
     );
   }

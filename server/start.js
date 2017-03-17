@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame } = require('../socketConstants');
 
 
 const app = express();
@@ -17,6 +17,7 @@ const io = socketio(server);
 
 io.on('connection', socket => {
   console.log('A new user has connected: ', socket.id);
+  console.log('this is newRoom: ', newRoom);
 
   //mobile joins room; come back to this when ready to incorporate rooms...
   socket.on(newRoom, data => {
@@ -29,6 +30,11 @@ io.on('connection', socket => {
       id: socket.id,
       userObj: userObj,
     });
+  });
+
+  //mobile starts gameplay
+  socket.on(sendStartGame, () => {
+    socket.broadcast.emit(startGame);
   });
 
   //mobile sends new drawing
