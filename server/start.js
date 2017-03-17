@@ -4,8 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess } = require('../socketConstants');
 
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess } = require('../browser/socket');
 
 const app = express();
 

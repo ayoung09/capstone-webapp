@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { addUser, setRounds, nextRound } from '../reducers/drawkwardFrame';
 import { addDrawing, setCurrentDrawing, addPhraseGuess, clearRound } from '../reducers/drawkwardRound';
 
+import { receiveNewUser } from '../../socketConstants';
+
 
 const mapStateToProps = state => ({
   users: state.drawkwardFrame.users,
