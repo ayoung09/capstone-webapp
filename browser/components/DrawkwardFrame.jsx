@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import socket from '../socket';
+import shuffle from 'shuffle-array';
+
+import { browserHistory } from 'react-router';
 
 import { connect } from 'react-redux';
 import { addUser, setRounds, nextRound } from '../reducers/drawkwardFrame';
 import { addDrawing, setCurrentDrawing, addPhraseGuess, clearRound } from '../reducers/drawkwardRound';
 
-import { receiveNewUser, startGame, receiveNewDrawing, receiveNewGuess, sendRandomPhrase } from '../../socketConstants';
+import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
 
 
 const mapStateToProps = state => ({
   users: state.drawkwardFrame.users,
   phrases: state.drawkwardFrame.phrases,
   rounds: state.drawkwardFrame.rounds,
-  currentDrawing: state.drawkwardRound.currentDrawing,
-  phraseGuesses: state.drawkwardRound.phraseGuesses,
-  allDrawings: state.drawkwardRound.allDrawings,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -43,8 +43,14 @@ class DrawkwardFrame extends Component {
     });
 
     socket.on(startGame, () => {
-      //send random phrases to users;
+      let numOfUsers = Object.keys(this.props.users).length;
+      let randomPhrases = shuffle.pick(this.props.phrases, {'picks': numOfUsers});
+      let userIds = Object.keys(this.props.users);
+      socket.emit(sendRandomPhrase, {randomPhrases, userIds});
+      browserHistory.push('/drawkward/waitingForDrawing');
     });
+
+    socket.on()
 
     // socket.on(receiveNewDrawing, drawingObj)
     socket.on('receiveCoordinatesFromIOS', data => {
@@ -53,7 +59,8 @@ class DrawkwardFrame extends Component {
   }
 
   componentWillUnmount() {
-    //FILL THIS IN
+    socket.off(receiveNewUser);
+    socket.off(startGame);
   }
 
 

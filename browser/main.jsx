@@ -27,7 +27,9 @@ render(
       <Route path="/" component={AppFrame}>
         <Route path="/login" component={Login} />
         <IndexRedirect to="/login" />
-        <Route path="/drawkward" component={DrawkwardFrame} onEnter={onDrawkwardEnter} />
+        <Route path="/drawkward" component={DrawkwardFrame} onEnter={onDrawkwardEnter}>
+          <Route path="/drawkward/waitForDrawings" />
+        </Route>
       </Route>
     </Router>
   </Provider>,

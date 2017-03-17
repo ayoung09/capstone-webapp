@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, sendRandomPhrase, receiveRandomPhrase } = require('../socketConstants');
 
 
 const app = express();
@@ -35,6 +35,14 @@ io.on('connection', socket => {
   //mobile starts gameplay
   socket.on(sendStartGame, () => {
     socket.broadcast.emit(startGame);
+  });
+
+  //webapp starts game and sends phrases
+  socket.on(sendRandomPhrase, data => { //data is {randomPhrases, userIds}
+    data.userIds.forEach(userId => {
+      let phraseString = data.randomPhrases.shift().text;
+      io.clients[userId].emit(receiveRandomPhrase, phraseString);
+    });
   });
 
   //mobile sends new drawing
