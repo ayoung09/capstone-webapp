@@ -1,12 +1,12 @@
 import React from 'react';
-import {Layer, Stage, Line} from 'react-konva';
+import { Layer, Stage, Line } from 'react-konva';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-  return {
-    currentDrawing: state.drawkwardRound.currentDrawing
-  }
-}
+
+const mapStateToProps = state => ({
+  currentDrawing: state.drawkwardRound.currentDrawing,
+});
+
 
 class DrawkwardShowDrawing extends React.Component {
   constructor(props){

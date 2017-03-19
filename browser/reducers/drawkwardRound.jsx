@@ -23,7 +23,7 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       newState.allDrawings.push(action.drawingObj);
       break;
     case ADD_PHRASE_GUESS:
-      newState.phraseGuesses[action.id] = action.phrase;
+      newState.phraseGuesses[action.id] = action.guess;
       break;
     case CLEAR_ROUND:
       newState.currentDrawing = {};
@@ -45,10 +45,10 @@ export const addDrawing = (drawingObj) => ({
   drawingObj,
 });
 
-export const addPhraseGuess = (socketId, userObj) => ({
+export const addPhraseGuess = (socketId, guessStr) => ({
   type: ADD_PHRASE_GUESS,
   id: socketId,
-  userObj,
+  guess: guessStr,
 });
 
 export const clearRound = () => ({
