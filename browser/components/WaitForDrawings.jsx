@@ -8,7 +8,7 @@ import { receiveNewDrawing } from '../../socketConstants';
 
 const mapStateToProps = state => ({
   users: state.drawkwardFrame.users,
-  drawing: state.drawkwardRound.allDrawings
+  allDrawings: state.drawkwardRound.allDrawings
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,8 +27,8 @@ class WaitForDrawings extends Component {
   }
 
   componentWillReceiveProps() {
-    if (Object.keys(this.props.users).length === this.props.drawing.length) {
-      browserHistory.push('/drawkward/showDrawing')
+    if (Object.keys(this.props.users).length === this.props.allDrawings.length) {
+      browserHistory.push('/drawkward/waitForDrawings')
     }
   }
 
