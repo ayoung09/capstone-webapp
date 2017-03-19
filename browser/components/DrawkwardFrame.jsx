@@ -72,6 +72,7 @@ class DrawkwardFrame extends Component {
         <h2>Create a username and portrait in your mobile app</h2>
         <h4>When all users have signed in, hit START to begin your game</h4>
         <button>Emit</button>
+        {this.props.children}
       </div>
     );
   }

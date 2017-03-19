@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, sendRandomPhrase, receiveRandomPhrase } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, sendRandomPhrase, receiveRandomPhrase, selectPhrase, receivedSelectedPhrase } = require('../socketConstants');
 
 
 const app = express();
@@ -58,6 +58,14 @@ io.on('connection', socket => {
     socket.broadcast.emit(receiveNewGuess, {
       id: socket.id,
       guessString: guessString,
+    });
+  });
+
+  //mobile selects a phrase from group's captions
+  socket.on(selectPhrase, guess => {
+    socket.broadcast.emit(receivedSelectedPhrase, {
+      id: socket.id,
+      selectedPhrase: guess
     });
   });
 
