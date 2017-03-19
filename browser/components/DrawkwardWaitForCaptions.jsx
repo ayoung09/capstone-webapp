@@ -31,10 +31,13 @@ class DrawkwardWaitingForCaptions extends React.Component {
 
     socket.on(receiveNewGuess, userObj => {
       this.props.addPhraseGuess(userObj.id, userObj.guessString);
-      if (this.props.phraseGuesses.length === numOfUsers - 2) {
-        browserHistory.push('/drawkward/listCaptions');
-      }
     });
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.phraseGuesses.length === numOfUsers - 1) {
+      browserHistory.push('/drawkward/listCaptions');
+    }
   }
 
   render() {
