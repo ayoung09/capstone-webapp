@@ -54,10 +54,10 @@ export const addDrawing = (drawingObj) => ({
   drawingObj,
 });
 
-export const addPhraseGuess = (socketId, userObj) => ({
+export const addPhraseGuess = (socketId, guessStr) => ({
   type: ADD_PHRASE_GUESS,
   id: socketId,
-  userObj,
+  guess: guessStr,
 });
 
 export const addSelectedPhrase = (phraseObj) => ({

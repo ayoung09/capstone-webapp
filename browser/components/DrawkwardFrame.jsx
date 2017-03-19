@@ -21,15 +21,12 @@ const mapDispatchToProps = dispatch => ({
   addUser: (user) => dispatch(addUser(user)),
   setRounds: (numOfUsers) => dispatch(setRounds(numOfUsers)),
   addDrawing: (drawingObj) => dispatch(addDrawing(drawingObj)),
-  setCurrentDrawing: () => dispatch(setCurrentDrawing()),
-  addPhraseGuess: (socketId, userObj) => dispatch(addPhraseGuess(socketId, userObj)),
   initializeRound: () => {
     dispatch(nextRound());
     dispatch(setCurrentDrawing());
   },
   clearRound: () => dispatch(clearRound()),
 });
-
 
 
 class DrawkwardFrame extends Component {
