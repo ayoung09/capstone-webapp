@@ -7,6 +7,7 @@ module.exports = {
   newGuess: 'new guess',
   receiveRandomPhrase: 'receive random phrase',
   sendStartGame: 'send start game',
+  selectPhrase: 'select phrase',
 
   //constants between server and webapp
   receiveNewUser: 'receive new user',
@@ -14,4 +15,5 @@ module.exports = {
   receiveNewDrawing: 'receive new drawing',
   receiveNewGuess: 'receive new guess',
   sendRandomPhrase: 'send random phrase',
+  receivedSelectedPhrase: 'receive selected phrase'
 };
