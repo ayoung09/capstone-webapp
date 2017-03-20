@@ -6,6 +6,8 @@ import { browserHistory } from 'react-router';
 import DrawkwardShowDrawing from './DrawkwardShowDrawing';
 import { receivedSelectedPhrase } from '../../socketConstants';
 import { addSelectedPhrase } from '../reducers/drawkwardRound';
+import { add50, add100 } from '../reducers/drawkwardScoreboard';
+
 
 
 const mapStateToProps = state => ({
@@ -13,35 +15,36 @@ const mapStateToProps = state => ({
   currentDrawing: state.drawkwardRound.currentDrawing,
   drawing: state.drawkwardRound.currentDrawing.image,
   originalPhrase: state.drawkwardRound.currentDrawing.phrase,
-  guesses: state.drawkwardRound.phraseGuesses,
+  phraseGuesses: state.drawkwardRound.phraseGuesses,
   selectedPhraseGuesses: state.drawkwardRound.selectedPhraseGuesses,
+  scores: state.drawkwardScoreboard.scores,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  addSelectedPhrase: (phraseObj) => dispatch(addSelectedPhrase(phraseObj))
+  addSelectedPhrase: phraseObj => dispatch(addSelectedPhrase(phraseObj)),
+  add50: socketId => dispatch(add50(socketId)),
+  add100: socketId => dispatch(add100(socketId)),
 });
 
 
 class ListCaptions extends Component {
   componentDidMount() {
+    let originalPhrase = this.props.originalPhrase;
+    let currentArtist = Object.keys(this.props.currentDrawing)[0];
+
     socket.on(receivedSelectedPhrase, phraseObj => {
       this.props.addSelectedPhrase(phraseObj);
+      if (phraseObj.selectedPhrase === originalPhrase) {
+        //continue here
+      }
     });
   }
 
   componentWillReceiveProps() {
-    let currentArtist = Object.keys(this.props.currentDrawing);
+    if (this.props.selectedPhraseGuesses.length === this.props.phraseGuesses.length) {
 
-    if (this.props.selectedPhraseGuesses.length === this.props.numOfUsers - 1) {
-      let usersToReceive = Object.keys(this.props.users).filter(user => user !== currentArtist);
-
-      let captionArray = this.props.phraseGuesses.map(phraseObj => {
-          for (let key in phraseObj) {
-            return phraseObj[key];
-        }
-      });
-    if (Object.keys(this.props.users).length-1 === this.props.guesses.length) {
+      //calculate scores
       browserHistory.push('/drawkward/scoreboard');
     }
   }
@@ -50,9 +53,9 @@ class ListCaptions extends Component {
     return (
       <div>
         <DrawkwardShowDrawing />
-        {this.props.guesses.map(user => {
+        {Object.keys(this.props.phraseGuesses).map(phraseString => {
           return (
-            <p>{user.id}</p>
+            <p>{phraseString}</p>
           );
         })}
       </div>

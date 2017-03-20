@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Layer, Stage, Line } from 'react-konva';
 import { connect } from 'react-redux';
 
@@ -8,10 +8,7 @@ const mapStateToProps = state => ({
 });
 
 
-class DrawkwardShowDrawing extends React.Component {
-  constructor(props){
-    super(props);
-  }
+class DrawkwardShowDrawing extends Component {
 
   render() {
     return (

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import socket from '../socket';
 
 import { addDrawing } from '../reducers/drawkwardFrame';
+import { setInitialScores } from '../reducers/drawkwardScoreboard';
 import { receiveNewDrawing } from '../../socketConstants';
 
 const mapStateToProps = state => ({
@@ -12,12 +13,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addDrawing: (drawingObj) => dispatch(addDrawing(drawingObj))
+  setInitialScores: usersArray => dispatch(setInitialScores(usersArray)),
+  addDrawing: drawingObj => dispatch(addDrawing(drawingObj)),
 });
 
 class WaitForDrawings extends Component {
 
   componentDidMount() {
+    this.props.setInitialScores(Object.keys(this.props.users));
+
     socket.on(receiveNewDrawing, drawingObj => {
       this.props.addDrawing(drawingObj);
     });
@@ -27,6 +31,10 @@ class WaitForDrawings extends Component {
     if (Object.keys(this.props.users).length === this.props.allDrawings.length) {
       browserHistory.push('/drawkward/waitForCaptions');
     }
+  }
+
+  componentWillUnmount() {
+    socket.off(receiveNewDrawing);
   }
 
   render () {
