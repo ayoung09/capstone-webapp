@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router';
 
 import { connect } from 'react-redux';
 import { addUser, setRounds, nextRound } from '../reducers/drawkwardFrame';
-import { addDrawing, setCurrentDrawing, addPhraseGuess, clearRound } from '../reducers/drawkwardRound';
 
 import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
 
@@ -20,19 +19,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addUser: (user) => dispatch(addUser(user)),
   setRounds: (numOfUsers) => dispatch(setRounds(numOfUsers)),
-  addDrawing: (drawingObj) => dispatch(addDrawing(drawingObj)),
-  initializeRound: () => {
-    dispatch(nextRound());
-    dispatch(setCurrentDrawing());
-  },
-  clearRound: () => dispatch(clearRound()),
+  initializeRound: () => dispatch(nextRound()),
 });
 
 
 class DrawkwardFrame extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     socket.on(receiveNewUser, userObj => {
@@ -44,12 +35,10 @@ class DrawkwardFrame extends Component {
       let randomPhrases = shuffle.pick(this.props.phrases, {'picks': numOfUsers});
       let userIds = Object.keys(this.props.users);
       socket.emit(sendRandomPhrase, {randomPhrases, userIds});
-      browserHistory.push('/drawkward/waitingForDrawing');
+      browserHistory.push('/drawkward/waitForDrawings');
     });
 
-    socket.on()
-
-    // socket.on(receiveNewDrawing, drawingObj)
+//remove before deploying
     socket.on('receiveCoordinatesFromIOS', data => {
     console.log('Received data from socket: ', data);
     });
@@ -60,18 +49,11 @@ class DrawkwardFrame extends Component {
     socket.off(startGame);
   }
 
-
-  // emitToSocket() {
-  //     socket.emit('talk to mobile', socket.id);
-  // }
-
-
   render() {
     return (
       <div>
         <h2>Create a username and portrait in your mobile app</h2>
         <h4>When all users have signed in, hit START to begin your game</h4>
-        <button>Emit</button>
         {this.props.children}
       </div>
     );

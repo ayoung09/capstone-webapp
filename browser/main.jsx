@@ -8,7 +8,7 @@ import axios from 'axios';
 import store from './store';
 
 //action-creators
-import { receiveAllPhrases } from './reducers/drawkwardFrame.jsx';
+import { receiveAllPhrases } from './reducers/drawkwardFrame';
 
 //components
 import AppFrame from './components/AppFrame.jsx';

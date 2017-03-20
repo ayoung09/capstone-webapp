@@ -2,9 +2,9 @@ import shuffle from 'shuffle-array';
 
 const initialState = {
   currentDrawing: {}, //{socketId: {image: , phrase: }}
-  phraseGuesses: [], //[{socketId: ''}, {}]
+  phraseGuesses: [], //[{'phrase': socketid}, {}]
   allDrawings: [],
-  selectedPhraseGuesses: []
+  selectedPhraseGuesses: [] //[{socketId: ''}, {}]
 };
 
 //constants
@@ -27,16 +27,17 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       newState.allDrawings.push(action.drawingObj);
       break;
     case ADD_PHRASE_GUESS:
-      newState.phraseGuesses.push({[action.id]: action.phrase});
+      let arrayToShuffle = newState.phraseGuesses.push({[action.phrase]: action.id});
+      let shuffled = shuffle(arrayToShuffle);
+      newState.phraseGuesses = shuffled;
       break;
     case CLEAR_ROUND:
       newState.currentDrawing = {};
-      newState.phraseGuesses = {};
+      newState.phraseGuesses = [];
+      newState.selectedPhraseGuesses = [];
       break;
     case ADD_SELECTED_PHRASE:
-      let arrayToShuffle = newState.selectedPhraseGuesses.push({[action.id]: action.selectedPhrase });
-      let shuffled = shuffle(arrayToShuffle)
-      newState.selectedPhraseGuesses = shuffled;
+      newState.selectedPhraseGuesses.push({[action.id]: action.selectedPhrase});
       break;
     default:
       return prevState;

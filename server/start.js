@@ -84,10 +84,11 @@ io.on('connection', socket => {
   socket.on(selectPhrase, guessString => {
     socket.broadcast.emit(receivedSelectedPhrase, {
       id: socket.id,
-      selectedPhrase: guessString
+      selectedPhrase: guessString,
     });
   });
 
+  //DELETE BEFORE DEPLOYING
   socket.on('sendCoordinatesFromIOS', data => {
     console.log('server has received data: ', data);
     socket.broadcast.emit('receiveCoordinatesFromIOS', {id: socket.id, data});

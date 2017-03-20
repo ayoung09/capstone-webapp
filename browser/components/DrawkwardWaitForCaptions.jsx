@@ -39,7 +39,7 @@ class DrawkwardWaitForCaptions extends React.Component {
   }
 
   componentWillReceiveProps() {
-    let currentArtist = Object.keys(this.props.currentDrawing);
+    let currentArtist = Object.keys(this.props.currentDrawing)[0];
     let usersToReceive = Object.keys(this.props.users).filter(user => user !== currentArtist);
 
     if (!this.state.startCaptionSent) {
@@ -49,11 +49,7 @@ class DrawkwardWaitForCaptions extends React.Component {
     }
 
     if (this.props.phraseGuesses.length === this.props.numOfUsers - 1) {
-      let captionArray = this.props.phraseGuesses.map(phraseObj => {
-          for (let key in phraseObj) {
-            return phraseObj[key];
-        }
-      });
+      let captionArray = Object.keys(this.props.phraseGuesses);
       socket.emit(receivedAllCaptions, {usersToReceive, captionArray});
       browserHistory.push('/drawkward/listCaptions');
     }
