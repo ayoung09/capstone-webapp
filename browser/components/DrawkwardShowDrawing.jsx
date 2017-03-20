@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Layer, Stage, Line } from 'react-konva';
+import { Layer, Stage, Line } from 'konva-react';
 import { connect } from 'react-redux';
 
 

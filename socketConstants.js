@@ -14,7 +14,7 @@ module.exports = {
   //coming up
   nextDrawing: 'next drawing',
   nextRound: 'next round',
-  gameover: 'game over',
+  gameOver: 'game over',
 
   //constants between server and webapp
   receiveNewUser: 'receive new user',
