@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import socket from '../socket';
 
-import { addDrawing } from '../reducers/drawkwardFrame'
+import { addDrawing } from '../reducers/drawkwardFrame';
 import { receiveNewDrawing } from '../../socketConstants';
 
 const mapStateToProps = state => ({
@@ -13,32 +13,29 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addDrawing: (drawingObj) => dispatch(addDrawing(drawingObj))
-})
+});
 
 class WaitForDrawings extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     socket.on(receiveNewDrawing, drawingObj => {
-      this.props.addDrawing(drawingObj)
-    })
+      this.props.addDrawing(drawingObj);
+    });
   }
 
   componentWillReceiveProps() {
     if (Object.keys(this.props.users).length === this.props.allDrawings.length) {
-      browserHistory.push('/drawkward/waitForDrawings')
+      browserHistory.push('/drawkward/waitForCaptions');
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <h2>Waiting for all users to submit their drawings.</h2>
       </div>
-    )
+    );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WaitForDrawings)
+export default connect(mapStateToProps, mapDispatchToProps)(WaitForDrawings);

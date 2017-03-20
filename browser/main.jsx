@@ -14,7 +14,9 @@ import { receiveAllPhrases } from './reducers/drawkwardFrame.jsx';
 import AppFrame from './components/AppFrame.jsx';
 import Login from './components/Login.jsx';
 import DrawkwardFrame from './components/DrawkwardFrame.jsx';
-import WaitForDrawings from './components/WaitForDrawings.jsx'
+import WaitForDrawings from './components/WaitForDrawings.jsx';
+import WaitForCaptions from './components/DrawkwardWaitForCaptions';
+import Scoreboard from './components/DrawkwardScoreboard';
 
 
 const onDrawkwardEnter = () => {
@@ -30,6 +32,8 @@ render(
         <IndexRedirect to="/login" />
         <Route path="/drawkward" component={DrawkwardFrame} onEnter={onDrawkwardEnter}>
           <Route path="/drawkward/waitForDrawings" component={WaitForDrawings} />
+          <Route path="/drawkward/waitForCaptions" component={WaitForCaptions} />
+          <Route path="/drawkward/scoreboard" component={Scoreboard} />
         </Route>
       </Route>
     </Router>
