@@ -1,7 +1,7 @@
 import shuffle from 'shuffle-array';
 
 const initialState = {
-  users: {}, //{{socketId: {name: , portrait: , score: }}, {}}
+  users: {}, //{{socketId: {name: , portrait: }, {}}
   phrases: [],
   rounds: 0,
 };
