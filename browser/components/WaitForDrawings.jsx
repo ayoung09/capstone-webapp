@@ -32,9 +32,6 @@ class WaitForDrawings extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('next props', nextProps);
-    console.log('users length', Object.keys(this.props.users).length);
-    console.log('drawings length', this.props.allDrawings.length);
     if (Object.keys(this.props.users).length === nextProps.allDrawings.length) {
       browserHistory.push('/drawkward/waitForCaptions');
     }

@@ -23,7 +23,7 @@ module.exports = {
   receiveNewGuess: 'receive new guess',
   sendRandomPhrase: 'send random phrase',
   sendToArtist: 'send to artist',
-  sentStartCaption: 'send start caption',
+  sendStartCaption: 'send start caption',
   receivedAllCaptions: 'received all captions',
   receivedSelectedPhrase: 'receive selected phrase',
 };

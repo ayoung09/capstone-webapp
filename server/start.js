@@ -54,14 +54,16 @@ io.on('connection', socket => {
   });
 
   //webapp tells current artist (mobile) to wait
-  socket.on(sendToArtist, ([artistId]) => {
-    io.clients[artistId].emit(youAreTheArtist);
+  socket.on(sendToArtist, (artistId) => {
+    console.log('artistId', artistId)
+    io.to(artistId).emit(youAreTheArtist);
   });
 
   //webapp tells mobile users (except artist) to start typing a caption
   socket.on(sendStartCaption, usersToReceive => {
+    console.log('users to receive', usersToReceive)
     usersToReceive.forEach(user => {
-      io.clients[user].emit(startCaption);
+      io.to(user).emit(startCaption);
     });
   });
 
@@ -75,8 +77,9 @@ io.on('connection', socket => {
 
   //webapp sends caption selection options to users except the artist
   socket.on(receivedAllCaptions, ({usersToReceive, captionArray}) => {
+    console.log('caption arr', captionArray)
     usersToReceive.forEach(user => {
-      io.clients[user].emit(phraseOptions, captionArray);
+      io.to(user).emit(phraseOptions, captionArray);
     });
   });
 
