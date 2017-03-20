@@ -12,7 +12,7 @@ const SET_CURRENT_DRAWING = 'SET_CURRENT_DRAWING';
 const ADD_DRAWING = 'ADD_DRAWING';
 const ADD_PHRASE_GUESS = 'ADD_PHRASE_GUESS';
 const CLEAR_ROUND = 'CLEAR_ROUND';
-const ADD_SELECTED_PHRASE = 'ADD_SELECTED_PHRASE'
+const ADD_SELECTED_PHRASE = 'ADD_SELECTED_PHRASE';
 
 //reducer
 const drawkwardRoundReducer = (prevState = initialState, action) => {
@@ -27,7 +27,7 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       newState.allDrawings.push(action.drawingObj);
       break;
     case ADD_PHRASE_GUESS:
-      newState.phraseGuesses.push({[action.id]: action.phrase})
+      newState.phraseGuesses.push({[action.id]: action.phrase});
       break;
     case CLEAR_ROUND:
       newState.currentDrawing = {};

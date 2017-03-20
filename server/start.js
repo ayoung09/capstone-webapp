@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, sendRandomPhrase, receiveRandomPhrase, selectPhrase, receivedSelectedPhrase } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase } = require('../socketConstants');
 
 
 const app = express();
@@ -53,6 +53,18 @@ io.on('connection', socket => {
     });
   });
 
+  //webapp tells current artist (mobile) to wait
+  socket.on(sendToArtist, ([artistId]) => {
+    io.clients[artistId].emit(youAreTheArtist);
+  });
+
+  //webapp tells mobile users (except artist) to start typing a caption
+  socket.on(sendStartCaption, usersToReceive => {
+    usersToReceive.forEach(user => {
+      io.clients[user].emit(startCaption);
+    });
+  });
+
   //mobile sends new phrase guess
   socket.on(newGuess, guessString => {
     socket.broadcast.emit(receiveNewGuess, {
@@ -61,11 +73,18 @@ io.on('connection', socket => {
     });
   });
 
+  //webapp sends caption selection options to users except the artist
+  socket.on(receivedAllCaptions, ({usersToReceive, captionArray}) => {
+    usersToReceive.forEach(user => {
+      io.clients[user].emit(phraseOptions, captionArray);
+    });
+  });
+
   //mobile selects a phrase from group's captions
-  socket.on(selectPhrase, guess => {
+  socket.on(selectPhrase, guessString => {
     socket.broadcast.emit(receivedSelectedPhrase, {
       id: socket.id,
-      selectedPhrase: guess
+      selectedPhrase: guessString
     });
   });
 

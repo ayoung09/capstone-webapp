@@ -7,7 +7,14 @@ module.exports = {
   newGuess: 'new guess',
   receiveRandomPhrase: 'receive random phrase',
   sendStartGame: 'send start game',
+  phraseOptions: 'phrase options',
   selectPhrase: 'select phrase',
+  youAreTheArtist: 'you are the artist',
+  startCaption: 'start caption',
+  //coming up
+  nextDrawing: 'next drawing',
+  nextRound: 'next round',
+  gameover: 'game over',
 
   //constants between server and webapp
   receiveNewUser: 'receive new user',
@@ -15,5 +22,8 @@ module.exports = {
   receiveNewDrawing: 'receive new drawing',
   receiveNewGuess: 'receive new guess',
   sendRandomPhrase: 'send random phrase',
-  receivedSelectedPhrase: 'receive selected phrase'
+  sendToArtist: 'send to artist',
+  sentStartCaption: 'send start caption',
+  receivedAllCaptions: 'received all captions',
+  receivedSelectedPhrase: 'receive selected phrase',
 };
