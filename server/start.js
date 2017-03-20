@@ -41,7 +41,7 @@ io.on('connection', socket => {
   socket.on(sendRandomPhrase, data => { //data is {randomPhrases, userIds}
     data.userIds.forEach(userId => {
       let phraseString = data.randomPhrases.shift().text;
-      io.clients[userId].emit(receiveRandomPhrase, phraseString);
+      io.to(userId).emit(receiveRandomPhrase, phraseString);
     });
   });
 

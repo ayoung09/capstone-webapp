@@ -37,10 +37,10 @@ const drawkwardFrameReducer = (prevState = initialState, action) => {
 };
 
 //action-creators
-export const addUser = (socketId, userObj) => ({
+export const addUser = (userObj) => ({
   type: ADD_USER,
-  id: socketId,
-  userObj,
+  id: userObj.id,
+  userObj: userObj.userObj,
 });
 
 export const receiveAllPhrases = (phrases) => ({

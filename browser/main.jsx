@@ -16,7 +16,7 @@ import Login from './components/Login.jsx';
 import DrawkwardFrame from './components/DrawkwardFrame.jsx';
 import WaitForDrawings from './components/WaitForDrawings.jsx';
 import WaitForCaptions from './components/DrawkwardWaitForCaptions';
-import Scoreboard from './components/DrawkwardScoreboard';
+// import Scoreboard from './components/DrawkwardScoreboard';
 
 
 const onDrawkwardEnter = () => {
@@ -33,7 +33,7 @@ render(
         <Route path="/drawkward" component={DrawkwardFrame} onEnter={onDrawkwardEnter}>
           <Route path="/drawkward/waitForDrawings" component={WaitForDrawings} />
           <Route path="/drawkward/waitForCaptions" component={WaitForCaptions} />
-          <Route path="/drawkward/scoreboard" component={Scoreboard} />
+          {/*<Route path="/drawkward/scoreboard" component={Scoreboard} />*/}
         </Route>
       </Route>
     </Router>

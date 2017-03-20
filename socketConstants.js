@@ -3,7 +3,7 @@ module.exports = {
   newRoom: 'new room',
   newUser: 'new user',
   newDrawing: 'new drawing',
-  newPhrase: 'new phrase',
+  // newPhrase: 'new phrase',
   newGuess: 'new guess',
   receiveRandomPhrase: 'receive random phrase',
   sendStartGame: 'send start game',
