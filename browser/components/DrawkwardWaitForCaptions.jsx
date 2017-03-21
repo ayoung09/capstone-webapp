@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import socket from '../socket';
+import shuffle from 'shuffle-array';
 
 import DrawkwardShowDrawing from './DrawkwardShowDrawing';
 import { setCurrentDrawing, addPhraseGuess } from '../reducers/drawkwardRound';
@@ -34,24 +35,28 @@ class DrawkwardWaitForCaptions extends React.Component {
     this.props.setCurrentDrawing();
 
     socket.on(receiveNewGuess, userObj => {
+      console.log('userobj', userObj)
       this.props.addPhraseGuess(userObj.id, userObj.guessString);
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    let currentArtist = this.props.currentDrawing.id;
+    let currentArtist = nextProps.currentDrawing.id;
     let usersToReceive = Object.keys(this.props.users).filter(user => user !== currentArtist);
 
     if (!this.state.startCaptionSent) {
-      socket.emit(sendStartCaption, usersToReceive);
       socket.emit(sendToArtist, currentArtist);
+      socket.emit(sendStartCaption, usersToReceive);
       this.setState({startCaptionSent: true});
     }
 
     if (nextProps.phraseGuesses.length === this.props.numOfUsers - 1) {
       let captionArray = nextProps.phraseGuesses.map(phraseObj => {
-          return for (let phrase in phraseObj) {return phrase;}
+          return Object.keys(phraseObj)[0];
       });
+      captionArray.push(this.props.currentDrawing.drawingObj.phrase);
+      captionArray = shuffle(captionArray);
+
       socket.emit(receivedAllCaptions, {usersToReceive, captionArray});
       browserHistory.push('/drawkward/listCaptions');
     }
@@ -61,7 +66,7 @@ class DrawkwardWaitForCaptions extends React.Component {
     return (
       <div>
         <h3>On your mobile device, enter an appropriate title for the drawing below</h3>
-        <DrawkwardShowDrawing />
+        {Object.keys(this.props.currentDrawing).length > 0 ? <DrawkwardShowDrawing /> : null}
       </div>
     );
   }

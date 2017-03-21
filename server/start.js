@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, sendGameOver, gameOver } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing,scoreboard, lookAtScoreboard, sendGameOver, gameOver } = require('../socketConstants');
 
 
 const app = express();
@@ -54,14 +54,16 @@ io.on('connection', socket => {
   });
 
   //webapp tells current artist (mobile) to wait
-  socket.on(sendToArtist, ([artistId]) => {
-    io.clients[artistId].emit(youAreTheArtist);
+  socket.on(sendToArtist, (artistId) => {
+    console.log('artistId', artistId)
+    io.to(artistId).emit(youAreTheArtist);
   });
 
   //webapp tells mobile users (except artist) to start typing a caption
   socket.on(sendStartCaption, usersToReceive => {
+    console.log('users to receive', usersToReceive)
     usersToReceive.forEach(user => {
-      io.clients[user].emit(startCaption);
+      io.to(user).emit(startCaption);
     });
   });
 
@@ -75,8 +77,9 @@ io.on('connection', socket => {
 
   //webapp sends caption selection options to users except the artist
   socket.on(receivedAllCaptions, ({usersToReceive, captionArray}) => {
+    console.log('caption arr', captionArray)
     usersToReceive.forEach(user => {
-      io.clients[user].emit(phraseOptions, captionArray);
+      io.to(user).emit(phraseOptions, captionArray);
     });
   });
 
@@ -87,6 +90,10 @@ io.on('connection', socket => {
       selectedPhrase: guessString,
     });
   });
+
+  socket.on(lookAtScoreboard, () => {
+    socket.emit(scoreboard)
+  })
 
   //mobile calls to see next drawing after scoreboard
   socket.on(nextDrawing, () => {

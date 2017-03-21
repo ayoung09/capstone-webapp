@@ -14,11 +14,16 @@ class DrawkwardShowDrawing extends Component {
     return (
       <Stage width={700} height={700}>
         <Layer>
-          <Line
-            points={this.props.currentDrawing.drawingObj.image}
-            stroke={'black'}
-            strokeWidth={3}
-          />
+          {this.props.currentDrawing.drawingObj.image.map((line, i) => {
+            return (
+              <Line
+                key={i}
+                points={line}
+                stroke={'black'}
+                strokeWidth={3}
+              />
+            )}
+          )}
         </Layer>
       </Stage>
     );

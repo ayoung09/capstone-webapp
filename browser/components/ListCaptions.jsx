@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import DrawkwardShowDrawing from './DrawkwardShowDrawing';
-import { receivedSelectedPhrase } from '../../socketConstants';
+import { receivedSelectedPhrase, lookAtScoreboard } from '../../socketConstants';
 import { addSelectedPhrase } from '../reducers/drawkwardRound';
 import { add50, add100 } from '../reducers/drawkwardScoreboard';
 
@@ -53,8 +53,9 @@ class ListCaptions extends Component {
     });
   }
 
-  componentWillReceiveProps() {
-    if (this.props.selectedPhraseGuesses.length === this.props.phraseGuesses.length - 1) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedPhraseGuesses.length === this.props.phraseGuesses.length - 1) {
+      socket.emit(lookAtScoreboard);
       browserHistory.push('/drawkward/scoreboard');
     }
   }

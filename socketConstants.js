@@ -11,6 +11,7 @@ module.exports = {
   selectPhrase: 'select phrase',
   youAreTheArtist: 'you are the artist',
   startCaption: 'start caption',
+  scoreboard: 'scoreboard',
   nextDrawing: 'next drawing',
   gameOver: 'game over',
 
@@ -21,9 +22,10 @@ module.exports = {
   receiveNewGuess: 'receive new guess',
   sendRandomPhrase: 'send random phrase',
   sendToArtist: 'send to artist',
-  sentStartCaption: 'send start caption',
+  sendStartCaption: 'send start caption',
   receivedAllCaptions: 'received all captions',
   receivedSelectedPhrase: 'receive selected phrase',
+  lookAtScoreboard: 'look at scoreboard',
   seeNextDrawing: 'see next drawing',
   sendGameOver: 'send game over',
 };
