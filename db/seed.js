@@ -16,6 +16,22 @@ const seedPhrases = () => db.Promise.map([
   {text: 'a hipster combs his moustache'},
   {text: 'plane flies under reading rainbow'},
   {text: 'cry me a river of pepsi'},
+  {text: 'ninja slips on banana peel'},
+  {text: 'sad blue donkey'},
+  {text: 'wizard uses magic math'},
+  {text: 'birds on roller coaster'},
+  {text: 'cavern of doom'},
+  {text: 'genie in a bottle'},
+  {text: 'Big Bird waves hello'},
+  {text: 'really sweaty dancing'},
+  {text: 'Superman flies over city'},
+  {text: 'Kool-aid man breaks the wall'},
+  {text: 'bathroom break'},
+  {text: 'potty training'},
+  {text: 'old wise man in the woods'},
+  {text: 'orange monster wears a mop'},
+  {text: 'surfing in a chocolate ocean'},
+  {text: 'pandas eat bamboo'},
 ], phrase => db.model('phrases').create(phrase));
 
 db.didSync
