@@ -10,8 +10,8 @@ import { receiveNewGuess, sendToArtist, sendStartCaption, receivedAllCaptions } 
 
 
 const mapStateToProps = state => ({
-  numOfUsers: Object.keys(state.drawkwardFrame.users).length,
   users: state.drawkwardFrame.users,
+  numOfUsers: Object.keys(state.drawkwardFrame.users).length,
   currentDrawing: state.drawkwardRound.currentDrawing,
   phraseGuesses: state.drawkwardRound.phraseGuesses,
 });
