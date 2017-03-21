@@ -6,11 +6,10 @@ import socket from '../socket';
 import { addDrawing } from '../reducers/drawkwardRound';
 import { receiveNewDrawing } from '../../socketConstants';
 
-const mapStateToProps = state => {
-  const newState =  {users: state.drawkwardFrame.users,
-  allDrawings: state.drawkwardRound.allDrawings};
-  return newState;
-};
+const mapStateToProps = state => ({
+  users: state.drawkwardFrame.users,
+  allDrawings: state.drawkwardRound.allDrawings,
+});
 
 const mapDispatchToProps = dispatch => ({
   addDrawing: drawingObj => dispatch(addDrawing(drawingObj)),
