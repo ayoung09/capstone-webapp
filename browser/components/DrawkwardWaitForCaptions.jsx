@@ -50,7 +50,7 @@ class DrawkwardWaitForCaptions extends React.Component {
 
     if (nextProps.phraseGuesses.length === this.props.numOfUsers - 1) {
       let captionArray = nextProps.phraseGuesses.map(phraseObj => {
-          for (let phrase in phraseObj) {return phrase;}
+          return for (let phrase in phraseObj) {return phrase;}
       });
       socket.emit(receivedAllCaptions, {usersToReceive, captionArray});
       browserHistory.push('/drawkward/listCaptions');
