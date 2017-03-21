@@ -52,7 +52,7 @@ export const receiveAllPhrases = (phrases) => ({
 
 export const setRounds = (numOfUsers) => ({
   type: SET_ROUNDS,
-  rounds: numOfUsers <= 8 ? 3 : 2,
+  rounds: numOfUsers <= 8 ? 2 : 1,
 });
 
 export const nextRound = () => ({
