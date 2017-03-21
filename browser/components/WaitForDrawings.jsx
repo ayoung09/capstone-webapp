@@ -6,11 +6,10 @@ import socket from '../socket';
 import { addDrawing } from '../reducers/drawkwardRound';
 import { receiveNewDrawing } from '../../socketConstants';
 
-const mapStateToProps = state => {
-  const newState =  {users: state.drawkwardFrame.users,
-  allDrawings: state.drawkwardRound.allDrawings};
-  return newState;
-};
+const mapStateToProps = state => ({
+  users: state.drawkwardFrame.users,
+  allDrawings: state.drawkwardRound.allDrawings,
+});
 
 const mapDispatchToProps = dispatch => ({
   addDrawing: drawingObj => dispatch(addDrawing(drawingObj)),
@@ -25,7 +24,10 @@ class WaitForDrawings extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (Object.keys(this.props.users).length === nextProps.allDrawings.length) {
+    const allUsersHaveSubmittedDrawings = () => {
+      return Object.keys(this.props.users).length === nextProps.allDrawings.length;
+    };
+    if (allUsersHaveSubmittedDrawings()) {
       browserHistory.push('/drawkward/waitForCaptions');
     }
   }
@@ -33,6 +35,7 @@ class WaitForDrawings extends Component {
   componentWillUnmount() {
     socket.off(receiveNewDrawing);
   }
+
 
   render () {
     return (

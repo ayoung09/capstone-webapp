@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import socket from '../socket';
-import shuffle from 'shuffle-array';
-
 import { browserHistory } from 'react-router';
-
 import { connect } from 'react-redux';
-import { addUser, setRounds } from '../reducers/drawkwardFrame';
-import { setInitialScores } from '../reducers/drawkwardScoreboard'
+import shuffle from 'shuffle-array';
+import socket from '../socket';
 
+import { addUser, setRounds } from '../reducers/drawkwardFrame';
+import { setInitialScores } from '../reducers/drawkwardScoreboard';
 import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
 
 
@@ -54,9 +52,12 @@ class DrawkwardFrame extends Component {
   render() {
     return (
       <div>
-        <h2>Create a username and portrait in your mobile app</h2>
-        <h4>When all users have signed in, hit START to begin your game</h4>
-        {this.props.children}
+        {this.props.children ? this.props.children :
+          <div>
+            <h2>Create a username and portrait in your mobile app</h2>
+            <h4>When all users have signed in, hit START to begin your game</h4>
+          </div>
+        }
       </div>
     );
   }
