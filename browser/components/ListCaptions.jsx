@@ -60,6 +60,10 @@ class ListCaptions extends Component {
     }
   }
 
+  componentWillUnmount() {
+    socket.off(receivedSelectedPhrase);
+  }
+
   render() {
     return (
       <div>

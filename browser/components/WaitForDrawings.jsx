@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import socket from '../socket';
 
 import { addDrawing } from '../reducers/drawkwardRound';
-import { setInitialScores } from '../reducers/drawkwardScoreboard';
 import { receiveNewDrawing } from '../../socketConstants';
 
 const mapStateToProps = state => {
@@ -14,15 +13,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setInitialScores: usersArray => dispatch(setInitialScores(usersArray)),
   addDrawing: drawingObj => dispatch(addDrawing(drawingObj)),
 });
 
 class WaitForDrawings extends Component {
 
   componentDidMount() {
-    this.props.setInitialScores(Object.keys(this.props.users));
-
     socket.on(receiveNewDrawing, drawingObj => {
       this.props.addDrawing(drawingObj);
     });

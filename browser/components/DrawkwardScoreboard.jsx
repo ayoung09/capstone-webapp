@@ -37,9 +37,13 @@ class DrawkwardScoreboard extends Component {
         browserHistory.push('/drawkward/waitForDrawings');
       }
       else {
-        socket.broadcast.emit(sendGameOver);
+        socket.emit(sendGameOver);
       }
     });
+  }
+
+  componentWillUnmount() {
+    socket.off(seeNextDrawing);
   }
 
   usersHaveNotSeenAllDrawings() {

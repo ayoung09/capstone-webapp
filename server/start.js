@@ -92,7 +92,7 @@ io.on('connection', socket => {
   });
 
   socket.on(lookAtScoreboard, () => {
-    socket.emit(scoreboard)
+    socket.broadcast.emit(scoreboard)
   })
 
   //mobile calls to see next drawing after scoreboard
