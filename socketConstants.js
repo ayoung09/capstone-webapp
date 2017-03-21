@@ -11,9 +11,8 @@ module.exports = {
   selectPhrase: 'select phrase',
   youAreTheArtist: 'you are the artist',
   startCaption: 'start caption',
-  //coming up
+  scoreboard: 'scoreboard',
   nextDrawing: 'next drawing',
-  nextRound: 'next round',
   gameOver: 'game over',
 
   //constants between server and webapp
@@ -26,4 +25,7 @@ module.exports = {
   sendStartCaption: 'send start caption',
   receivedAllCaptions: 'received all captions',
   receivedSelectedPhrase: 'receive selected phrase',
+  lookAtScoreboard: 'look at scoreboard',
+  seeNextDrawing: 'see next drawing',
+  sendGameOver: 'send game over',
 };

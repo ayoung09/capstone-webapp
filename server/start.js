@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing,scoreboard, lookAtScoreboard, sendGameOver, gameOver } = require('../socketConstants');
 
 
 const app = express();
@@ -20,9 +20,9 @@ io.on('connection', socket => {
   console.log('this is newRoom: ', newRoom);
 
   //mobile joins room; come back to this when ready to incorporate rooms...
-  socket.on(newRoom, data => {
-    socket.join(data.room);
-  });
+  // socket.on(newRoom, data => {
+  //   socket.join(data.room);
+  // });
 
   //mobile sends username and portrait
   socket.on(newUser, userObj => {
@@ -91,16 +91,18 @@ io.on('connection', socket => {
     });
   });
 
-  //DELETE BEFORE DEPLOYING
-  socket.on('sendCoordinatesFromIOS', data => {
-    console.log('server has received data: ', data);
-    socket.broadcast.emit('receiveCoordinatesFromIOS', {id: socket.id, data});
+  socket.on(lookAtScoreboard, () => {
+    socket.emit(scoreboard)
+  })
+
+  //mobile calls to see next drawing after scoreboard
+  socket.on(nextDrawing, () => {
+    socket.broadcast.emit(seeNextDrawing);
   });
 
-  //TEST CONNECTION FROM BROWSER TO MOBILE
-  socket.on('talk to mobile', socketId => {
-    console.log('received message from webapp', socketId);
-    socket.broadcast.emit('message from webapp', socketId);
+  //webapp says game is over
+  socket.on(sendGameOver, () => {
+    socket.broadcast.emit(gameOver);
   });
 
   socket.on('disconnect', () => {

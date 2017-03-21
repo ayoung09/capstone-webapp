@@ -10,7 +10,6 @@ import { receiveNewDrawing } from '../../socketConstants';
 const mapStateToProps = state => {
   const newState =  {users: state.drawkwardFrame.users,
   allDrawings: state.drawkwardRound.allDrawings};
-  console.log('new state', newState)
   return newState;
 };
 
@@ -20,9 +19,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class WaitForDrawings extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   componentDidMount() {
     this.props.setInitialScores(Object.keys(this.props.users));
 

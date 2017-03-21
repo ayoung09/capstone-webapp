@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import DrawkwardShowDrawing from './DrawkwardShowDrawing';
-import { receivedSelectedPhrase } from '../../socketConstants';
+import { receivedSelectedPhrase, lookAtScoreboard } from '../../socketConstants';
 import { addSelectedPhrase } from '../reducers/drawkwardRound';
 import { add50, add100 } from '../reducers/drawkwardScoreboard';
-
 
 
 const mapStateToProps = state => ({
@@ -32,19 +31,31 @@ class ListCaptions extends Component {
   componentDidMount() {
     let originalPhrase = this.props.originalPhrase;
     let currentArtist = Object.keys(this.props.currentDrawing)[0];
+    let phraseGuessesArray = Object.keys(this.props.phraseGuesses);
 
+    //adding to scoreboard as each selected phrase is received
     socket.on(receivedSelectedPhrase, phraseObj => {
       this.props.addSelectedPhrase(phraseObj);
       if (phraseObj.selectedPhrase === originalPhrase) {
-        //continue here
+        this.props.add100(currentArtist);
+        this.props.add100(phraseObj.id);
+      }
+      else if (phraseGuessesArray.includes(phraseObj.selectedPhrase)) {
+        let phraseAuthor = this.props.phraseGuesses.filter(phraseGuessObj => {
+          for (let phrase in phraseGuessObj) {
+            if (phrase === phraseObj.selectedPhrase) {
+              return phraseGuessObj[phrase];
+            }
+          }
+        });
+        this.props.add50(phraseAuthor);
       }
     });
   }
 
-  componentWillReceiveProps() {
-    if (this.props.selectedPhraseGuesses.length === this.props.phraseGuesses.length) {
-
-      //calculate scores
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedPhraseGuesses.length === this.props.phraseGuesses.length - 1) {
+      socket.emit(lookAtScoreboard);
       browserHistory.push('/drawkward/scoreboard');
     }
   }

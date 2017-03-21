@@ -1,7 +1,7 @@
 import shuffle from 'shuffle-array';
 
 const initialState = {
-  currentDrawing: {}, //{socketId: {image: , phrase: }}
+  currentDrawing: {}, //{id: socketId, drawingObj: {image: , phrase: }}
   phraseGuesses: [], //[{'phrase': socketid}, {}]
   allDrawings: [],
   selectedPhraseGuesses: [] //[{socketId: ''}, {}]
@@ -27,7 +27,7 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       newState.allDrawings = [...newState.allDrawings, action.drawingObj];
       break;
     case ADD_PHRASE_GUESS:
-      let arrayToShuffle = [...newState.phraseGuesses, {[action.phrase]: action.id}];
+      let arrayToShuffle = [...newState.phraseGuesses, {[action.guess]: action.id}];
       let shuffled = shuffle(arrayToShuffle);
       newState.phraseGuesses = shuffled;
       break;
@@ -37,7 +37,8 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       newState.selectedPhraseGuesses = [];
       break;
     case ADD_SELECTED_PHRASE:
-      newState.selectedPhraseGuesses.push({[action.id]: action.selectedPhrase});
+      let newSelectedPhrases = [...newState.selectedPhraseGuesses, {[action.id]: action.selectedPhrase}];
+      newState.selectedPhraseGuesses = newSelectedPhrases;
       break;
     default:
       return prevState;
@@ -50,6 +51,7 @@ export const setCurrentDrawing = () => ({
   type: SET_CURRENT_DRAWING,
 });
 
+//drawingObj looks like: {id: socketId, drawingObj:{image: , phrase: }}
 export const addDrawing = (drawingObj) => ({
   type: ADD_DRAWING,
   drawingObj,
