@@ -11,10 +11,10 @@ module.exports = {
   selectPhrase: 'select phrase',
   youAreTheArtist: 'you are the artist',
   startCaption: 'start caption',
-  //coming up
   nextDrawing: 'next drawing',
-  nextRound: 'next round',
   gameOver: 'game over',
+  //coming up
+  nextRound: 'next round',
 
   //constants between server and webapp
   receiveNewUser: 'receive new user',
@@ -26,4 +26,6 @@ module.exports = {
   sentStartCaption: 'send start caption',
   receivedAllCaptions: 'received all captions',
   receivedSelectedPhrase: 'receive selected phrase',
+  seeNextDrawing: 'see next drawing',
+  sendGameOver: 'send game over',
 };

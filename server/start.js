@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, sendGameOver, gameOver } = require('../socketConstants');
 
 
 const app = express();
@@ -88,16 +88,12 @@ io.on('connection', socket => {
     });
   });
 
-  //DELETE BEFORE DEPLOYING
-  socket.on('sendCoordinatesFromIOS', data => {
-    console.log('server has received data: ', data);
-    socket.broadcast.emit('receiveCoordinatesFromIOS', {id: socket.id, data});
+  socket.on(nextDrawing, () => {
+    socket.broadcast.emit(seeNextDrawing);
   });
 
-  //TEST CONNECTION FROM BROWSER TO MOBILE
-  socket.on('talk to mobile', socketId => {
-    console.log('received message from webapp', socketId);
-    socket.broadcast.emit('message from webapp', socketId);
+  socket.on(sendGameOver, () => {
+    socket.broadcast.emit(gameOver);
   });
 
   socket.on('disconnect', () => {
