@@ -22,35 +22,48 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addSelectedPhrase: phraseObj => dispatch(addSelectedPhrase(phraseObj)),
-  add50: socketId => dispatch(add50(socketId)),
-  add100: socketId => dispatch(add100(socketId)),
+  add50Points: socketId => dispatch(add50(socketId)),
+  add100Points: socketId => dispatch(add100(socketId)),
 });
 
 
 class ListCaptions extends Component {
   componentDidMount() {
-    let originalPhrase = this.props.originalPhrase;
     let currentArtist = Object.keys(this.props.currentDrawing)[0];
-    let phraseGuessesArray = Object.keys(this.props.phraseGuesses);
 
     //adding to scoreboard as each selected phrase is received
     socket.on(receivedSelectedPhrase, phraseObj => {
       this.props.addSelectedPhrase(phraseObj);
-      if (phraseObj.selectedPhrase === originalPhrase) {
-        this.props.add100(currentArtist);
-        this.props.add100(phraseObj.id);
+
+      if (this.userSelectedOriginalPhrase(phraseObj)) {
+        this.props.add100Points(currentArtist);
+        this.props.add100Points(phraseObj.id);
       }
-      else if (phraseGuessesArray.includes(phraseObj.selectedPhrase)) {
-        let phraseAuthor = this.props.phraseGuesses.filter(phraseGuessObj => {
-          for (let phrase in phraseGuessObj) {
-            if (phrase === phraseObj.selectedPhrase) {
-              return phraseGuessObj[phrase];
-            }
-          }
-        });
-        this.props.add50(phraseAuthor);
+      else if (this.userSelectedAnotherUsersPhrase(phraseObj)) {
+        let phraseAuthor = this.findUserWhoCreatedPhrase(phraseObj);
+        this.props.add50Points(phraseAuthor);
       }
     });
+  }
+
+  userSelectedOriginalPhrase(phraseObj) {
+    return phraseObj.selectedPhrase === this.props.originalPhrase;
+  }
+
+  userSelectedAnotherUsersPhrase(phraseObj) {
+    let phraseGuessesArray = Object.keys(this.props.phraseGuesses);
+    return phraseGuessesArray.includes(phraseObj.selectedPhrase);
+  }
+
+  findUserWhoCreatedPhrase(phraseObj) {
+    let userWhoCreatedPhrase = this.props.phraseGuesses.filter(phraseGuessObj => {
+      for (let phrase in phraseGuessObj) {
+        if (phrase === phraseObj.selectedPhrase) {
+          return phraseGuessObj[phrase];
+        }
+      }
+    });
+    return userWhoCreatedPhrase;
   }
 
   componentWillReceiveProps(nextProps) {
