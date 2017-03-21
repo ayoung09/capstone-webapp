@@ -54,7 +54,6 @@ class DrawkwardWaitForCaptions extends React.Component {
     };
 
     const includeOriginalPhrase = (captionGuessesArr) => {
-      console.log('this is captions arr: ', captionGuessesArr);
       captionGuessesArr.push(this.props.currentDrawing.drawingObj.phrase);
       return captionGuessesArr;
     };
@@ -64,14 +63,12 @@ class DrawkwardWaitForCaptions extends React.Component {
           return Object.keys(phraseObj)[0];
       });
       let includingOriginalPhrase = includeOriginalPhrase(captionGuessesArray);
-      console.log('this is including OP: ', includingOriginalPhrase);
       shuffle(includingOriginalPhrase);
       return includingOriginalPhrase;
     };
 
     if (allUsersHaveSubmittedPhraseGuesses()) {
       let captionArray = buildAndShuffleCaptionArr();
-      console.log('this is caption array: ', captionArray);
       socket.emit(receivedAllCaptions, {usersToReceive, captionArray});
       browserHistory.push('/drawkward/listCaptions');
     }
