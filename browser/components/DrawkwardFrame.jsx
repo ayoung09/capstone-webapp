@@ -31,22 +31,21 @@ class DrawkwardFrame extends Component {
     });
 
     socket.on(startGame, () => {
-      let numOfUsers = Object.keys(this.props.users).length;
-      let randomPhrases = shuffle.pick(this.props.phrases, {'picks': numOfUsers});
-      let userIds = Object.keys(this.props.users);
-      socket.emit(sendRandomPhrase, {randomPhrases, userIds});
+      this.emitRandomPhrasesToMobile();
       browserHistory.push('/drawkward/waitForDrawings');
-    });
-
-//remove before deploying
-    socket.on('receiveCoordinatesFromIOS', data => {
-    console.log('Received data from socket: ', data);
     });
   }
 
   componentWillUnmount() {
     socket.off(receiveNewUser);
     socket.off(startGame);
+  }
+
+  emitRandomPhrasesToMobile() {
+    let numOfUsers = Object.keys(this.props.users).length;
+    let randomPhrases = shuffle.pick(this.props.phrases, {'picks': numOfUsers});
+    let userIds = Object.keys(this.props.users);
+    socket.emit(sendRandomPhrase, {randomPhrases, userIds});
   }
 
   render() {

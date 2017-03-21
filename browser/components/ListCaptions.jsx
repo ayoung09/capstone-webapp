@@ -54,7 +54,7 @@ class ListCaptions extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedPhraseGuesses.length === this.props.phraseGuesses.length - 1) {
+    if (nextProps.selectedPhraseGuesses.length === this.props.phraseGuesses.length) {
       socket.emit(lookAtScoreboard);
       browserHistory.push('/drawkward/scoreboard');
     }
