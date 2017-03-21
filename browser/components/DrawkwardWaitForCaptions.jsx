@@ -40,6 +40,10 @@ class DrawkwardWaitForCaptions extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    socket.off(receiveNewGuess);
+  }
+
   componentWillReceiveProps(nextProps) {
     let currentArtist = nextProps.currentDrawing.id;
     let usersToReceive = Object.keys(this.props.users).filter(user => user !== currentArtist);

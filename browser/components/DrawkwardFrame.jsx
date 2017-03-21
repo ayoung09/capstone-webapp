@@ -5,7 +5,8 @@ import shuffle from 'shuffle-array';
 import { browserHistory } from 'react-router';
 
 import { connect } from 'react-redux';
-import { addUser, setRounds, nextRound } from '../reducers/drawkwardFrame';
+import { addUser, setRounds } from '../reducers/drawkwardFrame';
+import { setInitialScores } from '../reducers/drawkwardScoreboard'
 
 import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
 
@@ -19,7 +20,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addUser: (user) => dispatch(addUser(user)),
   setRounds: (numOfUsers) => dispatch(setRounds(numOfUsers)),
-  initializeRound: () => dispatch(nextRound()),
+  setInitialScores: usersArray => dispatch(setInitialScores(usersArray)),
 });
 
 
@@ -32,6 +33,8 @@ class DrawkwardFrame extends Component {
 
     socket.on(startGame, () => {
       this.emitRandomPhrasesToMobile();
+      this.props.setInitialScores(Object.keys(this.props.users));
+      this.props.setRounds(Object.keys(this.props.users).length);
       browserHistory.push('/drawkward/waitForDrawings');
     });
   }
