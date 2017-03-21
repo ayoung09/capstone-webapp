@@ -28,7 +28,7 @@ class DrawkwardScoreboard extends Component {
     this.props.clearRound();
 
     socket.on(seeNextDrawing, () => {
-      if (this.drawingsStillExist()) {
+      if (this.usersHaveNotSeenAllDrawings()) {
         browserHistory.push('/drawkward/waitForCaptions');
       }
       else if (this.roundsStillRemaining()) {
@@ -42,7 +42,7 @@ class DrawkwardScoreboard extends Component {
     });
   }
 
-  drawingsStillExist() {
+  usersHaveNotSeenAllDrawings() {
     return this.props.allDrawings.length > 0;
   }
 
