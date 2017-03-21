@@ -24,7 +24,10 @@ class WaitForDrawings extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (Object.keys(this.props.users).length === nextProps.allDrawings.length) {
+    const allUsersHaveSubmittedDrawings = () => {
+      return Object.keys(this.props.users).length === nextProps.allDrawings.length;
+    };
+    if (allUsersHaveSubmittedDrawings()) {
       browserHistory.push('/drawkward/waitForCaptions');
     }
   }
@@ -32,6 +35,7 @@ class WaitForDrawings extends Component {
   componentWillUnmount() {
     socket.off(receiveNewDrawing);
   }
+
 
   render () {
     return (
