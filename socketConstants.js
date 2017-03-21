@@ -13,8 +13,6 @@ module.exports = {
   startCaption: 'start caption',
   nextDrawing: 'next drawing',
   gameOver: 'game over',
-  //coming up
-  nextRound: 'next round',
 
   //constants between server and webapp
   receiveNewUser: 'receive new user',

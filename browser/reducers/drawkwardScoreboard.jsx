@@ -16,10 +16,14 @@ const drawkwardScoreboardReducer = (prevState = initialState, action) => {
       newState.scores = action.scores;
       break;
     case ADD_50:
-      newState.scores[action.socketId] += 50;
+      let tempScores50 = Object.assign({}, newState.scores);
+      tempScores50[action.socketId] += 50;
+      newState.scores = tempScores50;
       break;
     case ADD_100:
-      newState.scores[action.socketId] += 100;
+      let tempScores100 = Object.assign({}, newState.scores);
+      tempScores100[action.socketId] += 100;
+      newState.scores = tempScores100;
       break;
     default:
       return prevState;

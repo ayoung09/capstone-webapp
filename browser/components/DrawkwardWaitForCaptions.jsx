@@ -39,7 +39,7 @@ class DrawkwardWaitForCaptions extends React.Component {
   }
 
   componentWillReceiveProps() {
-    let currentArtist = Object.keys(this.props.currentDrawing)[0];
+    let currentArtist = this.props.currentDrawing.id;
     let usersToReceive = Object.keys(this.props.users).filter(user => user !== currentArtist);
 
     if (!this.state.startCaptionSent) {

@@ -20,9 +20,9 @@ io.on('connection', socket => {
   console.log('this is newRoom: ', newRoom);
 
   //mobile joins room; come back to this when ready to incorporate rooms...
-  socket.on(newRoom, data => {
-    socket.join(data.room);
-  });
+  // socket.on(newRoom, data => {
+  //   socket.join(data.room);
+  // });
 
   //mobile sends username and portrait
   socket.on(newUser, userObj => {
@@ -88,10 +88,12 @@ io.on('connection', socket => {
     });
   });
 
+  //mobile calls to see next drawing after scoreboard
   socket.on(nextDrawing, () => {
     socket.broadcast.emit(seeNextDrawing);
   });
 
+  //webapp says game is over
   socket.on(sendGameOver, () => {
     socket.broadcast.emit(gameOver);
   });

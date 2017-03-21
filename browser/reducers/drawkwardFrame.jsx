@@ -1,7 +1,7 @@
 import shuffle from 'shuffle-array';
 
 const initialState = {
-  users: {}, //{{socketId: {name: , portrait: }, {}}
+  users: {}, //{socketId: {name: , portrait: }, socketId2: {name: , portrait}}
   phrases: [],
   rounds: 0,
 };
@@ -18,7 +18,9 @@ const drawkwardFrameReducer = (prevState = initialState, action) => {
 
   switch (action.type) {
     case ADD_USER:
-      newState.users[action.id] = action.userObj;
+      let newUsers = Object.assign({}, newState.users);
+      newUsers[action.id] = action.userObj;
+      newState.users = newUsers;
       break;
     case RECEIVE_ALL_PHRASES:
       let shuffled = shuffle(action.phrases);
