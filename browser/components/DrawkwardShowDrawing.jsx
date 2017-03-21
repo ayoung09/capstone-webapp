@@ -15,7 +15,7 @@ class DrawkwardShowDrawing extends Component {
       <Stage width={700} height={700}>
         <Layer>
           <Line
-            points={this.props.currentDrawing.image}
+            points={this.props.currentDrawing.drawingObj.image}
             stroke={'black'}
             strokeWidth={3}
           />

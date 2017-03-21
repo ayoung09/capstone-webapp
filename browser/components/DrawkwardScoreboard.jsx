@@ -5,6 +5,7 @@ import socket from '../socket';
 
 import { clearRound } from '../reducers/drawkwardRound';
 import { nextRound } from '../reducers/drawkwardFrame';
+import { seeNextDrawing, sendGameOver } from '../../socketConstants';
 
 const mapStateToProps = state => ({
   users: state.drawkwardFrame.users,
@@ -27,10 +28,12 @@ class DrawkwardScoreboard extends Component {
     socket.on(seeNextDrawing, () => {
       if (this.props.allDrawings.length) {
         browserHistory.push('/drawkward/waitForCaptions');
-      } else if (this.props.rounds > 0) {
+      }
+      else if (this.props.rounds > 0) {
         this.props.nextRound();
         browserHistory.push('/drawkward/waitForDrawings');
-      } else {
+      }
+      else {
         socket.broadcast.emit(sendGameOver);
       }
     });
@@ -41,7 +44,7 @@ class DrawkwardScoreboard extends Component {
 
     return (
       <div>
-
+        <p>Still figuring out how to render out scores...</p>
       </div>
     );
   };

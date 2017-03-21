@@ -16,7 +16,7 @@ import Login from './components/Login.jsx';
 import DrawkwardFrame from './components/DrawkwardFrame.jsx';
 import WaitForDrawings from './components/WaitForDrawings.jsx';
 import WaitForCaptions from './components/DrawkwardWaitForCaptions';
-// import Scoreboard from './components/DrawkwardScoreboard';
+import Scoreboard from './components/DrawkwardScoreboard';
 
 
 const onDrawkwardEnter = () => {
