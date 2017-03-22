@@ -1,0 +1,18 @@
+.pad5 {
+  padding: 5px;
+}
+
+.marg5 {
+  margin: 5px;
+}
+
+.header {
+  font-family: 'Amatic SC', cursive;
+  font-size: 36px;
+  text-align: center;
+}
+
+.drawkward-child {
+  font-family: 'Indie Flower', cursive;
+  text-align: center;
+}
