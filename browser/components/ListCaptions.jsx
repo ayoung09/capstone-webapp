@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   users: state.drawkwardFrame.users,
   currentDrawing: state.drawkwardRound.currentDrawing,
   drawing: state.drawkwardRound.currentDrawing.image,
-  originalPhrase: state.drawkwardRound.currentDrawing.phrase,
+  originalPhrase: state.drawkwardRound.currentDrawing.drawingObj.phrase,
   phraseGuesses: state.drawkwardRound.phraseGuesses,
   selectedPhraseGuesses: state.drawkwardRound.selectedPhraseGuesses,
   scores: state.drawkwardScoreboard.scores,
@@ -29,14 +29,13 @@ const mapDispatchToProps = dispatch => ({
 
 class ListCaptions extends Component {
   componentDidMount() {
-    let currentArtist = Object.keys(this.props.currentDrawing)[0];
+    let currentArtist = this.props.currentDrawing.id;
 
     //adding to scoreboard as each selected phrase is received
     socket.on(receivedSelectedPhrase, phraseObj => {
       this.props.addSelectedPhrase(phraseObj);
-
       if (this.userSelectedOriginalPhrase(phraseObj)) {
-        this.props.add100Points(currentArtist);
+        this.props.add100Points(currentArtist); //not working
         this.props.add100Points(phraseObj.id);
       }
       else if (this.userSelectedAnotherUsersPhrase(phraseObj)) {
@@ -51,19 +50,25 @@ class ListCaptions extends Component {
   }
 
   userSelectedAnotherUsersPhrase(phraseObj) {
-    let phraseGuessesArray = Object.keys(this.props.phraseGuesses);
+    let phraseGuessesArray = this.props.phraseGuesses.map(phraseGuessObj => {
+      for (let phrase in phraseGuessObj) {
+        return phrase;
+      }
+    });
     return phraseGuessesArray.includes(phraseObj.selectedPhrase);
   }
 
   findUserWhoCreatedPhrase(phraseObj) {
-    let userWhoCreatedPhrase = this.props.phraseGuesses.filter(phraseGuessObj => {
+    let phraseKey;
+    const userWhoCreatedPhrase = this.props.phraseGuesses.filter(phraseGuessObj => {
       for (let phrase in phraseGuessObj) {
         if (phrase === phraseObj.selectedPhrase) {
+          phraseKey = phrase;
           return phraseGuessObj[phrase];
         }
       }
     });
-    return userWhoCreatedPhrase;
+    return userWhoCreatedPhrase[0][phraseKey];
   }
 
   componentWillReceiveProps(nextProps) {

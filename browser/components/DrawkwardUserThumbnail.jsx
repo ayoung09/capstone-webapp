@@ -2,7 +2,6 @@ import React from 'react';
 import { Layer, Stage, Line } from 'react-konva';
 
 const DrawkwardUserThumbnail = ({userName, image}) => {
-  console.log('this is username: ', userName, 'and this is image: ', image);
   return (
     <div>
       <div>
@@ -16,7 +15,7 @@ const DrawkwardUserThumbnail = ({userName, image}) => {
                 key={i}
                 points={line}
                 stroke={'black'}
-                strokeWidth={1}
+                strokeWidth={3}
               />
             )}
           )}
