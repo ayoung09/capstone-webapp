@@ -56,7 +56,9 @@ class ListCaptions extends Component {
   }
 
   findUserWhoCreatedPhrase(phraseObj) {
+    //just return this instead of using temp var
     let userWhoCreatedPhrase = this.props.phraseGuesses.filter(phraseGuessObj => {
+      // Maybe use lodash filter? Or Object.keys(phraseGuessObj).filter()
       for (let phrase in phraseGuessObj) {
         if (phrase === phraseObj.selectedPhrase) {
           return phraseGuessObj[phrase];

@@ -67,6 +67,7 @@ class DrawkwardWaitForCaptions extends React.Component {
       return includingOriginalPhrase;
     };
 
+    // place this code up top! Reference functions and then define them below. Use of vertical space
     if (allUsersHaveSubmittedPhraseGuesses()) {
       let captionArray = buildAndShuffleCaptionArr();
       socket.emit(receivedAllCaptions, {usersToReceive, captionArray});

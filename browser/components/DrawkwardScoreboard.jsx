@@ -27,8 +27,11 @@ class DrawkwardScoreboard extends Component {
   componentDidMount() {
     this.props.clearRound();
 
+    // Won't the server know we are finished with all the drawings?
+    // WHy not emit a separate event and keep this logic server-side?
     socket.on(seeNextDrawing, () => {
       if (this.usersHaveNotSeenAllDrawings()) {
+        // Should these urls be constants too?
         browserHistory.push('/drawkward/waitForCaptions');
       }
       else if (this.roundsStillRemaining()) {

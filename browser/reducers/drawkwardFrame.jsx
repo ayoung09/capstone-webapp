@@ -1,5 +1,7 @@
 import shuffle from 'shuffle-array';
 
+// We could probably stand to break up these files a little
+
 const initialState = {
   users: {}, //{socketId: {name: , portrait: }, socketId2: {name: , portrait}}
   phrases: [],
@@ -42,6 +44,7 @@ const drawkwardFrameReducer = (prevState = initialState, action) => {
 export const addUser = (userObj) => ({
   type: ADD_USER,
   id: userObj.id,
+          // a little weird. Maybe userData and userId above?
   userObj: userObj.userObj,
 });
 
@@ -52,6 +55,7 @@ export const receiveAllPhrases = (phrases) => ({
 
 export const setRounds = (numOfUsers) => ({
   type: SET_ROUNDS,
+                      ///Avoid the use of magic numbers
   rounds: numOfUsers <= 8 ? 2 : 1,
 });
 

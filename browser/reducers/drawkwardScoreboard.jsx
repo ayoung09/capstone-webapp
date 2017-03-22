@@ -1,3 +1,5 @@
+// Won't this result in something like scores.scores? or just drawkwardScoreboard.scores.
+// Perhaps don't nest state unnecessarily
 const initialState = {
   scores: {}, //{{socketId: 0}, {}}
 };
@@ -15,6 +17,7 @@ const drawkwardScoreboardReducer = (prevState = initialState, action) => {
     case SET_INITIAL_SCORES:
       newState.scores = action.scores;
       break;
+    // Why not just have an addPoints reducers and have the action creators be called add50 and add100 and both reference one reducer case
     case ADD_50:
       let tempScores50 = Object.assign({}, newState.scores);
       tempScores50[action.socketId] += 50;
