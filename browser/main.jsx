@@ -21,6 +21,7 @@ import Scoreboard from './components/DrawkwardScoreboard';
 
 //pictionary components
 import PictionaryFrame from './components/pictionary/PictionaryFrame';
+import PictionaryMain from './components/pictionary/PictionaryMain'
 
 const onDrawkwardEnter = () => {
   axios.get('/api/phrases')
@@ -40,7 +41,7 @@ render(
           <Route path="/drawkward/scoreboard" component={Scoreboard} />
         </Route>
         <Route path="/pictionary" component={PictionaryFrame}>
-          <Route path="/pictionary/start"  />
+          <Route path="/pictionary/main" component={PictionaryMain} />
         </Route>
       </Route>
     </Router>

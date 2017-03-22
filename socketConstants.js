@@ -35,4 +35,6 @@ module.exports = {
 
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
+  RECEIVE_NEW_COORDINATES: 'receive new coordinates',
+  CLEAR_CANVAS: 'clear canvas'
 };
