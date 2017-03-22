@@ -16,6 +16,7 @@ class DrawkwardShowDrawing extends Component {
         <Layer>
           {this.props.currentDrawing.drawingObj.image.map((line, i) => {
             return (
+              // Keep your styling in it's own separate object defined outside the html
               <Line
                 key={i}
                 points={line}

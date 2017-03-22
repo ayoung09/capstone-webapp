@@ -20,13 +20,15 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
 
   switch (action.type) {
     case SET_CURRENT_DRAWING:
-      let nextDrawing = newState.allDrawings.shift();
+      let nextDrawing = newState.allDrawings.shift();  //Don't use temporary variables unnecessarily.
+      // Also, let has semantic meaning. It says to me this variable will be reassigned. Use const otherwise
       newState.currentDrawing = nextDrawing;
       break;
     case ADD_DRAWING:
       newState.allDrawings = [...newState.allDrawings, action.drawingObj];
       break;
     case ADD_PHRASE_GUESS:
+      // Same comment here with let
       let arrayToShuffle = [...newState.phraseGuesses, {[action.guess]: action.id}];
       let shuffled = shuffle(arrayToShuffle);
       newState.phraseGuesses = shuffled;
@@ -37,6 +39,7 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       newState.selectedPhraseGuesses = [];
       break;
     case ADD_SELECTED_PHRASE:
+      // And here
       let newSelectedPhrases = [...newState.selectedPhraseGuesses, {[action.id]: action.selectedPhrase}];
       newState.selectedPhraseGuesses = newSelectedPhrases;
       break;

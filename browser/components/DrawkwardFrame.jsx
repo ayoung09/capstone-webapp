@@ -6,6 +6,8 @@ import socket from '../socket';
 
 import { addUser, setRounds } from '../reducers/drawkwardFrame';
 import { setInitialScores } from '../reducers/drawkwardScoreboard';
+
+//It's nice if our constants are all caps. Convention varies. I would see what people do in JS
 import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
 
 
@@ -31,6 +33,7 @@ class DrawkwardFrame extends Component {
 
     socket.on(startGame, () => {
       this.emitRandomPhrasesToMobile();
+      //I keep seeing this pattern Object.keys(this.props.users). Maybe call it getUsers and have it be a function?
       this.props.setInitialScores(Object.keys(this.props.users));
       this.props.setRounds(Object.keys(this.props.users).length);
       browserHistory.push('/drawkward/waitForDrawings');
@@ -44,6 +47,7 @@ class DrawkwardFrame extends Component {
 
   emitRandomPhrasesToMobile() {
     let numOfUsers = Object.keys(this.props.users).length;
+    // The array is already random, isn't it? Why do we need to pick randomly?
     let randomPhrases = shuffle.pick(this.props.phrases, {'picks': numOfUsers});
     let userIds = Object.keys(this.props.users);
     socket.emit(sendRandomPhrase, {randomPhrases, userIds});
