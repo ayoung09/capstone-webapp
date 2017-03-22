@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM } = require('../socketConstants');
 
 
 const app = express();
@@ -23,6 +23,7 @@ io.on('connection', socket => {
   // socket.on(newRoom, data => {
   //   socket.join(data.room);
   // });
+
 
   //mobile sends username and portrait
   socket.on(newUser, userObj => {
@@ -101,6 +102,16 @@ io.on('connection', socket => {
   socket.on(sendGameOver, () => {
     socket.broadcast.emit(gameOver);
   });
+
+  //pictionary
+
+    //mobile sends team data
+  socket.on(NEW_TEAM, teamData => {
+    socket.broadcast.emit(RECEIVE_NEW_TEAM, {
+      id: socket.id,
+      teamData: teamData
+    })
+  })
 
   socket.on('disconnect', () => {
     console.log('User disconnected :(');
