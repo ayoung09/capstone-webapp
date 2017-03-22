@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import shuffle from 'shuffle-array';
 import socket from '../socket';
 
+import DrawkwardUserThumbnail from './DrawkwardUserThumbnail';
 import { clearRound } from '../reducers/drawkwardRound';
 import { nextRound } from '../reducers/drawkwardFrame';
 import { seeNextDrawing, sendRandomPhrase, sendGameOver } from '../../socketConstants';
@@ -62,10 +63,27 @@ class DrawkwardScoreboard extends Component {
   }
 
   render() {
+    const usersObj = this.props.users;
+    const usersArray = Object.keys(usersObj);
+    const scoresObj = this.props.scores;
 
     return (
       <div>
-        <p>Still figuring out how to render out scores...</p>
+      <h2>Scoreboard:</h2>
+        {usersArray.map(socketId => {
+          let nameToDisplay = usersObj[socketId].username;
+          let imageArray = usersObj[socketId].portrait;
+          let numOfPoints = scoresObj[socketId];
+          return (
+            <div key={socketId} className="user-thumbnail">
+              <DrawkwardUserThumbnail
+                userName={nameToDisplay}
+                image={imageArray}
+              />
+              <h2>{numOfPoints} points</h2>
+            </div>
+          );
+        })}
       </div>
     );
   }

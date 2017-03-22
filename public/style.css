@@ -16,3 +16,17 @@
   font-family: 'Indie Flower', cursive;
   text-align: center;
 }
+
+.show-drawing {
+  background-color: white;
+  align-content: center;
+  border-style: solid;
+}
+
+.user-thumbnail {
+  margin: 2px;
+  display: inline-block;
+  background-color: #E0FFFF;
+  border-style: solid;
+  border-radius: 2px;
+}

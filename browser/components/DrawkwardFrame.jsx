@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import shuffle from 'shuffle-array';
 import socket from '../socket';
 
+import DrawkwardUserThumbnail from './DrawkwardUserThumbnail';
 import { addUser, setRounds } from '../reducers/drawkwardFrame';
 import { setInitialScores } from '../reducers/drawkwardScoreboard';
 import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
@@ -50,14 +51,28 @@ class DrawkwardFrame extends Component {
   }
 
   render() {
+    const usersArray = Object.keys(this.props.users);
+    let numOfUsers = usersArray.length;
+
     return (
       <div>
         {this.props.children ? this.props.children :
           <div>
-            <h2>Create a username and portrait in your mobile app</h2>
-            <h3>When all users have signed in, hit START to begin your game</h3>
+            <div>
+              <h2>Create a username and portrait in your mobile app</h2>
+              <h3>When all users have signed in, hit START to begin your game</h3>
+            </div>
           </div>
         }
+        {!this.props.children && numOfUsers > 0 ? usersArray.map(socketId => {
+            const nameToDisplay = this.props.users[socketId].username;
+            const imageArray = this.props.users[socketId].portrait;
+            return (
+              <div key={socketId} className="user-thumbnail">
+                <DrawkwardUserThumbnail userName={nameToDisplay} image={imageArray} />
+              </div>
+            );
+        }) : null}
       </div>
     );
   }
