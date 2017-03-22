@@ -24,7 +24,6 @@ io.on('connection', socket => {
   //   socket.join(data.room);
   // });
 
-
   //mobile sends username and portrait
   socket.on(newUser, userObj => {
     socket.broadcast.emit(receiveNewUser, {

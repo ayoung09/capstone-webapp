@@ -35,25 +35,4 @@ module.exports = {
 
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
-  /*
-  mobile to server:
-  new team -> team name, avatar
-  start game
-  fetchNewPhrase
-  liveDrawingCoordinates
-
-  server to mobile:
-  startNewRound
-  newPhrase
-  roundOver
-
-  server to browser:
-  receiveNewTeam
-  newGameStarted
-  mobileDrawings
-  clearCanvas/newDrawing
-
-  browserToServer:
-  roundOver
-  */
 };
