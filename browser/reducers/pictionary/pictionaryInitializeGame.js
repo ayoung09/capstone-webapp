@@ -5,11 +5,11 @@ const teams = [] //{name: '' , portrait: []}
 const ADD_TEAM = 'add team'
 
 const pictionaryInitializeGameReducer = (prevState = teams, action) => {
-  const newState = Object.assign({}, prevState);
+  let newState = [].concat(prevState);
 
   switch (action.type) {
     case ADD_TEAM:
-      newState.teams = newState.teams.concat({[action.id]: action.teamData})
+      newState = newState.concat(action.teamData);
       break;
 
     default:
@@ -21,10 +21,7 @@ const pictionaryInitializeGameReducer = (prevState = teams, action) => {
 //action creators
 export const addTeam = team => ({
   type: ADD_TEAM,
-  teamData: {
-    name: team.name,
-    portrait: team.portrait
-  }
+  teamData: team
 })
 
 export default pictionaryInitializeGameReducer;
