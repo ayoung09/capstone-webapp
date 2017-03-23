@@ -22,7 +22,7 @@ class PictionaryScoreboard extends Component {
     })
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     socket.off(ADD_POINTS)
   }
 
