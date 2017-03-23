@@ -22,7 +22,7 @@ class PictionaryShowDrawing extends Component {
     })
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     socket.off(RECEIVE_NEW_COORDINATES);
     socket.off(CLEAR_CANVAS);
   }
