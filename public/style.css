@@ -7,8 +7,8 @@
 }
 
 @keyframes animatedHeader {
-  from {background-position: -30px 10px}
-  to {background-position: 100% 10px}
+  from {background-position: -30px 20px}
+  to {background-position: 100% 20px}
 }
 
 .header {
@@ -20,6 +20,15 @@
   background-repeat: no-repeat;
 
   animation: animatedHeader 20s linear infinite;
+}
+
+.btn-game {
+  margin: 7px;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 40px;
+  background-color: white;
+  font-family: 'Indie Flower', cursive;
 }
 
 .drawkward-child {
@@ -55,7 +64,7 @@ body {
 
 @keyframes animatedBackground {
   from {background-position: 900px 50px, 40px 200px, 850px 400px;}
-  to { background-position: 890px 60px, 50px 220px, 830px 390px;}
+  to { background-position: 890px 55px, 45px 215px, 845px 390px;}
 }
 
 #main-drawkward-frame {
@@ -65,7 +74,7 @@ body {
   background-repeat: no-repeat;
   background-position: 880px 70px, 60px 230px, 800px 370px;
 
-  animation: animatedBackground 1s linear infinite;
+  animation: animatedBackground 0.75s linear infinite;
   animation-direction: alternate;
 }
 
