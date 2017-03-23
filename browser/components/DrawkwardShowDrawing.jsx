@@ -12,7 +12,7 @@ class DrawkwardShowDrawing extends Component {
 
   render() {
     return (
-      <Stage className="show-drawing" width={700} height={700}>
+      <Stage className="show-drawing" width={600} height={600}>
         <Layer>
           {this.props.currentDrawing.drawingObj.image.map((line, i) => {
             return (

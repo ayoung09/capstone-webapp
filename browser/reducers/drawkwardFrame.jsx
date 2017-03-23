@@ -18,13 +18,13 @@ const drawkwardFrameReducer = (prevState = initialState, action) => {
 
   switch (action.type) {
     case ADD_USER:
-      let newUsers = Object.assign({}, newState.users);
+      const newUsers = Object.assign({}, newState.users);
       newUsers[action.id] = action.userObj;
       newState.users = newUsers;
       break;
     case RECEIVE_ALL_PHRASES:
-      let shuffled = shuffle(action.phrases);
-      newState.phrases = shuffled;
+      shuffle(action.phrases);
+      newState.phrases = action.phrases;
       break;
     case SET_ROUNDS:
       newState.rounds = action.rounds;
@@ -52,11 +52,16 @@ export const receiveAllPhrases = (phrases) => ({
 
 export const setRounds = (numOfUsers) => ({
   type: SET_ROUNDS,
-  rounds: numOfUsers <= 8 ? 2 : 1,
+  rounds: determineNumberOfRounds(numOfUsers),
 });
 
 export const nextRound = () => ({
   type: NEXT_ROUND,
 });
+
+function determineNumberOfRounds(numOfUsers) {
+  const numberOfRounds = numOfUsers <= 8 ? 2 : 1;
+  return numberOfRounds;
+}
 
 export default drawkwardFrameReducer;
