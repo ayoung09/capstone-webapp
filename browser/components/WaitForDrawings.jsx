@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../socket';
 
-import Timer from './Timer';
+import Timer from './DrawkwardTimer';
 import { addDrawing } from '../reducers/drawkwardRound';
 import { receiveNewDrawing } from '../../socketConstants';
 

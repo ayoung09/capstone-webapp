@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socket from '../socket';
 
 import {connect} from 'react-redux';
-import {countdown} from '../reducers/timer';
+import { setTimer, countdown } from '../reducers/timer';
 import { TIME_IS_UP } from '../../socketConstants';
 
 const mapStateToProps = state => ({
@@ -10,10 +10,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  countdown: () => dispatch(countdown())
+  setTimer: startingSeconds => dispatch(setTimer(startingSeconds)),
+  countdown: () => dispatch(countdown()),
 });
 
-class Timer extends Component {
+class DrawkwardTimer extends Component {
+
+  componentWillMount() {
+    this.props.setTimer(60);
+  }
 
   componentDidMount() {
     this.interval = setInterval(this.props.countdown, 1000);
@@ -49,4 +54,4 @@ class Timer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Timer);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawkwardTimer);
