@@ -41,7 +41,7 @@ class WaitForDrawings extends Component {
     return (
       <div>
         <h2>Waiting for all users to submit their drawings.</h2>
-        <Timer seconds={90} />
+        <Timer />
       </div>
     );
   }

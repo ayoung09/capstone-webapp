@@ -11,7 +11,6 @@ const DrawkwardUserThumbnail = ({userName, image}) => {
         <Stage height={200} width={200}>
           <Layer scaleX={0.5} scaleY={0.5}>
             {image.map((line, i) => {
-              console.log('this is line: ', line);
               return (
                 <Line
                   key={i}

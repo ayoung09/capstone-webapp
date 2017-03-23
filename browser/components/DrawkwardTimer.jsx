@@ -35,7 +35,6 @@ class DrawkwardTimer extends Component {
   }
 
   render() {
-    console.log('these are secondsRemaining: ', this.props.secondsRemaining);
     return (
       <div>
         {this.props.secondsRemaining > 0 ?
