@@ -25,6 +25,7 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       break;
     case ADD_DRAWING:
       newState.allDrawings = [...newState.allDrawings, action.drawingObj];
+      shuffle(newState.allDrawings);
       break;
     case ADD_PHRASE_GUESS:
       let arrayToShuffle = [...newState.phraseGuesses, {[action.guess]: action.id}];

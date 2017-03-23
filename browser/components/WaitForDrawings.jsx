@@ -36,7 +36,6 @@ class WaitForDrawings extends Component {
     socket.off(receiveNewDrawing);
   }
 
-
   render () {
     return (
       <div>

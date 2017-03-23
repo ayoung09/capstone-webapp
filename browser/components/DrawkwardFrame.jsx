@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import shuffle from 'shuffle-array';
 import socket from '../socket';
 
 import DrawkwardUserThumbnail from './DrawkwardUserThumbnail';
-import { addUser, setRounds } from '../reducers/drawkwardFrame';
+import { addUser, setRounds, receiveAllPhrases } from '../reducers/drawkwardFrame';
 import { setInitialScores } from '../reducers/drawkwardScoreboard';
 import { receiveNewUser, startGame, sendRandomPhrase } from '../../socketConstants';
 
@@ -20,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
   addUser: (user) => dispatch(addUser(user)),
   setRounds: (numOfUsers) => dispatch(setRounds(numOfUsers)),
   setInitialScores: usersArray => dispatch(setInitialScores(usersArray)),
+  resetAllPhrases: phrasesArray => dispatch(receiveAllPhrases(phrasesArray)),
 });
 
 
@@ -45,9 +45,14 @@ class DrawkwardFrame extends Component {
 
   emitRandomPhrasesToMobile() {
     let numOfUsers = Object.keys(this.props.users).length;
-    let randomPhrases = shuffle.pick(this.props.phrases, {'picks': numOfUsers});
+    let randomPhrases = [];
+    for (let n = 0; n < numOfUsers; n++) {
+      randomPhrases.push(this.props.phrases.shift());
+    }
     let userIds = Object.keys(this.props.users);
     socket.emit(sendRandomPhrase, {randomPhrases, userIds});
+
+    this.resetAllPhrases(this.props.phrases);
   }
 
   render() {
