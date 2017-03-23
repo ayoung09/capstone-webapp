@@ -31,12 +31,13 @@
 .show-drawing {
   align-content: center;
   border-style: solid;
+  background-color: white;
 }
 
 .user-thumbnail {
   margin: 2px;
   display: inline-block;
-  background-color: #E0FFFF;
+  background-color: white;
   border-style: solid;
   border-radius: 2px;
 }
@@ -44,7 +45,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: white;
 }
 
 #main {
