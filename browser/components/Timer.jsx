@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import socket from '../socket';
 
 import {connect} from 'react-redux';
 import {countdown} from '../reducers/timer';
+import { TIME_IS_UP } from '../../socketConstants';
 
 const mapStateToProps = state => ({
   secondsRemaining: state.timer.secondsRemaining
@@ -15,6 +17,12 @@ class Timer extends Component {
 
   componentDidMount() {
     this.interval = setInterval(this.props.countdown, 1000);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.secondsRemaining === 0) {
+      socket.emit(TIME_IS_UP);
+    }
   }
 
   componentWillUnmount() {
