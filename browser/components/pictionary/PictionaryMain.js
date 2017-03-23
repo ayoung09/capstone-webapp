@@ -3,17 +3,30 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../../socket';
 
+import PictionaryScoreboard from './PictionaryScoreboard'
+import PictionaryShowDrawing from './PictionaryShowDrawing'
+
+const mapStateToProps = state => ({
+  teams: state.pictionaryInitializeGame.teams
+})
+
 class PictionaryMain extends Component {
 
   render() {
     return (
       <div>
-        <h3>team 1 scores</h3>
-        <h3>Drawing canvas</h3>
-        <h3>team 2 scores</h3>
+        <PictionaryScoreboard
+          teams={this.props.teams[0]}
+        />
+        <PictionaryShowDrawing />
+        <PictionaryScoreboard
+          teams={this.props.teams[1]}
+        />
       </div>
     )
   }
 }
 
-export default PictionaryMain
+export default connect(mapStateToProps)(PictionaryMain)
+
+//NOTE: will have conditional logic for rendering ShowDrawing; if game over have it say {TEAM X} won

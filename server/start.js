@@ -107,8 +107,8 @@ io.on('connection', socket => {
     //mobile sends team data
   socket.on(NEW_TEAM, teamData => {
     socket.broadcast.emit(RECEIVE_NEW_TEAM, {
-      id: socket.id,
-      teamData: teamData
+      name: teamData.name,
+      portrait: teamData.portrait,
     })
   })
 

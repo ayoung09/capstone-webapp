@@ -4,8 +4,7 @@ const initialState = {
 
 //constants
 const SET_INITIAL_SCORES = 'SET_INITIAL_SCORES';
-const ADD_50 = 'ADD_50';
-const ADD_100 = 'ADD_100';
+const ADD_POINTS = 'ADD_POINTS';
 
 //reducer
 const drawkwardScoreboardReducer = (prevState = initialState, action) => {
@@ -15,15 +14,10 @@ const drawkwardScoreboardReducer = (prevState = initialState, action) => {
     case SET_INITIAL_SCORES:
       newState.scores = action.scores;
       break;
-    case ADD_50:
-      let tempScores50 = Object.assign({}, newState.scores);
-      tempScores50[action.socketId] += 50;
+    case ADD_POINTS:
+      const tempScores50 = Object.assign({}, newState.scores);
+      tempScores50[action.socketId] += action.points;
       newState.scores = tempScores50;
-      break;
-    case ADD_100:
-      let tempScores100 = Object.assign({}, newState.scores);
-      tempScores100[action.socketId] += 100;
-      newState.scores = tempScores100;
       break;
     default:
       return prevState;
@@ -47,12 +41,14 @@ export const setInitialScores = usersArray => ({
 });
 
 export const add50 = socketId => ({
-  type: ADD_50,
+  type: ADD_POINTS,
+  points: 50,
   socketId,
 });
 
 export const add100 = socketId => ({
-  type: ADD_100,
+  type: ADD_POINTS,
+  points: 100,
   socketId,
 });
 

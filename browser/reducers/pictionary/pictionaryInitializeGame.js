@@ -1,18 +1,15 @@
-const initialState = {
-  teams: {}, //socketId: {name: , portrait}
-}
+//initial state
+const teams = [] //{name: '' , portrait: []}
 
 //constants
 const ADD_TEAM = 'add team'
 
-const pictionaryInitializeGameReducer = (prevState = initialState, action) => {
+const pictionaryInitializeGameReducer = (prevState = teams, action) => {
   const newState = Object.assign({}, prevState);
 
   switch (action.type) {
     case ADD_TEAM:
-      const newTeams = Object.assign({}, newState.teams);
-      newTeams[action.id] = action.team;
-      newState.teams = newTeams;
+      newState.teams = newState.teams.concat({[action.id]: action.teamData})
       break;
 
     default:
@@ -24,8 +21,10 @@ const pictionaryInitializeGameReducer = (prevState = initialState, action) => {
 //action creators
 export const addTeam = team => ({
   type: ADD_TEAM,
-  id: team.id,
-  team: team.teamData
+  teamData: {
+    name: team.name,
+    portrait: team.portrait
+  }
 })
 
 export default pictionaryInitializeGameReducer;

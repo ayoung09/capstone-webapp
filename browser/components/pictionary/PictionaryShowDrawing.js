@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Layer, Stage, Line } from 'react-konva';
-import { connect } from 'react-redux';
 import socket from '../../socket';
 
 import { RECEIVE_NEW_COORDINATES, CLEAR_CANVAS } from '../../../socketConstants'
@@ -21,6 +20,11 @@ class PictionaryShowDrawing extends Component {
     socket.on(CLEAR_CANVAS, () => {
       this.setState({currentDrawing: []})
     })
+  }
+
+  componentDidUnmount() {
+    socket.off(RECEIVE_NEW_COORDINATES);
+    socket.off(CLEAR_CANVAS);
   }
 
   render() {

@@ -28,6 +28,8 @@ const onDrawkwardEnter = () => {
     .then(phrases => store.dispatch(receiveAllPhrases(phrases.data)));
 };
 
+//onPictionaryEnter - load word bank from db
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>

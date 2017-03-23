@@ -7,6 +7,7 @@
 }
 
 .header {
+  background: none;
   font-family: 'Amatic SC', cursive;
   font-size: 36px;
   text-align: center;
@@ -15,4 +16,36 @@
 .drawkward-child {
   font-family: 'Indie Flower', cursive;
   text-align: center;
+}
+
+.show-drawing {
+  align-content: center;
+  border-style: solid;
+}
+
+.user-thumbnail {
+  margin: 2px;
+  display: inline-block;
+  background-color: #E0FFFF;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+#main {
+  margin: 0;
+  background-color: #E0FFFF;
+}
+
+#main-drawkward-frame {
+  margin: 0;
+  height: 900px;
+  background-image: url(/images/cute_sun.png), url(/images/rainbow_cloud.png), url(/images/cute_cloud.png);
+  background-position: right top, left center, right bottom;
+  background-repeat: no-repeat;
 }
