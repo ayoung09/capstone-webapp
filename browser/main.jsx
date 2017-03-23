@@ -10,7 +10,7 @@ import store from './store';
 //action-creators
 import { receiveAllPhrases } from './reducers/drawkwardFrame';
 
-//components
+//drawkward components
 import AppFrame from './components/AppFrame.jsx';
 import Login from './components/Login.jsx';
 import DrawkwardFrame from './components/DrawkwardFrame.jsx';
@@ -19,11 +19,16 @@ import WaitForCaptions from './components/DrawkwardWaitForCaptions';
 import ListCaptions from './components/ListCaptions';
 import Scoreboard from './components/DrawkwardScoreboard';
 
+//pictionary components
+import PictionaryFrame from './components/pictionary/PictionaryFrame';
+import PictionaryMain from './components/pictionary/PictionaryMain'
 
 const onDrawkwardEnter = () => {
   axios.get('/api/phrases')
     .then(phrases => store.dispatch(receiveAllPhrases(phrases.data)));
 };
+
+//onPictionaryEnter - load word bank from db
 
 render(
   <Provider store={store}>
@@ -36,6 +41,9 @@ render(
           <Route path="/drawkward/waitForCaptions" component={WaitForCaptions} />
           <Route path="/drawkward/listCaptions" component={ListCaptions} />
           <Route path="/drawkward/scoreboard" component={Scoreboard} />
+        </Route>
+        <Route path="/pictionary" component={PictionaryFrame}>
+          <Route path="/pictionary/main" component={PictionaryMain} />
         </Route>
       </Route>
     </Router>
