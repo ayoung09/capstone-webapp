@@ -34,10 +34,15 @@ module.exports = {
   //pictionary
     //between mobile and server
   NEW_TEAM: 'new team',
+  CORRECT_GUESS: 'correct guess',
+  SKIP: 'skip',
+  RECEIVE_NEW_WORD: 'receive new word',
 
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
   RECEIVE_NEW_COORDINATES: 'receive new coordinates',
   CLEAR_CANVAS: 'clear canvas',
-  ADD_POINTS: 'add points'
+  ADD_POINTS: 'add points',
+  FETCH_NEXT_WORD: 'next word',
+  SEND_NEW_WORD: 'new word',
 };
