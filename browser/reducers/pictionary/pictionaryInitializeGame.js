@@ -1,15 +1,25 @@
 //initial state
-const teams = [] //{name: '' , portrait: []}
+const initialState = {
+  teams: [],
+  wordbank: []
+}
+// const teams = [] //{name: '' , portrait: []}
 
 //constants
-const ADD_TEAM = 'add team'
+const ADD_TEAM = 'add team';
+const FETCH_WORDBANK = 'fetch wordbank';
 
-const pictionaryInitializeGameReducer = (prevState = teams, action) => {
-  let newState = [].concat(prevState);
+//reducer
+const pictionaryInitializeGameReducer = (prevState = initialState, action) => {
+  let newState = Object.assign({}, prevState)
 
   switch (action.type) {
     case ADD_TEAM:
-      newState = newState.concat(action.teamData);
+      newState.teams = newState.teams.concat(action.teamData);
+      break;
+
+    case FETCH_WORDBANK:
+      newState.wordbank = newState.wordbank.concat(action.wordbank);
       break;
 
     default:
@@ -23,5 +33,12 @@ export const addTeam = team => ({
   type: ADD_TEAM,
   teamData: team
 })
+
+export const fetchWordbank = (wordbank) => {
+  return {
+    type: FETCH_WORDBANK,
+    wordbank
+  }
+}
 
 export default pictionaryInitializeGameReducer;

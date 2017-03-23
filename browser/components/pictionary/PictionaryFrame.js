@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import socket from '../../socket';
 
 import { startGame, RECEIVE_NEW_TEAM } from '../../../socketConstants'
-import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame'
+import { addTeam, fetchWords } from '../../reducers/pictionary/pictionaryInitializeGame'
 
 const mapDispatchToProps = dispatch => ({
-  addTeam: team => dispatch(addTeam(team))
+  addTeam: team => dispatch(addTeam(team)),
 })
 
 class PictionaryFrame extends Component {

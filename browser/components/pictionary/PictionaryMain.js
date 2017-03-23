@@ -10,25 +10,25 @@ const mapStateToProps = state => ({
   teams: state.pictionaryInitializeGame.teams
 })
 
+
 const mapDispatchToProps = dispatch => ({
   setInitialScores: (teams) => dispatch(setInitialScores(teams))
 })
 
 class PictionaryMain extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.setInitialScores(this.props.teams)
   }
+
   render() {
     return (
       <div>
         <PictionaryScoreboard
-          teams={this.props.teams[0]}
-        />
+          team={this.props.teams[0]} />
         <PictionaryShowDrawing />
-        <PictionaryScoreboard
-          teams={this.props.teams[1]}
-        />
+        {/*<PictionaryScoreboard
+          team={this.props.teams[1]} />*/}
       </div>
     )
   }

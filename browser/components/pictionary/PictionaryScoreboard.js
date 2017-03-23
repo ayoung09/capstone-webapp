@@ -5,15 +5,16 @@ import socket from '../../socket';
 import { ADD_POINTS } from '../../../socketConstants'
 import { addPoints } from '../../reducers/pictionary/pictionaryScoreboard'
 
+import PictionaryTeamThumbnail from '../pictionary/PictionaryTeamThumbnail'
+
 const mapStateToProps = state => ({
-  scores: state.PictionaryScoreboard
+  scores: state.pictionaryScoreboard.scores
 })
 
 const mapDispatchToProps = dispatch => ({
   addPoints: () => dispatch(addPoints())
 })
 
-//pass Team info as props so it can be reusable
 class PictionaryScoreboard extends Component {
 
   componentDidMount() {
@@ -28,14 +29,12 @@ class PictionaryScoreboard extends Component {
 
   render() {
     const teamName = this.props.team.name;
-    const avatarCoordinates = this.props.team.portrait;
-    const scores = this.props.scores[this.props.team.name]
+    const avatarCoordinates = this.props.team.portrait; //[]
+    const scores = this.props.scores[teamName];
+
     return (
-      <div className="team-thumbnail">
-        <DrawkwardUserThumbnail
-          userName={teamName}
-          image={avatarCoordinates}
-        />
+      <div className="user-thumbnail">
+        <PictionaryTeamThumbnail team={this.props.team} />
         <h2>{scores} points</h2>
       </div>
     )

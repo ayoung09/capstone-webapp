@@ -1,20 +1,21 @@
-//initial state
-const scores = {} //{teamName: 0}?
+const initialState = {
+  scores: {} //{teamName: score}
+}
 
 const SET_INITIAL_SCORES = 'set initial scores';
 const ADD_POINTS = 'add points'
 
-const pictionaryScoreboardReducer = (prevState = scores, action) => {
+const pictionaryScoreboardReducer = (prevState = initialState, action) => {
   const newState = Object.assign({}, prevState);
 
   switch (action.type) {
     case ADD_POINTS:
-      newState.scores[action.teamName] += 25
+      newState.scores[action.teamName] += 25;
       break;
 
     case SET_INITIAL_SCORES:
       action.teams.forEach(team => {
-        newState.scores[name] = 0
+        newState.scores[team.name] = 0
       });
       break;
 
@@ -33,5 +34,6 @@ export const setInitialScores = (teams) => ({
   type: SET_INITIAL_SCORES,
   teams
 })
+
 
 export default pictionaryScoreboardReducer
