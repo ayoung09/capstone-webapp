@@ -137,9 +137,25 @@ const seedPhrases = () => db.Promise.map([
   {text: 'super juicy bell peppers'},
 ], phrase => db.model('phrases').create(phrase));
 
+const seedWords = () => db.Promise.map([
+  {text: 'bird'},
+  {text: 'ice cream cone'},
+  {text: 'teacher'},
+  {text: 'shopping cart'},
+  {text: 'birthday cake'},
+  {text: 'thanksgiving'},
+  {text: 'monster'},
+  {text: 'Chicago'},
+  {text: 'helicopter'},
+  {text: 'glasses'},
+  {text: 'car'},
+  {text: 'dog'},
+  {text: 'cat'}
+], word => db.model('wordbank').create(word))
+
 db.didSync
   .then(() => db.sync({force: true}))
-  .then(() => Promise.all([seedUsers(), seedPhrases()]))
+  .then(() => Promise.all([seedUsers(), seedPhrases(), seedWords()]))
   .then(() => {
     console.log('Data seeded successfully');
   })
