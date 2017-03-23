@@ -1,15 +1,19 @@
 //initial state
-const teams = [] //{name: '' , portrait: []}
+const initialState = {
+  teams: []
+}
+// const teams = [] //{name: '' , portrait: []}
 
 //constants
 const ADD_TEAM = 'add team'
 
-const pictionaryInitializeGameReducer = (prevState = teams, action) => {
-  let newState = [].concat(prevState);
+//reducer
+const pictionaryInitializeGameReducer = (prevState = initialState, action) => {
+  let newState = Object.assign({}, prevState)
 
   switch (action.type) {
     case ADD_TEAM:
-      newState = newState.concat(action.teamData);
+      newState.teams.push(action.teamData);
       break;
 
     default:
