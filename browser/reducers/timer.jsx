@@ -1,10 +1,10 @@
-const timer = {secondsRemaining: 90};
+const timer = {secondsRemaining: 60};
 
 //constants
-const COUNTDOWN = 'COUNTDOWN'
+const COUNTDOWN = 'COUNTDOWN';
 
 //reducer
-const TimerReducer = (prevState = timer, action) {
+const TimerReducer = (prevState = timer, action) => {
   const newState = Object.assign({}, prevState);
 
   switch (action.type) {
@@ -15,10 +15,10 @@ const TimerReducer = (prevState = timer, action) {
       return prevState;
   }
   return newState;
-}
+};
 
 export const countdown = () => ({
   type: COUNTDOWN,
-})
+});
 
 export default TimerReducer;

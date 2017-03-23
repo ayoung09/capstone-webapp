@@ -78,16 +78,21 @@ body {
 }
 
 @keyframes animatePigTimer {
-  from {background-position: -20px 400px}
-  to {background-position: 105% 400px}
+  from {background-position: -100px center}
+  to {background-position: 105% center}
 }
 
-#countdown-timer {
+#floating-pig {
+  height: 200px;
+  justify-content: center;
   background-image: url(/images/cute_flying_pig.png);
+  background-size: 35%;
+  background-repeat: no-repeat;
 
-  animation: animatePigTimer 90s linear;
+  animation: animatePigTimer 60s linear;
 }
 
 #show-seconds {
-  animation: animatePigTimer 90s linear;
+  font-size: 50px;
+  animation: animatePigTimer 60s linear;
 }

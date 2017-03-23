@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 
+import {connect} from 'react-redux';
+import {countdown} from '../reducers/timer';
+
+const mapStateToProps = state => ({
+  secondsRemaining: state.timer.secondsRemaining
+});
+
+const mapDispatchToProps = dispatch => ({
+  countdown: () => dispatch(countdown())
+});
+
 class Timer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      secondsRemaining: 90,
-    };
-    this.countDown = this.countDown.bind(this);
-  }
-
-  countDown() {
-    this.setState({secondsRemaining: this.state.secondsRemaining - 1});
-  }
-
-  componentWillMount() {
-    this.setState({secondsRemaining: this.props.seconds});
-  }
 
   componentDidMount() {
-    this.interval = setInterval(this.countDown, 1000);
+    this.interval = setInterval(this.props.countdown, 1000);
   }
 
   componentWillUnmount() {
@@ -32,7 +28,11 @@ class Timer extends Component {
         {this.props.secondsRemaining > 0 ?
           <div id="countdown-timer">
             <h2>Finish your drawings before time runs out!</h2>
-            <h1 id="show-seconds">{this.props.secondsRemaining}</h1>
+            <div id="show-seconds">
+              <h1>{this.props.secondsRemaining}</h1>
+            </div>
+            <div id="floating-pig">
+            </div>
           </div>
           : <h1>TIME IS UP! SUBMIT ALL DRAWINGS!</h1>
         }
@@ -41,4 +41,4 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
