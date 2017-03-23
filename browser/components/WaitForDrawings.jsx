@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../socket';
 
+import Timer from './DrawkwardTimer';
 import { addDrawing } from '../reducers/drawkwardRound';
 import { receiveNewDrawing } from '../../socketConstants';
 
@@ -40,6 +41,7 @@ class WaitForDrawings extends Component {
     return (
       <div>
         <h2>Waiting for all users to submit their drawings.</h2>
+        <Timer />
       </div>
     );
   }

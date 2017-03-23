@@ -37,7 +37,12 @@
   text-align: center;
 }
 
+.outer-show-drawing {
+  align-content: center;
+}
+
 .show-drawing {
+  width: 50%;
   align-content: center;
   border-style: solid;
   background-color: white;
@@ -49,6 +54,10 @@
   background-color: white;
   border-style: solid;
   border-radius: 2px;
+}
+
+.thumbnail-portrait {
+  align-content: center;
 }
 
 body {
@@ -77,3 +86,23 @@ body {
   animation-direction: alternate;
 }
 
+@keyframes animatePigTimer {
+  from {background-position: -200px center}
+  to {background-position: 130% center}
+}
+
+#floating-pig {
+  height: 200px;
+  padding: 0;
+  justify-content: center;
+  background-image: url(/images/cute_flying_pig.png);
+  background-size: 35%;
+  background-repeat: no-repeat;
+
+  animation: animatePigTimer 61s linear;
+}
+
+#show-seconds {
+  font-size: 50px;
+  animation: animatePigTimer 60s linear;
+}
