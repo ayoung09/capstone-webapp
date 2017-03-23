@@ -52,7 +52,7 @@ class DrawkwardFrame extends Component {
     let userIds = Object.keys(this.props.users);
     socket.emit(sendRandomPhrase, {randomPhrases, userIds});
 
-    this.resetAllPhrases(this.props.phrases);
+    this.props.resetAllPhrases(this.props.phrases);
   }
 
   render() {
