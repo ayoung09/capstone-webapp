@@ -19,7 +19,7 @@
   background-size: 8%;
   background-repeat: no-repeat;
 
-  animation: animatedHeader 20s linear infinite;
+  animation: animatedHeader 30s linear infinite;
 }
 
 .btn-game {
@@ -73,7 +73,7 @@ body {
   background-image: url(/images/cute_sun.png), url(/images/cute_cloud.png), url(/images/cloud.png), url(/images/cloud.png);
   background-repeat: no-repeat;
 
-  animation: animatedBackground 0.75s linear infinite;
+  animation: animatedBackground 2s linear infinite;
   animation-direction: alternate;
 }
 
