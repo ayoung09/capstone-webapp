@@ -31,7 +31,7 @@ class PictionaryScoreboard extends Component {
     const avatarCoordinates = this.props.team.portrait;
     const scores = this.props.scores[this.props.team.name]
     return (
-      <div className="user-thumbnail">
+      <div className="team-thumbnail">
         <DrawkwardUserThumbnail
           userName={teamName}
           image={avatarCoordinates}
