@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
-//const mapStateToProps =
+import { createRoom } from '../reducers/loginRoom';
+
+const mapStateToProps = state => ({
+  roomName: state.login.roomName,
+});
+
+const mapDispatchToProps = dispatch => ({
+  createRoom: newRoomName => dispatch(createRoom(newRoomName)),
+});
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      roomName: '',
-    };
-    this.onGamePress = this.onGamePress.bind(this);
+
+  componentWillMount() {
+    const randomRoomName = this.generateRandomRoomName();
+    this.props.createRoom(randomRoomName);
   }
 
   generateRandomRoomName() {
@@ -28,19 +35,20 @@ class Login extends Component {
   }
 
   render() {
-    console.log('this is roomName: ', this.generateRandomRoomName());
+    console.log('this is roomName: ', this.props.roomName);
     return (
-      <div>
-        <h2>Create a name for your Game Room and then select a Game to play</h2>
-        <form>
-          <h1 className="room-form-header">{this.props.roomName}</h1>
-          <br />
-          <Link to="/drawkward"><button onClick={this.onGamePress}className="btn-game">Drawkward</button></Link>
-          <Link to="/pictionary"><button type="submit" onClick={this.onGamePress}className="btn-game">Pictionary</button></Link>
-        </form>
+      <div className="room-form">
+        <h2>Use the following room code to log in on your mobile device:</h2>
+        <br />
+        <h1 className="room-form-header">{this.props.roomName}</h1>
+        <br />
+        <h2>Select your game below:</h2>
+        <br />
+        <Link to="/drawkward"><button onClick={this.onGamePress}className="btn-game">Drawkward</button></Link>
+        <Link to="/pictionary"><button type="submit" onClick={this.onGamePress}className="btn-game">Pictionary</button></Link>
       </div>
     );
   }
 }
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

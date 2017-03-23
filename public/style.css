@@ -22,21 +22,28 @@
   animation: animatedHeader 30s linear infinite;
 }
 
-.room-form-header {
-  margin-bottom: 2px;
+.room-form {
+  align-content: center;
+  justify-content: center;
 }
 
-.room-input {
-  font-family: 'Amatic SC', cursive;
-  font-size: 30px;
-  border-radius: 5px;
-  padding: 5px;
-  margin-top: 2px;
+.room-form-header {
+  font-family: 'Gloria Hallelujah', cursive;
+  display: inline-block;
+  margin-top: 0;
   margin-bottom: 10px;
+  padding: 8px;
+  font-size: 70px;
+  align-content: center;
+/*  background-color: white;*/
+  width: 30%;
+/*  border-style: solid;*/
+/*  border-radius: 6px;*/
 }
 
 .btn-game {
-  margin: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding: 5px;
   border-radius: 4px;
   font-size: 40px;
