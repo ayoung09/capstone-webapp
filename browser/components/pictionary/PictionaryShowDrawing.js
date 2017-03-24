@@ -4,6 +4,7 @@ import socket from '../../socket';
 
 import { START_NEW_LINE, RECEIVE_NEW_COORDINATES, CLEAR_CANVAS } from '../../../socketConstants'
 
+
 class PictionaryShowDrawing extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +51,7 @@ class PictionaryShowDrawing extends Component {
           </Layer>
           <Layer>
           <Line
-            points={this.state.currentDrawing} stroke={'black'} strokeWidth={3}
+            points={this.state.currentLine} stroke={'black'} strokeWidth={3}
           />
         </Layer>
       </Stage>
