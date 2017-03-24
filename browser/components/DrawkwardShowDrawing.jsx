@@ -14,12 +14,12 @@ class DrawkwardShowDrawing extends Component {
     return (
       <Stage className="show-drawing" width={500} height={500}>
         <Layer scaleX={1.5} scaleY={1.5}>
-          {this.props.currentDrawing.drawingObj.image.map((line, i) => {
+          {this.props.currentDrawing.drawingObj.image.map((lineObj, i) => {
             return (
               <Line
                 key={i}
-                points={line}
-                stroke={'black'}
+                points={lineObj.line}
+                stroke={lineObj.color}
                 strokeWidth={3}
               />
             )}
