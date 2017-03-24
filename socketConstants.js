@@ -37,9 +37,11 @@ module.exports = {
   CORRECT_GUESS: 'correct guess',
   SKIP: 'skip',
   RECEIVE_NEW_WORD: 'receive new word',
+  NEW_LINE: 'new line',
   NEW_COORDINATES: 'new coordinates',
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
+  START_NEW_LINE: 'start new line',
   RECEIVE_NEW_COORDINATES: 'receive new coordinates',
   CLEAR_CANVAS: 'clear canvas',
   ADD_POINTS: 'add points',

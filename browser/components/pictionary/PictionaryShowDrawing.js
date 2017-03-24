@@ -2,19 +2,25 @@ import React, {Component} from 'react';
 import { Layer, Stage, Line } from 'react-konva';
 import socket from '../../socket';
 
-import { RECEIVE_NEW_COORDINATES, CLEAR_CANVAS } from '../../../socketConstants'
+import { START_NEW_LINE, RECEIVE_NEW_COORDINATES, CLEAR_CANVAS } from '../../../socketConstants'
 
 class PictionaryShowDrawing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDrawing: []
+      currentDrawing: [],
+      currentLine: []
     }
   }
 
   componentDidMount() {
+    socket.on(START_NEW_LINE, () => {
+      this.state.currentDrawing.push(this.state.currentLine)
+      this.setState({currentLine: []})
+    })
+
     socket.on(RECEIVE_NEW_COORDINATES, coordinates => {
-      this.setState({currentDrawing: this.state.currentDrawing.concat(coordinates)})
+      this.setState({currentLine: this.state.currentLine.concat(coordinates)})
     })
 
     socket.on(CLEAR_CANVAS, () => {
@@ -41,6 +47,11 @@ class PictionaryShowDrawing extends Component {
               />
             )
           })}
+          </Layer>
+          <Layer>
+          <Line
+            points={this.state.currentDrawing} stroke={'black'} strokeWidth={3}
+          />
         </Layer>
       </Stage>
     )
