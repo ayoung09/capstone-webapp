@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addPoints: () => dispatch(addPoints())
+  addPoints: (teamName) => dispatch(addPoints(teamName))
 })
 
 class PictionaryScoreboard extends Component {
@@ -28,14 +28,12 @@ class PictionaryScoreboard extends Component {
   }
 
   render() {
-    const teamName = this.props.team.name;
-    const avatarCoordinates = this.props.team.portrait; //[]
-    const scores = this.props.scores[teamName];
-
+    // const teamName = this.props.team.name;
+    console.log('state', this.props)
     return (
       <div className="user-thumbnail">
         <PictionaryTeamThumbnail team={this.props.team} />
-        <h2>{scores} points</h2>
+        <h2>{this.props.scores[this.props.team.name]} points</h2>
       </div>
     )
   }

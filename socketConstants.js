@@ -37,7 +37,7 @@ module.exports = {
   CORRECT_GUESS: 'correct guess',
   SKIP: 'skip',
   RECEIVE_NEW_WORD: 'receive new word',
-
+  NEW_COORDINATES: 'new coordinates',
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
   RECEIVE_NEW_COORDINATES: 'receive new coordinates',

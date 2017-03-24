@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM, CORRECT_GUESS, SKIP, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD } = require('../socketConstants');
+const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_COORDINATES, RECEIVE_NEW_COORDINATES } = require('../socketConstants');
 
 
 const app = express();
@@ -117,9 +117,15 @@ io.on('connection', socket => {
     })
   })
 
+  //mobile sends coordinates for drawing; server sends to drawing pane
+  socket.on(NEW_COORDINATES, coord => {
+    socket.broadcast.emit(RECEIVE_NEW_COORDINATES, coord)
+  })
+
   //mobile guesses correctly; requests new word
   socket.on(CORRECT_GUESS, () => {
-    socket.broadcast.emit(FETCH_NEXT_WORD)
+    socket.broadcast.emit(FETCH_NEXT_WORD);
+    socket.broadcast.emit(ADD_POINTS)
   })
  //mobile skips word; requests new word
   socket.on(SKIP, () => {

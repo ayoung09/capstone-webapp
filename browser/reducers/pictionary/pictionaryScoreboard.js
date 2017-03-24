@@ -10,7 +10,7 @@ const pictionaryScoreboardReducer = (prevState = initialState, action) => {
 
   switch (action.type) {
     case ADD_POINTS:
-      newState.scores[action.teamName] += 25;
+      newState.scores[action.teamName] += 50;
       break;
 
     case SET_INITIAL_SCORES:
