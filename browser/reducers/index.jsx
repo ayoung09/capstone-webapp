@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
   drawkwardScoreboard: require('./drawkwardScoreboard.jsx').default,
   timer: require('./timer.jsx').default,
   pictionaryInitializeGame: require('./pictionary/pictionaryInitializeGame').default,
-  pictionaryScoreboard: require('./pictionary/pictionaryScoreboard').default
+  pictionaryScoreboard: require('./pictionary/pictionaryScoreboard').default,
 });
 
 export default rootReducer;
