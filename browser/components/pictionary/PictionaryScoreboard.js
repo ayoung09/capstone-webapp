@@ -23,17 +23,11 @@ class PictionaryScoreboard extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('new props', nextProps.scores);
-  }
-
   componentWillUnmount() {
     socket.off(ADD_POINTS)
   }
 
   render() {
-    // const teamName = this.props.team.name;
-    console.log('state', this.props)
     return (
       <div className="user-thumbnail">
         <PictionaryTeamThumbnail team={this.props.team} />
