@@ -25,11 +25,13 @@ io.on('connection', socket => {
 
   //mobile joins room
   socket.on(JOIN_ROOM, data => {
+    console.log('this is room to join:', data.room);
     socket.join(data.room);
     socket.broadcast.emit(NEW_SOCKET_IN_ROOM);
   });
 
   socket.on(SEND_TO_DRAWKWARD, data => {
+    console.log('in send to drawkward and this is data.room: ', data.room);
     socket.broadcast.to(data.room).emit(GO_TO_DRAWKWARD);
   });
 
@@ -56,15 +58,18 @@ io.on('connection', socket => {
 
   //mobile sends new drawing
   socket.on(newDrawing, drawingObj => {
+    console.log('received new drawing on server: ', drawingObj);
     socket.broadcast.emit(receiveNewDrawing, {
       id: socket.id,
-      drawingObj: drawingObj,
+      drawingObj,
     });
   });
 
   //webapp forces mobile to submit drawing
-  socket.on(TIME_IS_UP, () => {
-    socket.broadcast.emit(FORCE_SUBMIT_DRAWING);
+  socket.on(TIME_IS_UP, usersToForceSubmit => {
+      usersToForceSubmit.forEach(user => {
+      io.to(user).emit(FORCE_SUBMIT_DRAWING);
+    });
   });
 
   //webapp tells current artist (mobile) to wait

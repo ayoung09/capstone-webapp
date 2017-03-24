@@ -6,7 +6,9 @@ import { setTimer, countdown } from '../reducers/timer';
 import { TIME_IS_UP } from '../../socketConstants';
 
 const mapStateToProps = state => ({
-  secondsRemaining: state.timer.secondsRemaining
+  users: state.drawkwardFrame.users,
+  secondsRemaining: state.timer.secondsRemaining,
+  allDrawings: state.drawkwardRound.allDrawings,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +17,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class DrawkwardTimer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      forcedToSubmit: false,
+    };
+  }
 
   componentWillMount() {
     this.props.setTimer(60);
@@ -25,13 +34,22 @@ class DrawkwardTimer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.secondsRemaining === 0) {
-      socket.emit(TIME_IS_UP);
+    if (nextProps.secondsRemaining === 0 && !nextProps.forcedToSubmit) {
+      this.setState({forcedToSubmit: true});
+      clearInterval(this.interval);
+      const usersWhoHaveSubmitted = nextProps.allDrawings.map(drawingObj => drawingObj.id);
+      const usersToForceSubmit = this.findUsersWhoHaveNotSubmittedDrawings(usersWhoHaveSubmitted);
+      socket.emit(TIME_IS_UP, usersToForceSubmit);
     }
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
+  }
+
+  findUsersWhoHaveNotSubmittedDrawings(usersWhoHaveSubmitted) {
+    const usersArray = Object.keys(this.props.users);
+    return usersArray.filter(socketId => !usersWhoHaveSubmitted.includes(socketId));
   }
 
   render() {
