@@ -67,6 +67,10 @@
   background-color: white;
 }
 
+.show-drawing-wrapper {
+  align-content: center;
+}
+
 .user-thumbnail {
   margin: 2px;
   display: inline-block;

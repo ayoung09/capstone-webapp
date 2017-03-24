@@ -56,15 +56,19 @@ io.on('connection', socket => {
 
   //mobile sends new drawing
   socket.on(newDrawing, drawingObj => {
+    console.log('received new drawing on server: ', drawingObj);
     socket.broadcast.emit(receiveNewDrawing, {
       id: socket.id,
-      drawingObj: drawingObj,
+      drawingObj,
     });
   });
 
   //webapp forces mobile to submit drawing
-  socket.on(TIME_IS_UP, () => {
-    socket.broadcast.emit(FORCE_SUBMIT_DRAWING);
+  socket.on(TIME_IS_UP, usersToForceSubmit => {
+    console.log('these are users to force: ', usersToForceSubmit);
+      usersToForceSubmit.forEach(user => {
+      io.to(user).emit(FORCE_SUBMIT_DRAWING);
+    });
   });
 
   //webapp tells current artist (mobile) to wait
