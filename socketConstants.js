@@ -1,6 +1,7 @@
 module.exports = {
   //constants between mobile and server
-  newRoom: 'new room',
+  JOIN_ROOM: 'join room',
+  GO_TO_DRAWKWARD: 'go to drawkward',
   newUser: 'new user',
   newDrawing: 'new drawing',
   // newPhrase: 'new phrase',
@@ -17,6 +18,9 @@ module.exports = {
   gameOver: 'game over',
 
   //constants between server and webapp
+  CREATE_NEW_ROOM: 'create new room',
+  NEW_SOCKET_IN_ROOM: 'new socket in room',
+  SEND_TO_DRAWKWARD: 'send to drawkward',
   receiveNewUser: 'receive new user',
   startGame: 'start game',
   receiveNewDrawing: 'receive new drawing',

@@ -36,9 +36,9 @@ class DrawkwardTimer extends Component {
 
   render() {
     return (
-      <div>
+      <div id="countdown-timer">
         {this.props.secondsRemaining > 0 ?
-          <div id="countdown-timer">
+          <div>
             <h2>Finish your drawings before time runs out!</h2>
             <div id="show-seconds">
               <h1>{this.props.secondsRemaining}</h1>
