@@ -1,5 +1,5 @@
 const initialState = {
-  scores: {} //{teamName: score}
+  // scores: {} //{teamName: score, team2: score}
 }
 
 const SET_INITIAL_SCORES = 'set initial scores';
@@ -10,12 +10,12 @@ const pictionaryScoreboardReducer = (prevState = initialState, action) => {
 
   switch (action.type) {
     case ADD_POINTS:
-      newState.scores[action.teamName] += 50;
+      newState[action.teamName] += 25;
       break;
 
     case SET_INITIAL_SCORES:
       action.teams.forEach(team => {
-        newState.scores[team.name] = 0
+        newState[team.name] = 0
       });
       break;
 

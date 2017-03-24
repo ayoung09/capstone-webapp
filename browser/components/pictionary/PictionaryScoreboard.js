@@ -8,7 +8,7 @@ import { addPoints } from '../../reducers/pictionary/pictionaryScoreboard'
 import PictionaryTeamThumbnail from '../pictionary/PictionaryTeamThumbnail'
 
 const mapStateToProps = state => ({
-  scores: state.pictionaryScoreboard.scores
+  scores: state.pictionaryScoreboard
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -21,6 +21,10 @@ class PictionaryScoreboard extends Component {
     socket.on(ADD_POINTS, () => {
       this.props.addPoints(this.props.team.name)
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('new props', nextProps.scores);
   }
 
   componentWillUnmount() {
