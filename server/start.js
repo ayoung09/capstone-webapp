@@ -67,7 +67,6 @@ io.on('connection', socket => {
 
   //webapp forces mobile to submit drawing
   socket.on(TIME_IS_UP, usersToForceSubmit => {
-    console.log('these are users to force: ', usersToForceSubmit);
       usersToForceSubmit.forEach(user => {
       io.to(user).emit(FORCE_SUBMIT_DRAWING);
     });
