@@ -25,11 +25,13 @@ io.on('connection', socket => {
 
   //mobile joins room
   socket.on(JOIN_ROOM, data => {
+    console.log('this is room to join:', data.room);
     socket.join(data.room);
     socket.broadcast.emit(NEW_SOCKET_IN_ROOM);
   });
 
   socket.on(SEND_TO_DRAWKWARD, data => {
+    console.log('in send to drawkward and this is data.room: ', data.room);
     socket.broadcast.to(data.room).emit(GO_TO_DRAWKWARD);
   });
 
