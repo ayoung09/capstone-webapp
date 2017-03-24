@@ -9,6 +9,7 @@ import store from './store';
 
 //action-creators
 import { receiveAllPhrases } from './reducers/drawkwardFrame';
+import { createRoom } from './reducers/loginRoom';
 import { fetchWordbank } from './reducers/pictionary/pictionaryInitializeGame';
 
 //drawkward components
@@ -22,16 +23,31 @@ import Scoreboard from './components/DrawkwardScoreboard';
 
 //pictionary components
 import PictionaryFrame from './components/pictionary/PictionaryFrame';
-import PictionaryMain from './components/pictionary/PictionaryMain'
+import PictionaryMain from './components/pictionary/PictionaryMain';
 
 const onDrawkwardEnter = () => {
+  const randomRoomName = generateRandomRoomName();
+  store.dispatch(createRoom(randomRoomName));
   axios.get('/api/phrases')
     .then(phrases => store.dispatch(receiveAllPhrases(phrases.data)));
 };
 
 const onPictionaryEnter = () => {
+  const randomRoomName = generateRandomRoomName();
+  store.dispatch(createRoom(randomRoomName));
   axios.get('/api/wordbank')
-    .then(wordbank => store.dispatch(fetchWordbank(wordbank.data)))
+    .then(wordbank => store.dispatch(fetchWordbank(wordbank.data)));
+};
+
+function generateRandomRoomName() {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const roomNameLength = 4;
+  let roomName = '';
+  while (roomName.length < roomNameLength) {
+    let randomLetter = alphabet[Math.ceil(Math.random() * 25)];
+    roomName += randomLetter;
+  }
+  return roomName;
 }
 
 render(

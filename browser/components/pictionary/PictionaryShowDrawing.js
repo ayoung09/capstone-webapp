@@ -24,7 +24,7 @@ class PictionaryShowDrawing extends Component {
     })
 
     socket.on(CLEAR_CANVAS, () => {
-      this.setState({currentDrawing: []})
+      this.setState({currentDrawing: [], currentLine: []})
     })
   }
 

@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
-const Login = () => {
-  return (
-    <div>
-      <h2>Choose a game to play!</h2>
-      <Link to="/drawkward"><button className="btn-game">Drawkward</button></Link>
-      <Link to="/pictionary"><button className="btn-game">Pictionary</button></Link>
-    </div>
-  );
-};
+import { createRoom } from '../reducers/loginRoom';
 
-export default Login;
+const mapStateToProps = state => ({
+  roomName: state.login.roomName,
+});
+
+const mapDispatchToProps = dispatch => ({
+  createRoom: newRoomName => dispatch(createRoom(newRoomName)),
+});
+
+class Login extends Component {
+
+  render() {
+    return (
+      <div>
+        <h2>Select your game below:</h2>
+        <br />
+        <Link to="/drawkward"><button className="btn-game">Drawkward</button></Link>
+        <Link to="/pictionary"><button type="submit" className="btn-game">Pictionary</button></Link>
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
