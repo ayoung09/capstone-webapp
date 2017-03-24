@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
-const { newRoom, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM } = require('../socketConstants');
+const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM } = require('../socketConstants');
 
 
 const app = express();
@@ -17,12 +17,21 @@ const io = socketio(server);
 
 io.on('connection', socket => {
   console.log('A new user has connected: ', socket.id);
-  console.log('this is newRoom: ', newRoom);
 
-  //mobile joins room; come back to this when ready to incorporate rooms...
-  // socket.on(newRoom, data => {
-  //   socket.join(data.room);
-  // });
+  //webapp creates room
+  socket.on(CREATE_NEW_ROOM, data => {
+    socket.join(data.room);
+  });
+
+  //mobile joins room
+  socket.on(JOIN_ROOM, data => {
+    socket.join(data.room);
+    socket.broadcast.emit(NEW_SOCKET_IN_ROOM);
+  });
+
+  socket.on(SEND_TO_DRAWKWARD, data => {
+    socket.broadcast.to(data.room).emit(GO_TO_DRAWKWARD);
+  });
 
   //mobile sends username and portrait
   socket.on(newUser, userObj => {
