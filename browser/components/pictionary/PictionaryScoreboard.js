@@ -28,8 +28,6 @@ class PictionaryScoreboard extends Component {
   }
 
   render() {
-    // const teamName = this.props.team.name;
-    console.log('state', this.props)
     return (
       <div className="user-thumbnail">
         <PictionaryTeamThumbnail team={this.props.team} />
