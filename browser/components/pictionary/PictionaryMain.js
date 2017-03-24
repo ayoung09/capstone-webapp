@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import socket from '../../socket';
 import shuffle from 'shuffle-array';
 
-import PictionaryScoreboard from './PictionaryScoreboard'
-import PictionaryShowDrawing from './PictionaryShowDrawing'
+import PictionaryScoreboard from './PictionaryScoreboard';
+import PictionaryShowDrawing from './PictionaryShowDrawing';
+import PictionaryTimer from './PictionaryTimer';
 
-import { FETCH_NEXT_WORD, SEND_NEW_WORD } from '../../../socketConstants'
+import { FETCH_NEXT_WORD, SEND_NEW_WORD } from '../../../socketConstants';
 
-import { setInitialScores } from '../../reducers/pictionary/pictionaryScoreboard'
+import { setInitialScores } from '../../reducers/pictionary/pictionaryScoreboard';
 
 const mapStateToProps = state => ({
   teams: state.pictionaryInitializeGame.teams,
@@ -34,11 +35,14 @@ class PictionaryMain extends Component {
   render() {
     return (
       <div>
-        <PictionaryScoreboard
-          team={this.props.teams[0]} />
-        <PictionaryShowDrawing />
-        {/*<PictionaryScoreboard
-          team={this.props.teams[1]} />*/}
+        <div className="pictionary-frame">
+          <PictionaryScoreboard
+            team={this.props.teams[0]} />
+          <PictionaryShowDrawing />
+          {/*<PictionaryScoreboard
+            team={this.props.teams[1]} />*/}
+        </div>
+        <PictionaryTimer />
       </div>
     )
   }

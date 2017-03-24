@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
 
-const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_LINE, START_NEW_LINE, NEW_COORDINATES, RECEIVE_NEW_COORDINATES } = require('../socketConstants');
+const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, CLEAR_CANVAS, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_LINE, START_NEW_LINE, NEW_COORDINATES, RECEIVE_NEW_COORDINATES, TIMER_DONE, START_TURN, END_TURN } = require('../socketConstants');
 
 const app = express();
 
@@ -139,15 +139,22 @@ io.on('connection', socket => {
   socket.on(CORRECT_GUESS, () => {
     socket.broadcast.emit(FETCH_NEXT_WORD);
     socket.broadcast.emit(ADD_POINTS)
+    socket.broadcast.emit(CLEAR_CANVAS)
   })
  //mobile skips word; requests new word
   socket.on(SKIP, () => {
     socket.broadcast.emit(FETCH_NEXT_WORD)
+    socket.broadcast.emit(CLEAR_CANVAS)
   })
 
   //web app sends new word; server sends word to mobile
   socket.on(SEND_NEW_WORD, word => {
     socket.broadcast.emit(RECEIVE_NEW_WORD, word)
+  })
+
+  socket.on(TIMER_DONE, () => {
+    socket.broadcast.emit(START_TURN);
+    socket.broadcast.emit(END_TURN);
   })
 
   socket.on('disconnect', () => {

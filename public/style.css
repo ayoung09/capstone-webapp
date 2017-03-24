@@ -125,3 +125,8 @@ body {
 #show-seconds {
   font-size: 50px;
 }
+
+.pictionary-frame {
+  display: flex;
+  justify-content: space-around;
+}

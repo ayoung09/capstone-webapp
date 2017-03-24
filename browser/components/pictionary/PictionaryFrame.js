@@ -29,7 +29,7 @@ class PictionaryFrame extends Component {
 
   render() {
     return (
-      <div>
+      <div className="pictionary-frame">
         {this.props.children ? this.props.children :
         <div>
           <h2>Divide into two teams. Create a team name and avatar on your mobile app</h2>

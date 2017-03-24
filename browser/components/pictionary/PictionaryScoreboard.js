@@ -23,10 +23,6 @@ class PictionaryScoreboard extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('new props', nextProps.scores);
-  }
-
   componentWillUnmount() {
     socket.off(ADD_POINTS)
   }
