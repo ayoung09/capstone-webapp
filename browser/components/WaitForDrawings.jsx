@@ -20,6 +20,7 @@ class WaitForDrawings extends Component {
 
   componentDidMount() {
     socket.on(receiveNewDrawing, drawingObj => {
+      console.log('browser received drawing: ', drawingObj);
       this.props.addDrawing(drawingObj);
     });
   }

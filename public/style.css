@@ -31,9 +31,8 @@
 .room-form-header {
   font-family: 'Gloria Hallelujah', cursive;
   display: inline-block;
-  margin-top: 0;
-  margin-bottom: 10px;
-  padding: 8px;
+  margin: 0px;
+  padding: 4px;
   font-size: 60px;
   align-content: center;
   width: 30%;
@@ -68,6 +67,10 @@
   background-color: white;
 }
 
+.show-drawing-wrapper {
+  align-content: center;
+}
+
 .user-thumbnail {
   margin: 2px;
   display: inline-block;
@@ -76,8 +79,25 @@
   border-radius: 2px;
 }
 
+.thumbnail-container {
+  padding: 0px;
+  margin: 0px;
+}
+
+.username {
+  margin: 0px;
+  padding: 0px;
+  font-size: 20px;
+}
+
+.username-header {
+  margin: 4px 0px 0px 0px;
+  padding: 0px;
+}
+
 .thumbnail-portrait {
   align-content: center;
+  margin: 0px;
 }
 
 body {

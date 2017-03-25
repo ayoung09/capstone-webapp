@@ -50,6 +50,7 @@ class DrawkwardFrame extends Component {
   componentWillUnmount() {
     socket.off(receiveNewUser);
     socket.off(startGame);
+    socket.off(NEW_SOCKET_IN_ROOM);
   }
 
   emitRandomPhrasesToMobile() {
