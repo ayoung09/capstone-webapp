@@ -39,6 +39,7 @@ class DrawkwardScoreboard extends Component {
       }
       else {
         socket.emit(sendGameOver);
+        browserHistory.push('/drawkward/winner');
       }
     });
   }

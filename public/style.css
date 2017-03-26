@@ -159,3 +159,24 @@ body {
 #seconds-countdown {
   margin: 4px;
 }
+
+.winner-thumbnail {
+  width: 75%;
+  height: auto;
+}
+
+@keyframes animateStars {
+  from {background-position: bottom center, bottom center, bottom center}
+  to {background-position: left center, right center, center top}
+}
+
+#drawkward-winners {
+  height: 100%;
+  width: 100%;
+  background-image: url(/images/cartoon_stars.png), url(/images/cartoon_stars.png), url(/images/cartoon_stars.png);
+  background-size: 25%;
+  background-repeat: no-repeat;
+
+  animation: animateStars 10s linear;
+  ;
+}

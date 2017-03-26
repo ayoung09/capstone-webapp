@@ -20,6 +20,7 @@ import WaitForDrawings from './components/WaitForDrawings.jsx';
 import WaitForCaptions from './components/DrawkwardWaitForCaptions';
 import ListCaptions from './components/ListCaptions';
 import Scoreboard from './components/DrawkwardScoreboard';
+import Winner from './components/DrawkwardWinner';
 
 //pictionary components
 import PictionaryFrame from './components/pictionary/PictionaryFrame';
@@ -61,6 +62,7 @@ render(
           <Route path="/drawkward/waitForCaptions" component={WaitForCaptions} />
           <Route path="/drawkward/listCaptions" component={ListCaptions} />
           <Route path="/drawkward/scoreboard" component={Scoreboard} />
+          <Route path="/drawkward/winner" component={Winner} />
         </Route>
         <Route path="/pictionary" component={PictionaryFrame} onEnter={onPictionaryEnter}>
           <Route path="/pictionary/main" component={PictionaryMain} />
