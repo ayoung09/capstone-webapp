@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 class DrawkwardWinner extends Component {
   componentDidMount() {
     socket.on(START_NEW_GAME, () => {
-      browserHistory.push('/drawkward');
+      browserHistory.push('/login');
     });
   }
 
