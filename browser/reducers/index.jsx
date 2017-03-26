@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
   timer: require('./timer.jsx').default,
   pictionaryInitializeGame: require('./pictionary/pictionaryInitializeGame').default,
   pictionaryScoreboard: require('./pictionary/pictionaryScoreboard').default,
+  pictionaryRounds: require('./pictionary/pictionaryRounds').default
 });
 
 export default rootReducer;

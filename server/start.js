@@ -136,7 +136,7 @@ io.on('connection', socket => {
       id: socket.id
     })
     socket.broadcast.emit(SET_ROUND_COUNT, {
-      playerCount: teamData.count //make sure this matches native variable name
+      playerCount: teamData.members
     })
   })
 
