@@ -179,4 +179,8 @@ body {
 
   animation: animateStars 10s linear;
   ;
+
+.pictionary-frame {
+  display: flex;
+  justify-content: space-around;
 }

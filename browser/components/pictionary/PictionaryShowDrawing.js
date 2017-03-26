@@ -30,13 +30,14 @@ class PictionaryShowDrawing extends Component {
   }
 
   componentWillUnmount() {
+    socket.off(START_NEW_LINE)
     socket.off(RECEIVE_NEW_COORDINATES);
     socket.off(CLEAR_CANVAS);
   }
 
   render() {
     return (
-      <Stage width={700} height={700}>
+      <Stage className="show-drawing" width={500} height={500}>
         <Layer>
           {this.state.currentDrawing.map((line, i) => {
             return (
