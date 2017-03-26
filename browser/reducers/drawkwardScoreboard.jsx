@@ -1,5 +1,5 @@
 const initialState = {
-  scores: {}, //{{socketId: 0}, {}}
+  scores: {}, //{socketId: 0, socketId2: 10}
 };
 
 //constants

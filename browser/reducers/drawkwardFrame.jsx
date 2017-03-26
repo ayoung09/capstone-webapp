@@ -11,6 +11,7 @@ const ADD_USER = 'ADD_USER';
 const RECEIVE_ALL_PHRASES = 'RECEIVE_ALL_PHRASES';
 const SET_ROUNDS = 'SET_ROUNDS';
 const NEXT_ROUND = 'NEXT_ROUND';
+const CLEAR_GAME = 'CLEAR_GAME';
 
 //reducer
 const drawkwardFrameReducer = (prevState = initialState, action) => {
@@ -32,6 +33,9 @@ const drawkwardFrameReducer = (prevState = initialState, action) => {
     case NEXT_ROUND:
       newState.rounds -= 1;
       break;
+    case CLEAR_GAME:
+      newState.users = {};
+      newState.rounds = 0;
     default:
       return prevState;
   }
@@ -39,15 +43,20 @@ const drawkwardFrameReducer = (prevState = initialState, action) => {
 };
 
 //action-creators
-export const addUser = (userObj) => ({
-  type: ADD_USER,
-  id: userObj.id,
-  userObj: userObj.userObj,
+
+export const clearGame = () => ({
+  type: CLEAR_GAME,
 });
 
 export const receiveAllPhrases = (phrases) => ({
   type: RECEIVE_ALL_PHRASES,
   phrases,
+});
+
+export const addUser = (userObj) => ({
+  type: ADD_USER,
+  id: userObj.id,
+  userObj: userObj.userObj,
 });
 
 export const setRounds = (numOfUsers) => ({

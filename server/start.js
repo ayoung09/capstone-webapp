@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
 
-const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, CLEAR_CANVAS, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_LINE, START_NEW_LINE, NEW_COORDINATES, RECEIVE_NEW_COORDINATES, TIMER_DONE, START_TURN, END_TURN } = require('../socketConstants');
+const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, SEND_START_NEW_GAME, START_NEW_GAME, gameOver, NEW_TEAM, RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, CLEAR_CANVAS, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_LINE, START_NEW_LINE, NEW_COORDINATES, RECEIVE_NEW_COORDINATES, TIMER_DONE, START_TURN, END_TURN } = require('../socketConstants');
 
 const app = express();
 
@@ -119,6 +119,11 @@ io.on('connection', socket => {
   //webapp says game is over
   socket.on(sendGameOver, () => {
     socket.broadcast.emit(gameOver);
+  });
+
+  //mobile wants to start a new game
+  socket.on(SEND_START_NEW_GAME, () => {
+    socket.broadcast.emit(START_NEW_GAME);
   });
 
   //pictionary

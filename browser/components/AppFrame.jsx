@@ -4,7 +4,7 @@ const AppFrame = ({ children }) => {
   return (
     <div id="main-drawkward-frame" className="container-fluid">
       <div className="header">
-        <h1 className="pad5 marg5">Welcome to Drawkward!</h1>
+        <img id="drawkward-logo" src="/images/drawkward.png" />
       </div>
       <div className="drawkward-child">
         { children }
