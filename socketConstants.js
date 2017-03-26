@@ -43,12 +43,16 @@ module.exports = {
   RECEIVE_NEW_WORD: 'receive new word',
   NEW_LINE: 'new line',
   NEW_COORDINATES: 'new coordinates',
+  START_TURN: 'start turn',
+  END_TURN: 'end turn',
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
+  PICK_STARTING_TEAM: 'pick starting team',
   START_NEW_LINE: 'start new line',
   RECEIVE_NEW_COORDINATES: 'receive new coordinates',
   CLEAR_CANVAS: 'clear canvas',
   ADD_POINTS: 'add points',
   FETCH_NEXT_WORD: 'next word',
   SEND_NEW_WORD: 'new word',
+  TIMER_DONE: 'timer done',
 };
