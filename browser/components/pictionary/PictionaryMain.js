@@ -39,8 +39,8 @@ class PictionaryMain extends Component {
           <PictionaryScoreboard
             team={this.props.teams[0]} />
           <PictionaryShowDrawing />
-          {/*<PictionaryScoreboard
-            team={this.props.teams[1]} />*/}
+          <PictionaryScoreboard
+            team={this.props.teams[1]} />
         </div>
         <PictionaryTimer />
       </div>

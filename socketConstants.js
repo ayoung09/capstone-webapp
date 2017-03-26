@@ -47,6 +47,7 @@ module.exports = {
   END_TURN: 'end turn',
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
+  PICK_STARTING_TEAM: 'pick starting team',
   START_NEW_LINE: 'start new line',
   RECEIVE_NEW_COORDINATES: 'receive new coordinates',
   CLEAR_CANVAS: 'clear canvas',
