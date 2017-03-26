@@ -27,6 +27,7 @@ class PictionaryTimer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.secondsRemaining === 0) {
       socket.emit(TIMER_DONE);
+      clearInterval(this.interval);
     }
   }
 
