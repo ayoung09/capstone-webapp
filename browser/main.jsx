@@ -8,7 +8,7 @@ import axios from 'axios';
 import store from './store';
 
 //action-creators
-import { receiveAllPhrases } from './reducers/drawkwardFrame';
+import { receiveAllPhrases, clearGame } from './reducers/drawkwardFrame';
 import { createRoom } from './reducers/loginRoom';
 import { fetchWordbank } from './reducers/pictionary/pictionaryInitializeGame';
 
@@ -28,6 +28,7 @@ import PictionaryMain from './components/pictionary/PictionaryMain';
 
 const onDrawkwardEnter = () => {
   const randomRoomName = generateRandomRoomName();
+  store.dispatch(clearGame());
   store.dispatch(createRoom(randomRoomName));
   axios.get('/api/phrases')
     .then(phrases => store.dispatch(receiveAllPhrases(phrases.data)));

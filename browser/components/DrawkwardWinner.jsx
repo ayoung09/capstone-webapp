@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import socket from '../socket';
 
 import DrawkwardUserThumbnail from './DrawkwardUserThumbnail';
+import { START_NEW_GAME } from '../../socketConstants';
 
 const mapStateToProps = state => ({
   users: state.drwkwardFrame.users,
@@ -9,6 +12,16 @@ const mapStateToProps = state => ({
 });
 
 class DrawkwardWinner extends Component {
+  componentDidMount() {
+    socket.on(START_NEW_GAME, () => {
+      browserHistory.push('/drawkward');
+    });
+  }
+
+  componentWillUnmount() {
+    socket.off(START_NEW_GAME);
+  }
+
   render({users, scores}) {
     const findTopThreeWinners = (scoreboard) => {
       const socketIdArray = Object.keys(scoreboard);
