@@ -22,10 +22,20 @@
   animation: animatedHeader 30s linear infinite;
 }
 
+#drawkward-logo {
+  height: 135px;
+  width: auto;
+}
+
 .room-form {
   align-content: center;
   justify-content: center;
   padding: 0px;
+}
+
+.room-form-subheader {
+  margin-top: 2px;
+  margin-bottom: 0px;
 }
 
 .room-form-header {
@@ -147,5 +157,5 @@ body {
 }
 
 #seconds-countdown {
-  margin: 2px;
+  margin: 4px;
 }

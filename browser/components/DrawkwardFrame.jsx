@@ -74,11 +74,11 @@ class DrawkwardFrame extends Component {
         {this.props.children ? this.props.children :
           <div>
             <div className="room-form">
-              <h2>Use the following room code to log in on your mobile device:</h2>
+              <h2 className="room-form-subheader">Use the following room code to log in on your mobile device:</h2>
               <br />
               <h1 className="room-form-header">{this.props.roomName}</h1>
               <br />
-              <h2>Create a username and portrait in your mobile app</h2>
+              <h2 className="room-form-subheader" >Create a username and portrait in your mobile app</h2>
               <h2>When all users have signed in, hit START to begin your game</h2>
             </div>
           </div>
