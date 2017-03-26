@@ -7,7 +7,7 @@ import DrawkwardUserThumbnail from './DrawkwardUserThumbnail';
 import { START_NEW_GAME } from '../../socketConstants';
 
 const mapStateToProps = state => ({
-  users: state.drwkwardFrame.users,
+  users: state.drawkwardFrame.users,
   scores: state.drawkwardScoreboard.scores,
 });
 
