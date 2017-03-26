@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../../socket';
 
-import { startGame, RECEIVE_NEW_TEAM, PICK_STARTING_TEAM } from '../../../socketConstants'
-import { addTeam, fetchWords } from '../../reducers/pictionary/pictionaryInitializeGame'
+import { RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT } from '../../../socketConstants'
+import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame'
+import { setRounds } from '../../reducers/pictionary/pictionaryRounds'
 
 const mapStateToProps = state => ({
   teams: state.pictionaryInitializeGame.teams
@@ -12,6 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addTeam: team => dispatch(addTeam(team)),
+  setRounds: count => dispatch(setRounds(count))
 })
 
 class PictionaryFrame extends Component {
@@ -21,13 +23,14 @@ class PictionaryFrame extends Component {
       this.props.addTeam(teamObj)
     })
 
-    // socket.on(startGame, () => {
-    //   browserHistory.push('/pictionary/main')
-    // })
+    socket.on(SET_ROUND_COUNT, playerCount => {
+      this.props.setRounds(playerCount)
+    })
   }
 
   componentWillUnmount() {
     socket.off(RECEIVE_NEW_TEAM);
+    socket.off(SET_ROUND_COUNT);
   }
 
   startGame() {

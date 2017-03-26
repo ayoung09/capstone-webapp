@@ -18,13 +18,19 @@ const mapDispatchToProps = dispatch => ({
 class PictionaryScoreboard extends Component {
 
   componentDidMount() {
-    socket.on(ADD_POINTS, () => {
-      this.props.addPoints(this.props.team.name)
+    socket.on(ADD_POINTS, teamName => {
+      if (teamName === this.props.team.name) {
+        this.props.addPoints(this.props.team.name)
+      }
     })
   }
 
   componentWillUnmount() {
     socket.off(ADD_POINTS)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('new props', nextProps)
   }
 
   render() {
