@@ -70,7 +70,7 @@ class DrawkwardFrame extends Component {
     let numOfUsers = usersArray.length;
 
     return (
-      <div>
+      <div id="main-drawkward-frame">
         {this.props.children ? this.props.children :
           <div>
             <div className="room-form">
