@@ -135,8 +135,8 @@ body {
   height: 200px;
   padding: 0;
   justify-content: center;
-  background-image: url(/images/cute_flying_pig.png);
-  background-size: 35%;
+  background-image: url(/images/flying_pig_tongue_out.png);
+  background-size: 22%;
   background-repeat: no-repeat;
 
   animation: animatePigTimer 61s linear;
@@ -144,4 +144,8 @@ body {
 
 #show-seconds {
   font-size: 50px;
+}
+
+#seconds-countdown {
+  margin: 2px;
 }

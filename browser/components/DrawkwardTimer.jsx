@@ -59,7 +59,7 @@ class DrawkwardTimer extends Component {
           <div>
             <h2>Finish your drawings before time runs out!</h2>
             <div id="show-seconds">
-              <h1>{this.props.secondsRemaining}</h1>
+              <h1 id="seconds-countdown">{this.props.secondsRemaining}</h1>
             </div>
             <div id="floating-pig">
             </div>
