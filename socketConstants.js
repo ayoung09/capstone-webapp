@@ -16,6 +16,7 @@ module.exports = {
   scoreboard: 'scoreboard',
   nextDrawing: 'next drawing',
   gameOver: 'game over',
+  SEND_START_NEW_GAME: 'send start new game',
 
   //constants between server and webapp
   CREATE_NEW_ROOM: 'create new room',
@@ -34,6 +35,7 @@ module.exports = {
   lookAtScoreboard: 'look at scoreboard',
   seeNextDrawing: 'see next drawing',
   sendGameOver: 'send game over',
+  START_NEW_GAME: 'start new game',
 
   //pictionary
     //between mobile and server

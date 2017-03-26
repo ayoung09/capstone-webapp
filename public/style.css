@@ -22,10 +22,20 @@
   animation: animatedHeader 30s linear infinite;
 }
 
+#drawkward-logo {
+  height: 135px;
+  width: auto;
+}
+
 .room-form {
   align-content: center;
   justify-content: center;
   padding: 0px;
+}
+
+.room-form-subheader {
+  margin-top: 2px;
+  margin-bottom: 0px;
 }
 
 .room-form-header {
@@ -135,8 +145,8 @@ body {
   height: 200px;
   padding: 0;
   justify-content: center;
-  background-image: url(/images/cute_flying_pig.png);
-  background-size: 35%;
+  background-image: url(/images/flying_pig_tongue_out.png);
+  background-size: 22%;
   background-repeat: no-repeat;
 
   animation: animatePigTimer 61s linear;
@@ -145,6 +155,30 @@ body {
 #show-seconds {
   font-size: 50px;
 }
+
+#seconds-countdown {
+  margin: 4px;
+}
+
+.winner-thumbnail {
+  width: 75%;
+  height: auto;
+}
+
+@keyframes animateStars {
+  from {background-position: bottom center, bottom center, bottom center}
+  to {background-position: left center, right center, center top}
+}
+
+#drawkward-winners {
+  height: 100%;
+  width: 100%;
+  background-image: url(/images/cartoon_stars.png), url(/images/cartoon_stars.png), url(/images/cartoon_stars.png);
+  background-size: 25%;
+  background-repeat: no-repeat;
+
+  animation: animateStars 10s linear;
+  ;
 
 .pictionary-frame {
   display: flex;
