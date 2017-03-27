@@ -34,8 +34,8 @@
 }
 
 @keyframes animatedBackground {
-  from {background-position: 930px 0px, 40px 100px, 845px 390px, 300px 500px;}
-  to { background-position: 910px 5px, 45px 115px, 850px 400px, 295px 490px;}
+  from {background-position: 900px 50px, 40px 200px, 845px 390px, 300px 500px;}
+  to { background-position: 890px 55px, 45px 215px, 850px 400px, 295px 490px;}
 }
 
 #main-drawkward-frame {
