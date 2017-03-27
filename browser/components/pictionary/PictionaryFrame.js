@@ -3,9 +3,10 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../../socket';
 
-import { RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT } from '../../../socketConstants'
-import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame'
-import { setRounds } from '../../reducers/pictionary/pictionaryRounds'
+import PictionaryHeader from './PictionaryHeader';
+import { RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT } from '../../../socketConstants';
+import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame';
+import { setRounds } from '../../reducers/pictionary/pictionaryRounds';
 
 const mapStateToProps = state => ({
   teams: state.pictionaryInitializeGame.teams
@@ -40,14 +41,20 @@ class PictionaryFrame extends Component {
 
   render() {
     return (
-      <div className="pictionary-frame">
-        {this.props.children ? this.props.children :
-        <div>
-          <h2>Divide into two teams. Create a team name and avatar on your mobile app</h2>
-          <h3>Each team will share one mobile device. When all the teams have signed in, hit START to begin your game</h3>
-          <button className="btn-game" onClick={() => this.startGame()}>START</button>
+      <div id="outer-pictionary-frame">
+        <PictionaryHeader />
+        <br />
+        <div className="pictionary-children">
+          {this.props.children ? this.props.children :
+          <div>
+            <h2>Divide into two teams. Create a team name and avatar on your mobile app</h2>
+            <h3>Each team will share one mobile device. When all the teams have signed in, hit START to begin your game</h3>
+            <button className="btn-game" onClick={() => this.startGame()}>START</button>
+          </div>
+          }
         </div>
-        }
+        <img className="face-cloud-pictionary" src="/images/face_cloud.png" />
+        <img className="daisy-pig-pictionary" src="/images/daisy_pig.png" />
       </div>
     )
   }

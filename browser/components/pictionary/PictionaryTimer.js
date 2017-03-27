@@ -44,7 +44,7 @@ class PictionaryTimer extends Component {
         {this.props.secondsRemaining > 0 ?
           <div>
             <div id="show-seconds">
-              <h1>{this.props.secondsRemaining}</h1>
+              <h1 id="pictionary-seconds-countdown">{this.props.secondsRemaining}</h1>
             </div>
           </div>
           : <h1>Your turn is over. When the next team is ready, hit start.</h1>
