@@ -1,6 +1,6 @@
 //initial state
 const initialState = {
-  teams: [],
+  teams: [{name: 'banana', portrait: [], id: 'id1'}, {name: 'apple', portrait: [], id: 'id2'}], //remove dummy data
   wordbank: [],
   rounds: 0
 }

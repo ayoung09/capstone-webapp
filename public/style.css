@@ -194,7 +194,25 @@ body {
   ;
 }
 
+.header-pictionary {
+  display: absolute;
+  max-width: 100%;
+}
+
+#drawkward-logo-pictionary {
+  height: 100px;
+}
+
+#outer-pictionary-frame {
+  height: 600px;
+}
+
+.pictionary-children {
+  height: 75%;
+  justify-content: space-around;
+}
+
 .pictionary-frame {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
