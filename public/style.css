@@ -34,8 +34,8 @@
 }
 
 @keyframes animatedBackground {
-  from {background-position: 900px 50px, 40px 200px, 845px 390px, 300px 500px;}
-  to { background-position: 890px 55px, 45px 215px, 850px 400px, 295px 490px;}
+  from {background-position: 940px 50px, 40px 200px, 845px 410px, 300px 500px;}
+  to { background-position: 930px 55px, 45px 215px, 850px 420px, 295px 490px;}
 }
 
 #main-drawkward-frame {
@@ -46,6 +46,13 @@
 
   animation: animatedBackground 2s linear infinite;
   animation-direction: alternate;
+}
+
+#login-container {
+  height: 700px;
+  background-image: url(/images/daisy_pig.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
 }
 
 .room-form {
@@ -79,6 +86,11 @@
   font-weight: bold;
   background-color: white;
   font-family: 'Amatic SC', cursive;
+}
+
+.btn-game:hover {
+  background-color: #D3D3D3;
+  color: white;
 }
 
 .drawkward-child {

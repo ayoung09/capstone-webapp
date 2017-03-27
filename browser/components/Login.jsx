@@ -17,7 +17,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div id="login-container">
         <Header />
         <h2>Select your game below:</h2>
         <br />
