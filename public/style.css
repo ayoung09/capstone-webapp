@@ -1,3 +1,9 @@
+#main {
+  margin: 0;
+  padding: 5px;
+  background-color: #E0FFFF;
+}
+
 .pad5 {
   padding: 5px;
 }
@@ -7,8 +13,8 @@
 }
 
 @keyframes animatedHeader {
-  from {background-position: -50px 20px}
-  to {background-position: 105% 20px}
+  from {background-position: -50px 40px}
+  to {background-position: 105% 40px}
 }
 
 .header {
@@ -25,6 +31,28 @@
 #drawkward-logo {
   height: 135px;
   width: auto;
+}
+
+@keyframes animatedBackground {
+  from {background-position: 940px 50px, 40px 200px, 745px 470px;}
+  to { background-position: 930px 55px, 45px 215px, 750px 480px;}
+}
+
+#main-drawkward-frame {
+  margin: 0;
+  height: 800px;
+  background-image: url(/images/cute_sun.png), url(/images/cute_cloud.png), url(/images/cloud.png);
+  background-repeat: no-repeat;
+
+  animation: animatedBackground 2s linear infinite;
+  animation-direction: alternate;
+}
+
+#login-container {
+  height: 700px;
+  background-image: url(/images/daisy_pig.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
 }
 
 .room-form {
@@ -58,6 +86,11 @@
   font-weight: bold;
   background-color: white;
   font-family: 'Amatic SC', cursive;
+}
+
+.btn-game:hover {
+  background-color: #D3D3D3;
+  color: white;
 }
 
 .drawkward-child {
@@ -115,26 +148,6 @@ body {
   padding: 0;
 }
 
-#main {
-  margin: 0;
-  padding: 5px;
-  background-color: #E0FFFF;
-}
-
-@keyframes animatedBackground {
-  from {background-position: 900px 50px, 40px 200px, 845px 390px, 300px 500px;}
-  to { background-position: 890px 55px, 45px 215px, 850px 400px, 295px 490px;}
-}
-
-#main-drawkward-frame {
-  margin: 0;
-  height: 800px;
-  background-image: url(/images/cute_sun.png), url(/images/cute_cloud.png), url(/images/cloud.png), url(/images/cloud.png);
-  background-repeat: no-repeat;
-
-  animation: animatedBackground 2s linear infinite;
-  animation-direction: alternate;
-}
 
 @keyframes animatePigTimer {
   from {background-position: -200px center}

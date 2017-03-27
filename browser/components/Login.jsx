@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import Header from './Header';
 import { createRoom } from '../reducers/loginRoom';
 
 const mapStateToProps = state => ({
@@ -16,7 +17,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div id="login-container">
+        <Header />
         <h2>Select your game below:</h2>
         <br />
         <Link to="/drawkward"><button className="btn-game">Drawkward</button></Link>

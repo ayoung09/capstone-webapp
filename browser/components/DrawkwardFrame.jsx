@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../socket';
 
+import Header from './Header';
 import DrawkwardUserThumbnail from './DrawkwardUserThumbnail';
 import { addUser, setRounds, receiveAllPhrases } from '../reducers/drawkwardFrame';
 import { setInitialScores } from '../reducers/drawkwardScoreboard';
@@ -70,7 +71,8 @@ class DrawkwardFrame extends Component {
     let numOfUsers = usersArray.length;
 
     return (
-      <div>
+      <div id="main-drawkward-frame">
+        <Header />
         {this.props.children ? this.props.children :
           <div>
             <div className="room-form">
