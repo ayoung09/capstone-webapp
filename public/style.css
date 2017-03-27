@@ -65,13 +65,13 @@
   padding: 20px;
 }
 
-#daisy-pig-login {
+.daisy-pig-login {
   position: absolute;
   top: 120px;
   right: 0px;
 }
 
-#face-cloud-login {
+.face-cloud-login {
   position: absolute;
   top: 50px;
   left: 0px;
@@ -227,8 +227,15 @@ body {
   max-width: 100%;
 }
 
+.pictionary-subheader {
+  display: inline-block;
+  font-size: 36px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
 #drawkward-logo-pictionary {
-  display: block;
+  display: inline-block;
   height: 100px;
 }
 
@@ -241,7 +248,7 @@ body {
 
 
 #outer-pictionary-frame {
-  height: 800px;
+  height: 900px;
 }
 
 .pictionary-children {
@@ -252,4 +259,24 @@ body {
 .pictionary-frame {
   display: flex;
   justify-content: center;
+}
+
+.daisy-pig-pictionary {
+  position: absolute;
+  height: 350px;
+  width: auto;
+  bottom: 20px;
+  right: 0px;
+}
+
+.face-cloud-pictionary {
+  position: absolute;
+  height: 300px;
+  width: auto;
+  top: -50px;
+  left: 20px;
+}
+
+#pictionary-seconds-countdown {
+  margin: 4px;
 }

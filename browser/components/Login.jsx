@@ -27,8 +27,8 @@ class Login extends Component {
           <Link to="/drawkward"><button className="btn-game">Drawkward</button></Link>
           <Link to="/pictionary"><button type="submit" className="btn-game">Pictionary</button></Link>
         </div>
-        <img id="face-cloud-login" src="/images/face_cloud.png" />
-        <img id="daisy-pig-login" src="/images/daisy_pig.png" />
+        <img className="face-cloud-login" src="/images/face_cloud.png" />
+        <img className="daisy-pig-login" src="/images/daisy_pig.png" />
       </div>
     );
   }

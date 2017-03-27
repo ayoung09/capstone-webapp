@@ -53,6 +53,8 @@ class PictionaryFrame extends Component {
           </div>
           }
         </div>
+        <img className="face-cloud-pictionary" src="/images/face_cloud.png" />
+        <img className="daisy-pig-pictionary" src="/images/daisy_pig.png" />
       </div>
     )
   }
