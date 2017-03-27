@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   rounds: state.drawkwardFrame.rounds,
   allDrawings: state.drawkwardRound.allDrawings,
   phrases: state.drawkwardFrame.phrases,
+  originalPhrase: state.drawkwardRound.currentDrawing.drawingObj.phrase,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,8 +27,6 @@ const mapDispatchToProps = dispatch => ({
 class DrawkwardScoreboard extends Component {
 
   componentDidMount() {
-    this.props.clearRound();
-
     socket.on(seeNextDrawing, () => {
       if (this.usersHaveNotSeenAllDrawings()) {
         browserHistory.push('/drawkward/waitForCaptions');
@@ -45,6 +44,7 @@ class DrawkwardScoreboard extends Component {
   }
 
   componentWillUnmount() {
+    this.props.clearRound();
     socket.off(seeNextDrawing);
   }
 
@@ -70,6 +70,10 @@ class DrawkwardScoreboard extends Component {
 
     return (
       <div>
+      <h2>Original Phrase</h2>
+      <div>
+        <p>{this.props.originalPhrase}</p>
+      </div>
       <h2>Scoreboard:</h2>
         {usersArray.map(socketId => {
           let nameToDisplay = usersObj[socketId].username;

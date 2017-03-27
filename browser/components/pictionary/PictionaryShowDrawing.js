@@ -40,7 +40,7 @@ class PictionaryShowDrawing extends Component {
   render() {
     return (
       <Stage className="show-drawing" width={500} height={500}>
-        <Layer>
+        <Layer className="show-drawing-layer">
           {this.state.currentDrawing.map((line, i) => {
             return (
               <Line

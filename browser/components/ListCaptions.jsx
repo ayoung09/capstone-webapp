@@ -86,11 +86,13 @@ class ListCaptions extends Component {
     return (
       <div>
         <DrawkwardShowDrawing />
-        {Object.keys(this.props.phraseGuesses).map(phraseString => {
-          return (
-            <p>{phraseString}</p>
-          );
-        })}
+        <div>
+          {Object.keys(this.props.phraseGuesses).map(phraseString => {
+            return (
+              <p>{phraseString}</p>
+            );
+          })}
+        </div>
       </div>
     );
   }
