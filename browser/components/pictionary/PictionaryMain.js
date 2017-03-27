@@ -13,7 +13,8 @@ import { setInitialScores } from '../../reducers/pictionary/pictionaryScoreboard
 
 const mapStateToProps = state => ({
   teams: state.pictionaryInitializeGame.teams,
-  wordbank: shuffle(state.pictionaryInitializeGame.wordbank)
+  wordbank: shuffle(state.pictionaryInitializeGame.wordbank),
+  turns: state.pictionaryRounds.turns
 })
 
 const mapDispatchToProps = dispatch => ({

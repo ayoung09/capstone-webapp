@@ -46,9 +46,11 @@ module.exports = {
   NEW_LINE: 'new line',
   NEW_COORDINATES: 'new coordinates',
   START_TURN: 'start turn',
+  TURN_WAIT: 'turn wait',
   END_TURN: 'end turn',
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
+  SET_ROUND_COUNT: 'set round count',
   PICK_STARTING_TEAM: 'pick starting team',
   START_NEW_LINE: 'start new line',
   RECEIVE_NEW_COORDINATES: 'receive new coordinates',

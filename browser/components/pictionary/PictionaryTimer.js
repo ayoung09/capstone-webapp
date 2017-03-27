@@ -3,6 +3,7 @@ import socket from '../../socket';
 
 import {connect} from 'react-redux';
 import { setTimer, countdown } from '../../reducers/timer';
+import { nextTurn } from '../../reducers/pictionary/pictionaryRounds'
 import { TIMER_DONE } from '../../../socketConstants';
 
 const mapStateToProps = state => ({
@@ -12,12 +13,13 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setTimer: startingSeconds => dispatch(setTimer(startingSeconds)),
   countdown: () => dispatch(countdown()),
+  nextTurn: () => dispatch(nextTurn())
 });
 
 class PictionaryTimer extends Component {
 
   componentWillMount() {
-    this.props.setTimer(60);
+    this.props.setTimer(10);
   }
 
   componentDidMount() {
@@ -27,6 +29,7 @@ class PictionaryTimer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.secondsRemaining === 0) {
       socket.emit(TIMER_DONE);
+      this.props.nextTurn();
       clearInterval(this.interval);
     }
   }
