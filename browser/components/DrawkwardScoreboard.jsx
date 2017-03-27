@@ -26,8 +26,6 @@ const mapDispatchToProps = dispatch => ({
 class DrawkwardScoreboard extends Component {
 
   componentDidMount() {
-    this.props.clearRound();
-
     socket.on(seeNextDrawing, () => {
       if (this.usersHaveNotSeenAllDrawings()) {
         browserHistory.push('/drawkward/waitForCaptions');
@@ -45,6 +43,7 @@ class DrawkwardScoreboard extends Component {
   }
 
   componentWillUnmount() {
+    this.props.clearRound();
     socket.off(seeNextDrawing);
   }
 
