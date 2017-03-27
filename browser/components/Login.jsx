@@ -19,10 +19,16 @@ class Login extends Component {
     return (
       <div id="login-container">
         <Header />
-        <h2>Select your game below:</h2>
+        <h2>a casual game for awkward artists</h2>
         <br />
-        <Link to="/drawkward"><button className="btn-game">Drawkward</button></Link>
-        <Link to="/pictionary"><button type="submit" className="btn-game">Pictionary</button></Link>
+        <div id="game-selection-box">
+          <h1>Select your game below:</h1>
+          <br />
+          <Link to="/drawkward"><button className="btn-game">Drawkward</button></Link>
+          <Link to="/pictionary"><button type="submit" className="btn-game">Pictionary</button></Link>
+        </div>
+        <img id="face-cloud-login" src="/images/face_cloud.png" />
+        <img id="daisy-pig-login" src="/images/daisy_pig.png" />
       </div>
     );
   }

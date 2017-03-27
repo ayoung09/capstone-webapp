@@ -49,10 +49,32 @@
 }
 
 #login-container {
-  height: 700px;
-  background-image: url(/images/daisy_pig.png);
-  background-position: bottom right;
-  background-repeat: no-repeat;
+  height: 800px;
+  align-content: center;
+}
+
+.subtitle {
+  margin: 2px 2px 20px 2px;
+}
+
+#game-selection-box {
+  margin: auto;
+  width: 50%;
+  background-color: #E0FFFF;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+#daisy-pig-login {
+  position: absolute;
+  top: 120px;
+  right: 0px;
+}
+
+#face-cloud-login {
+  position: absolute;
+  top: 50px;
+  left: 0px;
 }
 
 .room-form {
@@ -106,8 +128,14 @@
 .show-drawing {
   width: 50%;
   align-content: center;
+  justify-content: center;
   border-style: solid;
   background-color: white;
+}
+
+.show-drawing-layer {
+  align-content: center;
+  justify-content: center;
 }
 
 .show-drawing-wrapper {
@@ -200,11 +228,20 @@ body {
 }
 
 #drawkward-logo-pictionary {
+  display: block;
   height: 100px;
 }
 
+.btn-quit {
+  float: right;
+  font-size: 30px;
+  padding: 8px 15px 8px 15px;
+  margin: 15px 15px 0 0;
+}
+
+
 #outer-pictionary-frame {
-  height: 600px;
+  height: 800px;
 }
 
 .pictionary-children {
