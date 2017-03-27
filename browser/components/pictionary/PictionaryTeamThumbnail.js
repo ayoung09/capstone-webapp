@@ -5,7 +5,7 @@ const PictionaryTeamThumbnail = (props) => {
   return (
     <div>
       <div>
-        <h4>{props.team.name}</h4>
+        <h2>{props.team.name}</h2>
       </div>
       <Stage width={200} height={200}>
         <Layer>
