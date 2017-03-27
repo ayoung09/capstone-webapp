@@ -3,12 +3,13 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import socket from '../../socket';
 
-import { RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT } from '../../../socketConstants'
+import { RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT, SEND_NEW_WORD } from '../../../socketConstants'
 import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame'
 import { setRounds } from '../../reducers/pictionary/pictionaryRounds'
 
 const mapStateToProps = state => ({
-  teams: state.pictionaryInitializeGame.teams
+  teams: state.pictionaryInitializeGame.teams,
+  wordbank: state.pictionaryInitializeGame.wordbank,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -35,6 +36,7 @@ class PictionaryFrame extends Component {
 
   startGame() {
     socket.emit(PICK_STARTING_TEAM, this.props.teams);
+    socket.emit(SEND_NEW_WORD, this.props.wordbank.shift());
     browserHistory.push('/pictionary/main')
   }
 

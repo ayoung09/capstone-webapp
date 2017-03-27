@@ -46,8 +46,11 @@ module.exports = {
   NEW_LINE: 'new line',
   NEW_COORDINATES: 'new coordinates',
   START_TURN: 'start turn',
+  START_NEW_TURN: 'start new turn',
   TURN_WAIT: 'turn wait',
   END_TURN: 'end turn',
+  GAME_OVER: 'game over',
+
     //between server and webapp
   RECEIVE_NEW_TEAM: 'receive new team',
   SET_ROUND_COUNT: 'set round count',
@@ -58,5 +61,7 @@ module.exports = {
   ADD_POINTS: 'add points',
   FETCH_NEXT_WORD: 'next word',
   SEND_NEW_WORD: 'new word',
+  START_NEXT_TURN: 'start next turn',
   TIMER_DONE: 'timer done',
+  END_GAME: 'end game',
 };
