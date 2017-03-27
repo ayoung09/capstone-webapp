@@ -25,14 +25,16 @@ class PictionaryShowDrawing extends Component {
     })
 
     socket.on(CLEAR_CANVAS, () => {
+      console.log('clear state triggered');
       this.setState({currentDrawing: [], currentLine: []})
     })
+
   }
 
   componentWillUnmount() {
     socket.off(START_NEW_LINE)
     socket.off(RECEIVE_NEW_COORDINATES);
-    socket.off(CLEAR_CANVAS);
+    // socket.off(CLEAR_CANVAS);
   }
 
   render() {

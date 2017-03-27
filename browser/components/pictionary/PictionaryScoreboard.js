@@ -29,10 +29,6 @@ class PictionaryScoreboard extends Component {
     socket.off(ADD_POINTS)
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('new props', nextProps)
-  }
-
   render() {
     return (
       <div className="user-thumbnail">

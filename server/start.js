@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const socketio = require('socket.io');
 
-const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, SEND_START_NEW_GAME, START_NEW_GAME, NEW_TEAM, RECEIVE_NEW_TEAM, SET_ROUND_COUNT, TURN_WAIT, PICK_STARTING_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, CLEAR_CANVAS, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_LINE, START_NEW_LINE, NEW_COORDINATES, RECEIVE_NEW_COORDINATES, TIMER_DONE, START_TURN, END_TURN } = require('../socketConstants');
+const { CREATE_NEW_ROOM, JOIN_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_DRAWKWARD, GO_TO_DRAWKWARD, newUser, newDrawing, newGuess, receiveNewUser, receiveNewDrawing, receiveNewGuess, sendStartGame, startGame, sendRandomPhrase, receiveRandomPhrase, TIME_IS_UP, FORCE_SUBMIT_DRAWING, sendToArtist, youAreTheArtist, sendStartCaption, startCaption, receivedAllCaptions, phraseOptions, selectPhrase, receivedSelectedPhrase, nextDrawing, seeNextDrawing, scoreboard, lookAtScoreboard, sendGameOver, gameOver, SEND_START_NEW_GAME, START_NEW_GAME, NEW_TEAM, RECEIVE_NEW_TEAM, SET_ROUND_COUNT, TURN_WAIT, PICK_STARTING_TEAM, CORRECT_GUESS, ADD_POINTS, SKIP, CLEAR_CANVAS, FETCH_NEXT_WORD, SEND_NEW_WORD, RECEIVE_NEW_WORD, NEW_LINE, START_NEW_LINE, NEW_COORDINATES, RECEIVE_NEW_COORDINATES, TIMER_DONE, START_TURN, START_NEW_TURN, START_NEXT_TURN, END_TURN, GAME_OVER, END_GAME, END_TURN_SERVER } = require('../socketConstants');
 
 const app = express();
 
@@ -173,8 +173,22 @@ io.on('connection', socket => {
   })
 
   socket.on(TIMER_DONE, () => {
-    socket.broadcast.emit(START_TURN);
+    console.log('end turn triggered timer done')
+    socket.emit(CLEAR_CANVAS);
+    console.log('after clear canvas timer done')
     socket.broadcast.emit(END_TURN);
+  })
+
+  socket.on(START_NEXT_TURN, () => {
+    console.log('server start turn triggered')
+    socket.emit(CLEAR_CANVAS)
+    socket.broadcast.emit(START_TURN);
+  })
+
+  socket.on(END_GAME, () => {
+    console.log('end game')
+    socket.emit(CLEAR_CANVAS);
+    socket.broadcast.emit(GAME_OVER);
   })
 
   socket.on('disconnect', () => {
