@@ -14,7 +14,7 @@ const pictionaryRoundsReducer = (prevState = initialState, action) => {
   switch (action.type) {
     case SET_COUNT:
       if (action.count * 2 > newState.turns) {
-        newState.turns = action.count * 2 // round is when Team A and Team B have drawn
+        newState.turns = action.count * 2// round is when Team A and Team B have drawn
       }
       break;
     case MINUS_TURN:
