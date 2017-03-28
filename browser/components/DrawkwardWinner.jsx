@@ -43,7 +43,7 @@ class DrawkwardWinner extends Component {
           const imageArray = users[socketId].portrait;
           let numOfPoints = scores[socketId];
           return (
-            <div key={socketId} className="winner-thumbnail">
+            <div key={socketId} className="user-thumbnail">
               <DrawkwardUserThumbnail
                 userName={nameToDisplay}
                 image={imageArray}

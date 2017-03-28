@@ -220,11 +220,6 @@ body {
   margin: 4px;
 }
 
-.winner-thumbnail {
-  width: 75%;
-  height: auto;
-}
-
 .original-phrase {
   border-style: solid;
   border-radius: 15px;
@@ -244,7 +239,7 @@ body {
 
 @keyframes animateStars {
   from {background-position: bottom center, bottom center, bottom center}
-  to {background-position: left center, right center, center top}
+  to {background-position: -200px 200px, 1200px 300px, 500px -200px}
 }
 
 #drawkward-winners {
