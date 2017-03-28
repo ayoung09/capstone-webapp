@@ -25,6 +25,7 @@ import Winner from './components/DrawkwardWinner';
 //pictionary components
 import PictionaryFrame from './components/pictionary/PictionaryFrame';
 import PictionaryMain from './components/pictionary/PictionaryMain';
+import PictionaryGameOver from './components/pictionary/PictionaryGameOver';
 
 const onDrawkwardEnter = () => {
   const randomRoomName = generateRandomRoomName();
@@ -67,6 +68,7 @@ render(
         </Route>
         <Route path="/pictionary" component={PictionaryFrame} onEnter={onPictionaryEnter}>
           <Route path="/pictionary/main" component={PictionaryMain} />
+          <Route path="/pictionary/gameover" component={PictionaryGameOver} />
         </Route>
       </Route>
     </Router>
