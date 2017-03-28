@@ -1,14 +1,12 @@
 //initial state
 const initialState = {
-  teams: [], //remove dummy data
+  teams: [],
   wordbank: [],
-  // rounds: 0
 }
 
 //constants
 const ADD_TEAM = 'add team';
 const FETCH_WORDBANK = 'fetch wordbank';
-// const SET_COUNT = 'set count';
 
 //reducer
 const pictionaryInitializeGameReducer = (prevState = initialState, action) => {
@@ -22,12 +20,6 @@ const pictionaryInitializeGameReducer = (prevState = initialState, action) => {
     case FETCH_WORDBANK:
       newState.wordbank = newState.wordbank.concat(action.wordbank);
       break;
-
-    // case SET_COUNT:
-    //   if (action.count > newState.rounds) {
-    //     newState.rounds = action.count
-    //   }
-    //   break;
 
     default:
       return prevState
@@ -47,12 +39,5 @@ export const fetchWordbank = (wordbank) => {
     wordbank
   }
 }
-
-// export const setRound = playerCount => {
-//   return {
-//     type: SET_COUNT,
-//     count: playerCount
-//   }
-// }
 
 export default pictionaryInitializeGameReducer;

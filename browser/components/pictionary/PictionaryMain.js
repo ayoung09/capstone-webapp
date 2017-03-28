@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import socket from '../../socket';
-import shuffle from 'shuffle-array';
 
 import PictionaryScoreboard from './PictionaryScoreboard';
 import PictionaryShowDrawing from './PictionaryShowDrawing';
