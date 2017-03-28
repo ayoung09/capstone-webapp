@@ -9,7 +9,7 @@ import { TIMER_DONE, END_GAME, START_NEXT_TURN } from '../../../socketConstants'
 
 const mapStateToProps = state => ({
   secondsRemaining: state.timer.secondsRemaining,
-  turnsRemaining: state.pictionaryRounds.turns
+  turnsRemaining: state.pictionaryRounds.turns - 1
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -48,7 +48,6 @@ class PictionaryTimer extends Component {
     this.props.setTimer(30);
     this.interval = setInterval(this.props.countdown, 1000);
     socket.emit(START_NEXT_TURN);
-    // socket.emit(END_TURN_SERVER)
   }
 
   render() {
