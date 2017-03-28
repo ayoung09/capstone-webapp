@@ -3,24 +3,26 @@ import { Layer, Stage, Line } from 'react-konva';
 
 const PictionaryTeamThumbnail = (props) => {
   return (
-    <div>
-      <div>
-        <h2>{props.team.name}</h2>
+    <div className="thumbnail-container">
+      <div className="username">
+        <h2 className="username-header">{props.team.name}</h2>
       </div>
-      <Stage width={200} height={200}>
-        <Layer>
-          {props.team.portrait.map((line, i) => {
-            return (
-              <Line
-                key={i}
-                points={line}
-                stroke={'black'}
-                strokeWidth={3}
-              />
+      <div className="thumbnail-portrait">
+        <Stage width={150} height={150}>
+          <Layer scaleX={0.4} scaleY={0.4}>
+            {props.team.portrait.map((line, i) => {
+              return (
+                <Line
+                  key={i}
+                  points={line}
+                  stroke={'black'}
+                  strokeWidth={3}
+                />
+              )}
             )}
-          )}
-        </Layer>
-      </Stage>
+          </Layer>
+        </Stage>
+      </div>
     </div>
   );
 };

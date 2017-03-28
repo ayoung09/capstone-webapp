@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import socket from '../../socket';
 
 import {connect} from 'react-redux';
+import { browserHistory } from 'react-router';
 import { setTimer, countdown } from '../../reducers/timer';
 import { nextTurn } from '../../reducers/pictionary/pictionaryRounds'
 import { TIMER_DONE, END_GAME, START_NEXT_TURN } from '../../../socketConstants';
@@ -31,8 +32,9 @@ class PictionaryTimer extends Component {
     if (nextProps.secondsRemaining === 0) {
       socket.emit(TIMER_DONE);
       clearInterval(this.interval);
-      if (nextProps.turnsRemaining < 0) {
-        socket.emit(END_GAME)
+      if (nextProps.turnsRemaining <= 0) {
+        socket.emit(END_GAME);
+        browserHistory.push('/pictionary/gameover')
       }
     }
   }

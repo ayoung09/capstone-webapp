@@ -1,7 +1,7 @@
 const initialState = {
   // scores: {} //{teamName: score, team2: score}
 }
-
+// {name: 'blue', portrait:[], id:1}, {name: 'pink', portrait: [], id: 2}
 const SET_INITIAL_SCORES = 'set initial scores';
 const ADD_POINTS = 'add points'
 
