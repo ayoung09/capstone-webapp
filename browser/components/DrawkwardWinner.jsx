@@ -22,7 +22,9 @@ class DrawkwardWinner extends Component {
     socket.off(START_NEW_GAME);
   }
 
-  render({users, scores}) {
+  render() {
+    const users = this.props.users;
+    const scores = this.props.scores;
     const findTopThreeWinners = (scoreboard) => {
       const socketIdArray = Object.keys(scoreboard);
       socketIdArray.sort((id1, id2) => {

@@ -126,20 +126,39 @@
 }
 
 .show-drawing {
-  width: 50%;
-  align-content: center;
-  justify-content: center;
+  width: 45%;
+  margin: auto;
   border-style: solid;
   background-color: white;
 }
 
 .show-drawing-layer {
-  align-content: center;
-  justify-content: center;
+  margin: auto;
 }
 
-.show-drawing-wrapper {
-  align-content: center;
+#caption-list-container {
+  justify-content: center;
+  align-items: center;
+}
+
+#caption-list {
+  display: inline-block;
+  width: 35%;
+}
+
+.caption-list-item {
+  font-size: 28px;
+  background-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px;
+}
+
+#caption-list-drawing {
+  display: inline-block;
+  width: 45%;
+  margin: 2px;
 }
 
 .user-thumbnail {
@@ -204,6 +223,23 @@ body {
 .winner-thumbnail {
   width: 75%;
   height: auto;
+}
+
+.original-phrase {
+  border-style: solid;
+  border-radius: 15px;
+  background-color: white;
+  width: 75%;
+  margin: auto;
+}
+
+.original-phrase-title {
+  margin: 3px 0 0 0;
+}
+
+.original-phrase-text {
+  margin: 3px 0 3px 0;
+  font-size: 28px;
 }
 
 @keyframes animateStars {
