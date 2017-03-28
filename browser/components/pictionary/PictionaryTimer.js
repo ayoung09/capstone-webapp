@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 class PictionaryTimer extends Component {
 
   componentWillMount() {
-    this.props.setTimer(3);
+    this.props.setTimer(30);
   }
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class PictionaryTimer extends Component {
 
   startGame() {
     this.props.nextTurn();
-    this.props.setTimer(3);
+    this.props.setTimer(30);
     this.interval = setInterval(this.props.countdown, 1000);
     socket.emit(START_NEXT_TURN);
     // socket.emit(END_TURN_SERVER)

@@ -80,7 +80,7 @@ io.on('connection', socket => {
   //webapp tells mobile users (except artist) to start typing a caption
   socket.on(sendStartCaption, usersToReceive => {
     usersToReceive.forEach(user => {
-      io.to(user).emit(startCaption);
+      io.to(user).emit('begin caption');
     });
   });
 
