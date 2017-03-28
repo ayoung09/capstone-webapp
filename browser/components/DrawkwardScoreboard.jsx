@@ -69,10 +69,10 @@ class DrawkwardScoreboard extends Component {
     const scoresObj = this.props.scores;
 
     return (
-      <div>
-      <h2>Original Phrase</h2>
-      <div>
-        <p>{this.props.originalPhrase}</p>
+     <div>
+      <div className="original-phrase">
+        <h2 className="original-phrase-title">Original Phrase: </h2>
+          <p className="original-phrase-text">{this.props.originalPhrase}</p>
       </div>
       <h2>Scoreboard:</h2>
         {usersArray.map(socketId => {
