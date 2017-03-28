@@ -2,6 +2,7 @@ module.exports = {
   //constants between mobile and server
   JOIN_ROOM: 'join room',
   GO_TO_DRAWKWARD: 'go to drawkward',
+  GO_TO_PICTIONARY: 'go to pictionary',
   newUser: 'new user',
   newDrawing: 'new drawing',
   // newPhrase: 'new phrase',
@@ -39,6 +40,7 @@ module.exports = {
 
   //pictionary
     //between mobile and server
+  SEND_TO_PICTIONARY: 'send to pictionary',
   NEW_TEAM: 'new team',
   CORRECT_GUESS: 'correct guess',
   SKIP: 'skip',
