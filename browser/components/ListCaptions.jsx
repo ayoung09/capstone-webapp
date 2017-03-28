@@ -29,6 +29,17 @@ const mapDispatchToProps = dispatch => ({
 
 
 class ListCaptions extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      captionsArray: [],
+    };
+  }
+
+  componentWillMount() {
+    this.setState({captionsArray: this.createCaptionsArrayToRender()});
+  }
+
   componentDidMount() {
     let currentArtist = this.props.currentDrawing.id;
 
@@ -44,6 +55,17 @@ class ListCaptions extends Component {
         this.props.add50Points(phraseAuthor);
       }
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedPhraseGuesses.length === this.props.phraseGuesses.length) {
+      socket.emit(lookAtScoreboard);
+      browserHistory.push('/drawkward/scoreboard');
+    }
+  }
+
+  componentWillUnmount() {
+    socket.off(receivedSelectedPhrase);
   }
 
   userSelectedOriginalPhrase(phraseObj) {
@@ -72,27 +94,19 @@ class ListCaptions extends Component {
     return userWhoCreatedPhrase[0][phraseKey];
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedPhraseGuesses.length === this.props.phraseGuesses.length) {
-      socket.emit(lookAtScoreboard);
-      browserHistory.push('/drawkward/scoreboard');
-    }
-  }
-
-  componentWillUnmount() {
-    socket.off(receivedSelectedPhrase);
-  }
-
-  render() {
+  createCaptionsArrayToRender() {
     const captionsArray = this.props.phraseGuesses.map(phraseObj => Object.keys(phraseObj)[0]);
     captionsArray.push(this.props.originalPhrase);
     shuffle(captionsArray);
-    console.log('this is captionsArray: ', captionsArray);
+    return captionsArray;
+  }
+
+  render() {
 
     return (
       <div id="caption-list-container">
         <div id="caption-list">
-          {captionsArray.map(phraseString => {
+          {this.props.captionsArray.map(phraseString => {
             return (
               <p className="caption-list-item">{phraseString}</p>
             );
