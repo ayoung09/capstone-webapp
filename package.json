@@ -8,7 +8,8 @@
     "start": "node server/start",
     "seed": "node ./db/seed",
     "build": "webpack",
-    "build-watch": "npm run build -- -w"
+    "build-watch": "npm run build -- -w",
+    "heroku-postbuild": "npm run build && npm run seed"
   },
   "keywords": [],
   "author": "",
