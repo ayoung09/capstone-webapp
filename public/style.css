@@ -239,7 +239,7 @@ body {
 
 @keyframes animateStars {
   from {background-position: bottom center, bottom center, bottom center}
-  to {background-position: -200px 200px, 1200px 300px, 500px -200px}
+  to {background-position: -300px 200px, 1200px 400px, 600px -200px}
 }
 
 #drawkward-winners {

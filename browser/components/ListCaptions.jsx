@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import socket from '../socket';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import shuffle from 'shuffle-array';
 
 import DrawkwardShowDrawing from './DrawkwardShowDrawing';
 import { receivedSelectedPhrase, lookAtScoreboard } from '../../socketConstants';
-import { addSelectedPhrase } from '../reducers/drawkwardRound';
+import { addSelectedPhrase, setCaptionsToRender } from '../reducers/drawkwardRound';
 import { add50, add100 } from '../reducers/drawkwardScoreboard';
 
 
@@ -18,10 +17,12 @@ const mapStateToProps = state => ({
   phraseGuesses: state.drawkwardRound.phraseGuesses,
   selectedPhraseGuesses: state.drawkwardRound.selectedPhraseGuesses,
   scores: state.drawkwardScoreboard.scores,
+  captionsToRender: state.drawkwardRound.captionsToRender,
 });
 
 
 const mapDispatchToProps = dispatch => ({
+  setCaptionsToRender: captions => dispatch(setCaptionsToRender(captions)),
   addSelectedPhrase: phraseObj => dispatch(addSelectedPhrase(phraseObj)),
   add50Points: socketId => dispatch(add50(socketId)),
   add100Points: socketId => dispatch(add100(socketId)),
@@ -29,15 +30,9 @@ const mapDispatchToProps = dispatch => ({
 
 
 class ListCaptions extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      captionsArray: [],
-    };
-  }
 
   componentWillMount() {
-    this.setState({captionsArray: this.createCaptionsArrayToRender()});
+    this.props.setCaptionsToRender(this.createCaptionsToRenderArray());
   }
 
   componentDidMount() {
@@ -68,6 +63,12 @@ class ListCaptions extends Component {
     socket.off(receivedSelectedPhrase);
   }
 
+  createCaptionsToRenderArray() {
+    const captionsArray = this.props.phraseGuesses.map(phraseObj => Object.keys(phraseObj)[0]);
+    captionsArray.push(this.props.originalPhrase);
+    return captionsArray;
+  }
+
   userSelectedOriginalPhrase(phraseObj) {
     return phraseObj.selectedPhrase === this.props.originalPhrase;
   }
@@ -94,19 +95,12 @@ class ListCaptions extends Component {
     return userWhoCreatedPhrase[0][phraseKey];
   }
 
-  createCaptionsArrayToRender() {
-    const captionsArray = this.props.phraseGuesses.map(phraseObj => Object.keys(phraseObj)[0]);
-    captionsArray.push(this.props.originalPhrase);
-    shuffle(captionsArray);
-    return captionsArray;
-  }
-
   render() {
 
     return (
       <div id="caption-list-container">
         <div id="caption-list">
-          {this.props.captionsArray.map(phraseString => {
+          {this.props.captionsToRender.map(phraseString => {
             return (
               <p className="caption-list-item">{phraseString}</p>
             );

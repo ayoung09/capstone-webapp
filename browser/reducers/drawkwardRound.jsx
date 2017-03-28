@@ -4,7 +4,8 @@ const initialState = {
   currentDrawing: {}, //{id: socketId, drawingObj: {image: , phrase: }}
   phraseGuesses: [], //[{'phrase': socketid}, {}]
   allDrawings: [],
-  selectedPhraseGuesses: [] //[{socketId: ''}, {}]
+  selectedPhraseGuesses: [], //[{socketId: ''}, {}]
+  captionsToRender: [],
 };
 
 //constants
@@ -13,6 +14,7 @@ const ADD_DRAWING = 'ADD_DRAWING';
 const ADD_PHRASE_GUESS = 'ADD_PHRASE_GUESS';
 const CLEAR_ROUND = 'CLEAR_ROUND';
 const ADD_SELECTED_PHRASE = 'ADD_SELECTED_PHRASE';
+const SET_CAPTIONS_TO_RENDER = 'SET_CAPTIONS_TO_RENDER';
 
 //reducer
 const drawkwardRoundReducer = (prevState = initialState, action) => {
@@ -32,10 +34,15 @@ const drawkwardRoundReducer = (prevState = initialState, action) => {
       let shuffled = shuffle(arrayToShuffle);
       newState.phraseGuesses = shuffled;
       break;
+    case SET_CAPTIONS_TO_RENDER:
+      shuffle(action.captions);
+      newState.captionsToRender = action.captions;
+      break;
     case CLEAR_ROUND:
       newState.currentDrawing = {};
       newState.phraseGuesses = [];
       newState.selectedPhraseGuesses = [];
+      newState.captionsToRender = [];
       break;
     case ADD_SELECTED_PHRASE:
       let newSelectedPhrases = [...newState.selectedPhraseGuesses, {[action.id]: action.selectedPhrase}];
@@ -62,6 +69,11 @@ export const addPhraseGuess = (socketId, guessStr) => ({
   type: ADD_PHRASE_GUESS,
   id: socketId,
   guess: guessStr,
+});
+
+export const setCaptionsToRender = captions => ({
+  type: SET_CAPTIONS_TO_RENDER,
+  captions: captions,
 });
 
 export const addSelectedPhrase = (phraseObj) => ({
