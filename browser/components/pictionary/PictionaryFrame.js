@@ -4,34 +4,44 @@ import { connect } from 'react-redux';
 import socket from '../../socket';
 
 
-import { RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT, SEND_NEW_WORD } from '../../../socketConstants'
-import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame'
-import { setRounds } from '../../reducers/pictionary/pictionaryRounds'
+import { CREATE_NEW_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_PICTIONARY, RECEIVE_NEW_TEAM, PICK_STARTING_TEAM, SET_ROUND_COUNT, SEND_NEW_WORD } from '../../../socketConstants';
+import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame';
+import { setRounds } from '../../reducers/pictionary/pictionaryRounds';
 import PictionaryHeader from './PictionaryHeader';
 
 const mapStateToProps = state => ({
+  roomName: state.login.roomName,
   teams: state.pictionaryInitializeGame.teams,
   wordbank: state.pictionaryInitializeGame.wordbank,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   addTeam: team => dispatch(addTeam(team)),
   setRounds: count => dispatch(setRounds(count))
-})
+});
 
 class PictionaryFrame extends Component {
 
   componentDidMount() {
+    socket.on(NEW_SOCKET_IN_ROOM, () => {
+      socket.emit(SEND_TO_PICTIONARY, {room: this.props.roomName});
+    });
+
     socket.on(RECEIVE_NEW_TEAM, teamObj => {
-      this.props.addTeam(teamObj)
-    })
+      this.props.addTeam(teamObj);
+    });
 
     socket.on(SET_ROUND_COUNT, playerCount => {
-      this.props.setRounds(playerCount)
-    })
+      this.props.setRounds(playerCount);
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    socket.emit(CREATE_NEW_ROOM, {room: nextProps.roomName});
   }
 
   componentWillUnmount() {
+    socket.off(NEW_SOCKET_IN_ROOM);
     socket.off(RECEIVE_NEW_TEAM);
     socket.off(SET_ROUND_COUNT);
   }
@@ -49,7 +59,11 @@ class PictionaryFrame extends Component {
         <br />
         <div className="pictionary-children">
           {this.props.children ? this.props.children :
-          <div>
+          <div className="room-form">
+            <h2 className="room-form-subheader">Use the following room code to log in on your mobile device:</h2>
+              <br />
+              <h1 className="room-form-header">{this.props.roomName}</h1>
+              <br />
             <h2>Divide into two teams. Create a team name and avatar on your mobile app</h2>
             <h3>Each team will share one mobile device. When all the teams have signed in, hit START to begin your game</h3>
             <button className="btn-game" onClick={() => this.startGame()}>START</button>
