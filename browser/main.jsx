@@ -4,6 +4,7 @@ import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import axios from 'axios';
+import shuffle from 'shuffle-array'
 
 import store from './store';
 
@@ -39,7 +40,7 @@ const onPictionaryEnter = () => {
   const randomRoomName = generateRandomRoomName();
   store.dispatch(createRoom(randomRoomName));
   axios.get('/api/wordbank')
-    .then(wordbank => store.dispatch(fetchWordbank(wordbank.data)));
+    .then(wordbank => store.dispatch(fetchWordbank(shuffle(wordbank.data))));
 };
 
 function generateRandomRoomName() {

@@ -180,6 +180,7 @@ io.on('connection', socket => {
   socket.on(START_NEXT_TURN, () => {
     socket.emit(CLEAR_CANVAS)
     socket.broadcast.emit(START_TURN);
+    socket.emit(FETCH_NEXT_WORD);
   })
 
   socket.on(END_GAME, () => {
