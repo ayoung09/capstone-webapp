@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import socket from '../socket';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import shuffle from 'shuffle-array';
 
 import DrawkwardShowDrawing from './DrawkwardShowDrawing';
 import { receivedSelectedPhrase, lookAtScoreboard } from '../../socketConstants';
@@ -83,16 +84,21 @@ class ListCaptions extends Component {
   }
 
   render() {
+    const captionsArray = this.props.phraseGuesses.map(phraseObj => Object.keys(phraseObj)[0]);
+    captionsArray.push(this.props.originalPhrase);
+    shuffle(captionsArray);
+    console.log('this is captionsArray: ', captionsArray);
+
     return (
-      <div>
-        <DrawkwardShowDrawing />
-        <div>
-          {Object.keys(this.props.phraseGuesses).map(phraseString => {
+      <div id="caption-list-container">
+        <div id="caption-list">
+          {captionsArray.map(phraseString => {
             return (
-              <p>{phraseString}</p>
+              <p className="caption-list-item">{phraseString}</p>
             );
           })}
         </div>
+        <DrawkwardShowDrawing id="caption-list-drawing"/>
       </div>
     );
   }
