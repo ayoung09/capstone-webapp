@@ -173,20 +173,16 @@ io.on('connection', socket => {
   })
 
   socket.on(TIMER_DONE, () => {
-    console.log('end turn triggered timer done')
     socket.emit(CLEAR_CANVAS);
-    console.log('after clear canvas timer done')
     socket.broadcast.emit(END_TURN);
   })
 
   socket.on(START_NEXT_TURN, () => {
-    console.log('server start turn triggered')
     socket.emit(CLEAR_CANVAS)
     socket.broadcast.emit(START_TURN);
   })
 
   socket.on(END_GAME, () => {
-    console.log('end game')
     socket.emit(CLEAR_CANVAS);
     socket.broadcast.emit(GAME_OVER);
   })
