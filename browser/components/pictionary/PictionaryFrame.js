@@ -8,6 +8,7 @@ import { CREATE_NEW_ROOM, NEW_SOCKET_IN_ROOM, SEND_TO_PICTIONARY, RECEIVE_NEW_TE
 import { addTeam } from '../../reducers/pictionary/pictionaryInitializeGame';
 import { setRounds } from '../../reducers/pictionary/pictionaryRounds';
 import PictionaryHeader from './PictionaryHeader';
+import PictionaryTeamThumbnail from './PictionaryTeamThumbnail'
 
 const mapStateToProps = state => ({
   roomName: state.login.roomName,
@@ -59,16 +60,24 @@ class PictionaryFrame extends Component {
         <br />
         <div className="pictionary-children">
           {this.props.children ? this.props.children :
-          <div className="room-form">
-            <h2 className="room-form-subheader">Use the following room code to log in on your mobile device:</h2>
-              <br />
-              <h1 className="room-form-header">{this.props.roomName}</h1>
-              <br />
-            <h2>Divide into two teams. Create a team name and avatar on your mobile app</h2>
-            <h3>Each team will share one mobile device. When all the teams have signed in, hit START to begin your game</h3>
-            <button className="btn-game" onClick={() => this.startGame()}>START</button>
+          <div>
+            <div className="room-form">
+              <h2 className="room-form-subheader">Use the following room code to log in on your mobile device:</h2>
+                <br />
+                <h1 className="room-form-header">{this.props.roomName}</h1>
+                <br />
+              <h2>Divide into two teams. Create a team name and avatar on your mobile app</h2>
+              <h3>Each team will share one mobile device. When all the teams have signed in, hit START to begin your game</h3>
+              <div>
+                <button className="btn-game" onClick={() => this.startGame()}>START</button>
+              </div>
+            </div>
+            <div className="user-thumbnail-start">
+              {this.props.teams[0] ? <PictionaryTeamThumbnail team={this.props.teams[0]} /> : null}
+              {this.props.teams[1] ? <PictionaryTeamThumbnail team={this.props.teams[1]} /> : null}
+            </div>
           </div>
-          }
+        }
         </div>
         <img className="face-cloud-pictionary" src="/images/face_cloud.png" />
         <img className="daisy-pig-pictionary" src="/images/daisy_pig.png" />

@@ -169,6 +169,14 @@
   border-radius: 2px;
 }
 
+.user-thumbnail-start {
+  margin: 2px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-radius: 2px;
+}
+
 .thumbnail-container {
   padding: 0px;
   margin: 0px;
@@ -187,7 +195,11 @@
 
 .thumbnail-portrait {
   align-content: center;
-  margin: 0px;
+  margin: 5px;
+  display: flex;
+  border-style: solid;
+  /*justify-content: space-around;*/
+  background-color: white;
 }
 
 body {
@@ -284,6 +296,7 @@ body {
 
 .pictionary-children {
   height: 75%;
+  display: flex;
   justify-content: space-around;
 }
 
