@@ -81,7 +81,7 @@ class DrawkwardWaitForCaptions extends React.Component {
   render() {
     return (
       <div className="outer-show-drawing">
-        <h3>On your mobile device, enter an appropriate title for the drawing below</h3>
+        <h2>On your mobile device, enter an appropriate title for the drawing below</h2>
         {Object.keys(this.props.currentDrawing).length > 0 ? <DrawkwardShowDrawing /> : null}
       </div>
     );
