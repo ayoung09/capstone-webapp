@@ -19,7 +19,7 @@ class Login extends Component {
     return (
       <div id="login-container">
         <Header />
-        <h2>a casual game for awkward artists</h2>
+        <h2>casual games for awkward artists</h2>
         <br />
         <div id="game-selection-box">
           <h1>Select your game below:</h1>

@@ -37,7 +37,7 @@ class DrawkwardWinner extends Component {
 
     return (
       <div id="drawkward-winners">
-        <h1>Winners!</h1>
+        <h1>Top 3 Scorers!</h1>
         {topThree.map(socketId => {
           const nameToDisplay = users[socketId].username;
           const imageArray = users[socketId].portrait;
