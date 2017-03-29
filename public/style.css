@@ -126,14 +126,15 @@
 }
 
 .show-drawing {
-  width: 45%;
-  margin: auto;
+  display: flex;
+  align-self: center;
   border-style: solid;
   background-color: white;
 }
 
 .show-drawing-layer {
-  margin: auto;
+  display: flex;
+  align-self: center;
 }
 
 #caption-list-container {
