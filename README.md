@@ -11,7 +11,7 @@ This is the web app repository. Check out the mobile app [here](https://github.c
 
 ## Games
 
-To play, one person should be running the web app on a computer, and all players will need the mobile app on downloaded to their phones.
+To play, one person should be running the web app on a computer, and all players will need the mobile app downloaded to their phones.
 
 #### Drawkward
 
