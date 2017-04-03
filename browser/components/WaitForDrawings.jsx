@@ -30,6 +30,7 @@ class WaitForDrawings extends Component {
       return Object.keys(this.props.users).length === nextProps.allDrawings.length;
     };
     if (allUsersHaveSubmittedDrawings()) {
+      console.log('all users submitted');
       browserHistory.push('/drawkward/waitForCaptions');
     }
   }
