@@ -40,3 +40,6 @@ When the word is guessed the artist will press "Got it!" to receive points or ca
 Rounds will continue until each player on each team has drawn at least once.
 
 #### How to install
+Simply visit the [website](http://drawkward.herokuapp.com/) to play!
+
+Visit the [mobile app](https://github.com/cvglass/capstonenative) for instructions on how to install on your phone.
